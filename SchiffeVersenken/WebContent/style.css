@@ -47,10 +47,10 @@
     color: #666; background-color: white;
   }
   ul#Navigation a:hover {
-    color: black; background-color: #eee;
+    color: black; background-color: #6e8289;
   }
   ul#Navigation a:active {
-    color: white; background-color: gray;
+    color: white; background-color: #1d465c;
   }
 
   div#Inhalt {
