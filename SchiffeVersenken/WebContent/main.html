@@ -4,11 +4,11 @@
         <meta charset="ISO-8859-1">
         <title>Main</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="spielfeld.js" type="text/javascript"></script>
         <style type ="text/css"></style>
+		<script src="spielfeld.js" type="text/javascript"></script>		
     </head>
 
-    <body>
+    <body onload="drawGame()">
         <div id="Seite">
             <h1></h1>
 
@@ -22,6 +22,7 @@
 
             <div id="Inhalt" style="text-align:center">
             <p></p>
+            
                 <canvas id="spielfeld" width="300" height="300" style="border: 1px solid black">
                 Ihr Browser unterstützt kein HTML5 - Canvas
                 </canvas>
