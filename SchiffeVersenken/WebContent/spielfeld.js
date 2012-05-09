@@ -1,22 +1,14 @@
 /**
  * 
  */
-
-var canvas; //Canvas Element
-var ctx; //Canvas context
-var boardX;
-var boardY;
-drawGame();
-
-function drawGame() {
-	// Get the canvas element.
-	canvas = document.getElementbyId("spielfeld");
-	ctx = canvas.getContext("2d"); 
-	ctx.fillstyle ="";
-	ctx.beginPath();
-	ctx.arc(0,0,boardX,boardY);
-	ctx.closePath();
-	ctx.fill;
+function draw()
+var canvas = document.getElementbyId('spielfeld');
+if (canvas.getContext) {
+	canvas = canvas.getContext("2d");
+	canvas.fillStyle = "rgb(0, 0, 200)";
+	for(var y = 0; y < 10; y++) {
+		for(var x = 0; x < 10; x++) {
+			canvas.fillRect(0, 0, 30, 30);
+		}
 	}
-	
-
+}
