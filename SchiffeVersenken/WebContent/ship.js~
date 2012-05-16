@@ -1,0 +1,8 @@
+<script>
+	var schiff;
+	function fuenf() {
+		schiff = 5;
+		alert(schiff);	
+	}
+	
+</script>
