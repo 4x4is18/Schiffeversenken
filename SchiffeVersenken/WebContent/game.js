@@ -1,8 +1,9 @@
 
        var wasserFarbe = "rgba(0, 0, 200, 1)";
        var schiffsFarbe = "rgba(0, 255, 255, 0.7)";
-       var schiff = 2;
+       var schiff = 0;
        var horizontal = true;
+       var x, y;
 
 
 
@@ -25,7 +26,7 @@
 
    // Die Canvas-Funktion beim Laden der Seite aufrufen
         if(window.addEventListener){
-        addEventListener("load", spielfeld, false);
+                 addEventListener("load", spielfeld, false);
         }
 
         window.addEventListener('keydown',doKeyDown,true);
@@ -34,6 +35,27 @@
 
         }
 
+        function getMousePosY() {
+          var totalOffsetY = 0;
+          for (var aktoffsetParent = canvas.offsetParent; aktoffsetParent != null; aktoffsetParent = aktoffsetParent.offsetParent) {
+                 totalOffsetY += aktoffsetParent.offsetTop;
+          }
+           y = event.pageY - totalOffsetY;
+           return y;
+        }
+
+
+        function getMousePosX() {
+         var totalOffsetX = 0;
+          for (var aktoffsetParent = canvas.offsetParent; aktoffsetParent != null; aktoffsetParent = aktoffsetParent.offsetParent) {
+                 totalOffsetX += aktoffsetParent.offsetLeft;
+          }
+           x = event.pageX - totalOffsetX;
+           return x;
+        }
+
+
+
 
         function draw(){
          var canvas = document.getElementById('spielfeld');
@@ -41,26 +63,35 @@
         var cx = canvas.getContext('2d');
         }
         // Position des Mauszeigers
-        var x, y;
+
         // Wird kontinuierlich abgefragt
 
 
 
 
-        canvas.onmousemove = function(o) {
-        backToClicked();
+        canvas.onmousemove = function(event) {
+          backToClicked();
+          var totalOffsetX = 0;
+          var totalOffsetY = 0;
+          for (var aktoffsetParent = canvas.offsetParent; aktoffsetParent != null; aktoffsetParent = aktoffsetParent.offsetParent) {
+                 totalOffsetX += aktoffsetParent.offsetLeft;
+                 totalOffsetY += aktoffsetParent.offsetTop;
+          }
+
+           x = event.pageX - totalOffsetX;
+           y = event.pageY - totalOffsetY;
 
 
 
-           x = o.clientX-canvas.offsetLeft;
-         y = o.clientY-canvas.offsetTop;
-         if (horizontal) horizont();
-         else vertikal();
+           if (horizontal)
+                   horizont();
+           else
+                   vertikal();
 
-        }
+          }
 
-        canvas.onmouseout = function() {
-        backToClicked();
+          canvas.onmouseout = function() {
+          backToClicked();
 
         }
 
@@ -77,10 +108,11 @@
 
 
         function horizont(){
-
                  var xkasten = parseInt(x / 30);
                  var ykasten = parseInt(y / 30);
+                 // alert(y);
                  if ((xkasten + schiff - 1) < spielfeldarray.length) {
+
                           for(var i = 0; i < schiff; i++) {
                                   if (spielfeldarray[xkasten+i][ykasten] == 1) {
                                           backToClicked();
@@ -113,16 +145,24 @@
 
         }
 
-        canvas.mouseout = function(e){
 
 
-        }
+
 
         canvas.onmousedown = function(e){
         //Differenz zwischen Mausposition und Position der Canvas-Fläche ermitteln
         //damit an der richten Stelle gezeichnet wird
-        x = e.clientX-canvas.offsetLeft;
-        y = e.clientY-canvas.offsetTop;
+
+
+                var totalOffsetX = 0;
+          var totalOffsetY = 0;
+          for (var aktoffsetParent = canvas.offsetParent; aktoffsetParent != null; aktoffsetParent = aktoffsetParent.offsetParent) {
+                 totalOffsetX += aktoffsetParent.offsetLeft;
+                 totalOffsetY += aktoffsetParent.offsetTop;
+          }
+
+           x = e.pageX - totalOffsetX;
+           y = e.pageY - totalOffsetY;
          zeichne();
 
          }
@@ -160,9 +200,8 @@
 
         function zeichne(){
 
-                 var xkasten = parseInt(x / 30);
+           var xkasten = parseInt(x / 30);
                  var ykasten = parseInt(y / 30);
-
 
                  if (horizontal) {
 
@@ -192,6 +231,7 @@
                  }
 
                  spielfeld();
+                 schiff = 0;
 
        }//Ende zeichne()
 }//Ende
@@ -201,9 +241,9 @@
                           function spielfeld() {
 
                           var canvas = document.getElementById('spielfeld');
+
                           if (canvas.getContext) {
                                  canvas = canvas.getContext('2d');
-
                                  for(var y = 0; y < 10; y++) {
                                      for(var x = 0; x < 10; x++) {
                                      if (spielfeldarray[x][y] == 0) {

@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Main</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<style type ="text/css"></style>
-		<script src="game.js" type="text/javascript"></script>
-		<script type="text/javascript">		
-			function hide(id) {
-				document.getElementById(id).style.display="none";							
-			}		
-		</script>
-	</head>
-	
-	<body>
-		<!--Brauchen wir den Container? Body ist ja schon ein Container. Micha-->
-		<div id="Seite">
-		<h1></h1>		<!--Kann man da nicht was eindeutigeres als H1 nehmen? Micha-->
-		
-		<!--Unter HTML5 <nav>, aber dann muss auch die css geändert werden. Micha-->
-		<ul id="Navigation">
-			<li><a href="index.html">Startseite</a></li>
-			<li><a href="news.html">News</a></li>
-			<li><a href="spieleanleitung.html">Spielanleitung</a></li>
-			<li><a href="team.html">Das Team</a></li>
-			<li><a href="highscore.html">Highscore</a></li>
-		</ul>
-		
-		<!--Unter HTML5 <article>, aber dann muss auch die css geändert werden. Micha-->
-		<div id="Inhalt" style="text-align:center">
-		
-			<p></p>		<!-- geht sicher auch schöner. Micha-->
-			
-			<table border="0">	<!--Spielfelder-->
-				<tr>
-					<td  colspan="5">
-						<canvas id="spielfeld" width="300" height="300" style="border: 1px solid black">
-						 				Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
-						</canvas>
-					</td>
-					<td colspan="5">
-						<canvas id="spielfeld2" width="300" height="300" style="border: 1px solid black">
-						 				Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
-						</canvas>
-					</td> 
-				</tr>
-				<tr height="150">
-					<td width="60"><img id="s5" onmousedown="schiff=5; hide('s5');" src="images/ship.png" height="50" width="50"></img> </td>
-					<td width="60"><img id="s4" onmousedown="schiff=4; hide('s4');" src="images/ship.png" height="50" width="50"></img> </td>	
-					<td width="60"><img id="s32" onmousedown="schiff=3; hide('s32');" src="images/ship.png" height="50" width="50"></img> </td>	
-					<td width="60"><img id="s31" onmousedown="schiff=3; hide('s31');" src="images/ship.png" height="50" width="50"></img> </td>	
-					<td width="60"><img id="s2" onmousedown="schiff=2; hide('s2');" src="images/ship.png" height="50" width="50"></img> </td>				
-				</tr>
-			</table>
-		</div>
-		
-		<p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
-		</div>
-	</body>
+        <head>
+                <meta charset="ISO-8859-1">
+                <title>Main</title>
+                <link rel="stylesheet" type="text/css" href="style.css">
+                <style type ="text/css"></style>
+                <script src="game.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                        function hide(id) {
+                                document.getElementById(id).style.display="none";
+                        }
+                </script>
+        </head>
+
+        <body>
+                <!--Brauchen wir den Container? Body ist ja schon ein Container. Micha-->
+                <div id="Seite">
+                <h1></h1>                <!--Kann man da nicht was eindeutigeres als H1 nehmen? Micha-->
+
+                <!--Unter HTML5 <nav>, aber dann muss auch die css geändert werden. Micha-->
+                <ul id="Navigation">
+                        <li><a href="index.html">Startseite</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="spieleanleitung.html">Spielanleitung</a></li>
+                        <li><a href="team.html">Das Team</a></li>
+                        <li><a href="highscore.html">Highscore</a></li>
+                </ul>
+
+                <!--Unter HTML5 <article>, aber dann muss auch die css geändert werden. Micha-->
+                <div id="Inhalt" style="text-align:center">
+
+                        <p></p>                <!-- geht sicher auch schöner. Micha-->
+
+                        <table border="0">        <!--Spielfelder-->
+                                <tr>
+                                        <td  colspan="5">
+                                                <canvas id="spielfeld" width="300" height="300" style="border: 1px solid black">
+                                                                                 Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
+                                                </canvas>
+                                        </td>
+                                        <td colspan="5">
+                                                 <canvas id="spielfeld2" width="300" height="300" style="border: 1px solid black">
+                                                                                 Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
+                                                </canvas>
+                                        </td>
+                                </tr>
+                                <tr height="150">
+                                        <td width="60"><img id="s5" onmousedown="schiff=5; hide('s5');" src="images/ship.png" height="50" width="50"></img> </td>
+                                        <td width="60"><img id="s4" onmousedown="schiff=4; hide('s4');" src="images/ship.png" height="50" width="50"></img> </td>
+                                        <td width="60"><img id="s32" onmousedown="schiff=3; hide('s32');" src="images/ship.png" height="50" width="50"></img> </td>
+                                        <td width="60"><img id="s31" onmousedown="schiff=3; hide('s31');" src="images/ship.png" height="50" width="50"></img> </td>
+                                        <td width="60"><img id="s2" onmousedown="schiff=2; hide('s2');" src="images/ship.png" height="50" width="50"></img> </td>
+                                </tr>
+                        </table>
+                </div>
+
+                <p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
+                </div>
+        </body>
 </html>
