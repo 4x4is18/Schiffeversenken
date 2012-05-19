@@ -32,6 +32,11 @@
         if(window.addEventListener){
                  addEventListener("load", spielfeld, false);
         }
+        
+   // Die Canvas-Funktion für das gegnerische Spielfeld beim Laden der Seite aufrufen
+        if(window.addEventListener){
+                 addEventListener("load", spielfeld_Gegner, false);
+        }
 
         window.addEventListener('keydown',doKeyDown,true);
         function doKeyDown(evt){
