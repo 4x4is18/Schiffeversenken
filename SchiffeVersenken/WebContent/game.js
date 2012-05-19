@@ -35,7 +35,7 @@
         
    // Die Canvas-Funktion für das gegnerische Spielfeld beim Laden der Seite aufrufen
         if(window.addEventListener){
-                 addEventListener("load", spielfeld_Gegner, false);
+                 addEventListener("load", spielfeldGegner, false);
         }
 
         window.addEventListener('keydown',doKeyDown,true);
@@ -298,26 +298,18 @@ x = e.pageX - totalOffsetX;
     
     // Initialisiert das Spielfeld des Gegners (Einfach ein leeres Spielfeld)
                           function spielfeld_Gegner() {
+                          	
+                          var canvas2 = document.getElementById('spielfeldGegner');
 
-                          var canvas = document.getElementById('spielfeld_Gegner');
-
-                          if (canvas.getContext) {
-                                 canvas = canvas.getContext('2d');
+                          if (canvas2.getContext) {
+                                 canvas2 = canvas.getContext('2d');
                                  for(var y = 0; y < 10; y++) {
                                      for(var x = 0; x < 10; x++) {
-                                     if (spielfeldarray[x][y] == 0) {
-                                        canvas.fillStyle = wasserFarbe;
-                                        canvas.fillRect(x*30, y*30, 29, 29);
-                                     } else if (spielfeldarray[x][y] == 1) {
-                                        canvas.fillStyle = schiffsFarbe;
-                                        canvas.fillRect(x*30, y*30, 29, 29);
-                                     }
+                                        canvas2.fillStyle = wasserFarbe;
+                                        canvas2.fillRect(x*30, y*30, 29, 29);
+                                        draw();
                                 }
-                        }
-                           draw();
 
                      }
-
-
-
     }
+ }
