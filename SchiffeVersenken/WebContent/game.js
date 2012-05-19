@@ -1,7 +1,11 @@
 
        var wasserFarbe = "rgba(0, 0, 200, 1)";
        var schiffsFarbe = "rgba(0, 255, 255, 0.7)";
+<<<<<<< .mine
+       var schiff;
+=======
        var schiff = 0;
+>>>>>>> .r33
        var horizontal = true;
        var x, y;
 
@@ -69,6 +73,10 @@
 
 
 
+<<<<<<< .mine
+        canvas.onmousemove = function(e) {
+        backToClicked();
+=======
         canvas.onmousemove = function(event) {
           backToClicked();
           var totalOffsetX = 0;
@@ -77,11 +85,30 @@
                  totalOffsetX += aktoffsetParent.offsetLeft;
                  totalOffsetY += aktoffsetParent.offsetTop;
           }
+>>>>>>> .r33
 
+		var totalOffsetX;
+		var totalOffsetY;
+		do {
+	        totalOffsetX += currentElement.offsetLeft;
+	        totalOffsetY += currentElement.offsetTop;
+	   }
+	   while(currentElement == currentElement.offsetParent)
+
+x = e.pageX - totalOffsetX;
+    y = e.pageY - totalOffsetY;
+    alert(x);
+
+
+<<<<<<< .mine
+         if (horizontal) horizont();
+         else vertikal();
+=======
            x = event.pageX - totalOffsetX;
            y = event.pageY - totalOffsetY;
 
 
+>>>>>>> .r33
 
            if (horizontal)
                    horizont();
@@ -241,6 +268,33 @@
                           function spielfeld() {
 
                           var canvas = document.getElementById('spielfeld');
+
+                          if (canvas.getContext) {
+                                 canvas = canvas.getContext('2d');
+                                 for(var y = 0; y < 10; y++) {
+                                     for(var x = 0; x < 10; x++) {
+                                     if (spielfeldarray[x][y] == 0) {
+                                        canvas.fillStyle = wasserFarbe;
+                                        canvas.fillRect(x*30, y*30, 29, 29);
+                                     } else if (spielfeldarray[x][y] == 1) {
+                                        canvas.fillStyle = schiffsFarbe;
+                                        canvas.fillRect(x*30, y*30, 29, 29);
+                                     }
+                                }
+                        }
+                           draw();
+
+                     }
+
+
+
+    }
+    
+    
+    // Initialisiert das Spielfeld des Gegners (Einfach ein leeres Spielfeld)
+                          function spielfeld_Gegner() {
+
+                          var canvas = document.getElementById('spielfeld_Gegner');
 
                           if (canvas.getContext) {
                                  canvas = canvas.getContext('2d');
