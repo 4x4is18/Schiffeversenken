@@ -297,17 +297,16 @@ x = e.pageX - totalOffsetX;
     
     
     // Initialisiert das Spielfeld des Gegners (Einfach ein leeres Spielfeld)
-                          function spielfeld_Gegner() {
+                          function spielfeldGegner() {
                           	
                           var canvas2 = document.getElementById('spielfeldGegner');
 
                           if (canvas2.getContext) {
                                  canvas2 = canvas.getContext('2d');
+                                 canvas2.fillStyle = wasserFarbe;
                                  for(var y = 0; y < 10; y++) {
                                      for(var x = 0; x < 10; x++) {
-                                        canvas2.fillStyle = wasserFarbe;
                                         canvas2.fillRect(x*30, y*30, 29, 29);
-                                        draw();
                                 }
 
                      }
