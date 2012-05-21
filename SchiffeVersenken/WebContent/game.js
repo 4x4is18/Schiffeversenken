@@ -1,4 +1,20 @@
+  var wasserFarbe = "rgba(0, 0, 200, 1)";
+  var schiffsFarbe = "rgba(0, 255, 255, 0.7)";
+  var schiff = 0;
+  var horizontal = false;
+  var x, y;
+  var gesetzteschiffe;
+  var pregame = true;
+  var spielfeldarray = new Array (10);
+  var clickedArray = new Array (10);
+ // KOMMENTARE !!!!       MW
+ // KOMMENTARE !!!!       MW
+ // KOMMENTARE !!!!       MW
+ // KOMMENTARE !!!!       MW
+ // KOMMENTARE !!!!       MW
 
+<<<<<<< .mine
+=======
        var wasserFarbe = "rgba(0, 0, 200, 1)";
        var schiffsFarbe = "rgba(0, 255, 255, 0.7)";
 <<<<<<< .mine
@@ -8,27 +24,27 @@
 >>>>>>> .r33
        var horizontal = true;
        var x, y;
+>>>>>>> .r38
 
 
+ // Dieses Array hift beim zeichnen der Schiffe bevor sie gesetzt werden. Falls die Maus aus dem Canvas heraus geht
+ // oder ein schon gesetztes Schiff im Weg ist werden alle Werte des Array durch die Funktion backToClicked(); wieder
+ // auf 0 gesetzt und somit kein Schiff mehr gezeichnet.
+ // Ich würde BackToTheRoot() besser finden. Oder Atombombe oder so. MW
 
+   for (var i = 0; i < spielfeldarray.length; i++) {
+         spielfeldarray[i] = new Array(0,0,0,0,0,0,0,0,0,0);
+   }
+       // Wenn ein Schiff gesetzt wurde wird es in diesem Array eingetragen.
 
+   for (var i = 0; i < clickedArray.length; i++)
+         clickedArray[i] = new Array(0,0,0,0,0,0,0,0,0,0);
 
+ // ************************************************************************************************************************
+ // *************************************************** EventListener ******************************************************
+ // ************************************************************************************************************************
 
-
-       var spielfeldarray = new Array (10);
-       for (var i = 0; i < spielfeldarray.length; i++)
-                 spielfeldarray[i] = new Array(0,0,0,0,0,0,0,0,0,0);
-
-
-       var clickedArray = new Array (10);
-       for (var i = 0; i < clickedArray.length; i++)
-                 clickedArray[i] = new Array(0,0,0,0,0,0,0,0,0,0);
-
-
-
-
-
-   // Die Canvas-Funktion beim Laden der Seite aufrufen
+   // Die Canvas-Funktion beim Laden der Seite aufrufen.
         if(window.addEventListener){
                  addEventListener("load", spielfeld, false);
         }
@@ -38,11 +54,17 @@
                  addEventListener("load", spielfeldGegner, false);
         }
 
+        // Der Eventlistener setzt wenn die Crtl(keycode == 17) Taste gedrückt wird die Variable horizontal auf True/False
+        // Damit kann zwischen einer horizontalen und einer vertikalen Schiffspositionierung gewechselt werden. MW
         window.addEventListener('keydown',doKeyDown,true);
         function doKeyDown(evt){
                  if (evt.keyCode == 17) horizontal = !horizontal;
 
         }
+ // ************************************************************************************************************************
+ // *************************************************** Mauspositon bestimmen  *********************************************
+ // ************************************************************************************************************************
+
 
         function getMousePosY() {
           var totalOffsetY = 0;
@@ -63,21 +85,27 @@
            return x;
         }
 
+// ************************************************************************************************************************
+// *************************************************** Schiffe platzieren  ************************************************
+// ************************************************************************************************************************
 
 
+function draw(){
 
-        function draw(){
          var canvas = document.getElementById('spielfeld');
-        if(canvas.getContext){
-        var cx = canvas.getContext('2d');
-        }
+         if(canvas.getContext){
+                 // Die Variable wird nicht genutzt wir schreiben alles auf dem Canvas Element wieso ? MW
+                 var cx = canvas.getContext('2d');
+         }
         // Position des Mauszeigers
 
         // Wird kontinuierlich abgefragt
 
 
 
-
+         // Dieses Funktion wird ausgeführt wenn die Maus bewegt wird. Dabei wird die Position der Maus bestimmt.
+         // Wenn ein Schiff (Variable Schiff) ausgewählt wurde, wird geguckt ob das Schiff veritkal oder horizontal
+         // positioniert werden soll. MW
 <<<<<<< .mine
         canvas.onmousemove = function(e) {
         backToClicked();
@@ -122,6 +150,9 @@ x = e.pageX - totalOffsetX;
 
           }
 
+          // Wenn die Maus aus dem Canvas heraus geht wird die Funktion backToClicked() !!!!!!!11111
+          // aufgerufen. Diese Funktion löscht das Array das gefüllt wird wenn man über das Spielfeld geht und aus dem auch
+          // die Informationen für das Schiffe zeichenen kommen. MW
           canvas.onmouseout = function() {
           backToClicked();
 
@@ -269,30 +300,49 @@ x = e.pageX - totalOffsetX;
 }//Ende
 
 
-                            // Initialisiert das Spielfeld
-                          function spielfeld() {
+ // ************************************************************************************************************************
+ // *************************************************** Spielfeld zeichnen *************************************************
+ // ************************************************************************************************************************
 
-                          var canvas = document.getElementById('spielfeld');
+function spielfeld() {
+      gesetzeschiffe = 0;
+      var canvas = document.getElementById('spielfeld');
+      var enemieboard = document.getElementById('enemieboard');
 
-                          if (canvas.getContext) {
-                                 canvas = canvas.getContext('2d');
-                                 for(var y = 0; y < 10; y++) {
-                                     for(var x = 0; x < 10; x++) {
-                                     if (spielfeldarray[x][y] == 0) {
-                                        canvas.fillStyle = wasserFarbe;
-                                        canvas.fillRect(x*30, y*30, 29, 29);
-                                     } else if (spielfeldarray[x][y] == 1) {
-                                        canvas.fillStyle = schiffsFarbe;
-                                        canvas.fillRect(x*30, y*30, 29, 29);
-                                     }
-                                }
-                        }
-                           draw();
+      if (canvas.getContext && enemieboard.getContext) {
+             canvas = canvas.getContext('2d');
+             enemieboard = enemieboard.getContext('2d');
+             for(var y = 0; y < 10; y++) {
+                     for(var x = 0; x < 10; x++) {
+                             if (spielfeldarray[x][y] == 0) {
+                                     canvas.fillStyle = wasserFarbe;
+                                     canvas.fillRect(x*30, y*30, 29, 29);
+                                          // Hier wird das Gegnerische Spielfeld erzeugt MW
+                                     enemieboard.fillStyle = wasserFarbe;
+                                     enemieboard.fillRect(x*30, y*30, 29, 29);
 
+                             } else if (spielfeldarray[x][y] == 1) {
+                                     canvas.fillStyle = schiffsFarbe;
+                                     canvas.fillRect(x*30, y*30, 29, 29);
+                                     gesetzeschiffe++;
+
+                             }
                      }
+             }
+
+             draw();
+
+      }
+
+<<<<<<< .mine
 
 
 
+
+}
+
+
+=======
     }
     
     
@@ -311,4 +361,4 @@ x = e.pageX - totalOffsetX;
 
                      }
     }
- }
+ }>>>>>>> .r38
