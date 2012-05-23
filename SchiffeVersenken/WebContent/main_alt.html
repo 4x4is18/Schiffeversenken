@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="ISO-8859-1">
+                <title>Main</title>
+                <link rel="stylesheet" type="text/css" href="style.css">
+                <style type ="text/css"></style>
+                <script src="game.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                        function hide(id) {
+                                document.getElementById(id).style.display="none";
+                        }
+                </script>
+        </head>
+
+        <body>
+                <!--Brauchen wir den Container? Body ist ja schon ein Container. Micha-->
+                <div id="Seite">
+                <h1></h1>                <!--Kann man da nicht was eindeutigeres als H1 nehmen? Micha-->
+
+                <!--Unter HTML5 <nav>, aber dann muss auch die css geÃ¤ndert werden. Micha-->
+                <ul id="Navigation">
+                        <li><a href="index.html">Startseite</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="spieleanleitung.html">Spielanleitung</a></li>
+                        <li><a href="team.html">Das Team</a></li>
+                        <li><a href="highscore.html">Highscore</a></li>
+                </ul>
+
+                <!--Unter HTML5 <article>, aber dann muss auch die css geÃ¤ndert werden. Micha-->
+                <div id="Inhalt" style="text-align:center">
+
+                        <p></p>                <!-- geht sicher auch schÃ¶ner. Micha-->
+
+                        <table border="0">        <!--Spielfelder-->
+                                <tr>
+                                        <td  colspan="5">
+                                                <!-- Die x,y Koordinaten verschieben sich noch wenn die Überschift eingefügt wird. MW -->
+                                                <!--  <h2>Ihr Spielfeld</h2>  -->
+                                                <canvas id="spielfeld" width="300" height="300" style="border: 1px solid black">
+                                                                                 Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
+                                                </canvas>
+                                        </td>
+                                        <td colspan="5">
+<<<<<<< .mine
+                                                 <!-- Die x,y Koordinaten verschieben sich noch wenn die Überschift eingefügt wird. MW -->
+                                                 <!--  <h2>Gegner</h2>  -->
+
+                                                 <canvas id="enemieboard" width="300" height="300" style="border: 1px solid black">
+=======
+                                                 <canvas id="spielfeldGegner" width="300" height="300" style="border: 1px solid black">
+>>>>>>> .r38
+                                                                                 Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
+                                                </canvas>
+                                        </td>
+                                </tr>
+                                <tr height="200">
+                                        <td width="60"><img id="s5" onmousedown="schiff=5; hide('s5');" src="images/fuenferschiff.png"></img> </td>
+                                        <td width="60"><img id="s4" onmousedown="schiff=4; hide('s4');" src="images/viererschiff.png"></img> </td>
+                                        <td width="60"><img id="s32" onmousedown="schiff=3; hide('s32');" src="images/dreierschiff.png"></img> </td>
+                                        <td width="60"><img id="s31" onmousedown="schiff=3; hide('s31');" src="images/dreierschiff.png"></img> </td>
+                                        <td width="60"><img id="s2" onmousedown="schiff=2; hide('s2');" src="images/zweierschiff.png"></img> </td>
+                                        <td width="150" valign="top" >
+                                                 <input type="button" value="Reset" onclick="document.getElementById('go').checked = !this.disabled; ">
+                                        </td>
+                                        <td width="150" valign="top" >
+                                                  <input type="button" ID="go" value="Go" onclick="">
+                                        </td>
+                                </tr>
+                        </table>
+                </div>
+
+                <p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
+                </div>
+        </body>
+</html>
