@@ -7,7 +7,7 @@ Board.prototype.canvas;
 Board.prototype.ships_set;
 Board.prototype.ships;
 
-function Board(id, ownBoard) {
+function Board(id) {
 	
 	this.id = id;
 	this.canvas = document.getElementById(id);	
