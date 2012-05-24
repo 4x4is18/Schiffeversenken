@@ -1,22 +1,21 @@
-/*
- * alert(selectedShip + ", " + selectedShipLength);
- */
-
 Board.WATER_COLOR = "rgba(0, 0, 200, 1)";
 Board.NUM_FIELDS = 10;
 Board.FIELD_SIZE = 30;
+Board.MAX_SHIPS = 5;
 
 Board.prototype.id;
 Board.prototype.canvas;
 Board.prototype.ships_set;
 Board.prototype.ships;
+Board.prototype.overlayShip;
 
 function Board(id) {
 	
 	this.id = id;
 	this.canvas = document.getElementById(id);	
 	this.ships_set = 0;
-	this.ships = new Array(5);
+	this.ships = new Array(Board.MAX_SHIPS);
+	this.overlayShip = null;
 	
 }
 
@@ -26,7 +25,9 @@ Board.prototype.draw = function() {
 	
 	this.canvas.onmousedown = function(event) {
 		
-		if(selectedShip != null) {
+		if(board == ownBoard && selectedShip != null) {
+			
+			board.overlayShip = null;
 				
 			var topY = parseInt(board.getMousePosY() / Board.FIELD_SIZE);
 			var leftX = parseInt(board.getMousePosX() / Board.FIELD_SIZE);
@@ -36,9 +37,40 @@ Board.prototype.draw = function() {
 				board.ships[board.ships_set++] = new Ship(selectedShip, 
 						selectedShipLength, topY, leftX, vertical);
 				selectedShip = null;
+				
+				if(board.ships_set == Board.MAX_SHIPS) {
+					
+					readyToPlay();
+					
+				}
+				
 				board.draw();
 				
 			}
+			
+		}
+		
+	};
+	
+	this.canvas.onmousemove = function(event) {
+		
+		if(board == ownBoard && selectedShip != null) {
+			
+			var topY = parseInt(board.getMousePosY() / Board.FIELD_SIZE);
+			var leftX = parseInt(board.getMousePosX() / Board.FIELD_SIZE);
+			
+			if(board.canSetShip(selectedShipLength, topY, leftX, vertical)) {
+				
+				board.overlayShip = new Ship(selectShip, 
+						selectedShipLength, topY, leftX, vertical);
+				
+			} else {
+				
+				board.overlayShip = null;
+				
+			}
+			
+			board.draw();
 			
 		}
 		
@@ -51,6 +83,12 @@ Board.prototype.draw = function() {
 		for(var s = 0; s < this.ships_set; s++) {
 			
 			this.ships[s].draw(canvContext);
+			
+		}
+		
+		if(this.overlayShip != null) {
+			
+			this.overlayShip.draw(canvContext);
 			
 		}
 		
@@ -117,6 +155,12 @@ Board.prototype.isShipOnField = function(y, x) {
 		
 	}
 	
+	if(this.overlayShip != null && this.overlayShip.isOnField(y, x)) {
+		
+		return true;
+		
+	}
+	
 	return false;
 	
 };
@@ -128,12 +172,12 @@ Board.prototype.canSetShip = function(selectedShipLength, topY, leftX, vertical)
 	
 	if(vertical) {
 		
-		if(topY + selectedShipLength >= Board.NUM_FIELDS) {
+		if(topY + selectedShipLength > Board.NUM_FIELDS) {
 			
 			return false;
 			
 		}
-			
+		
 		for(var y = topY; y < topY + selectedShipLength; y++) {
 				
 			if(this.isShipOnField(y, leftX)) {
@@ -146,7 +190,7 @@ Board.prototype.canSetShip = function(selectedShipLength, topY, leftX, vertical)
 		
 	} else {
 		
-		if(leftX + selectedShipLength >= Board.NUM_FIELDS) {
+		if(leftX + selectedShipLength > Board.NUM_FIELDS) {
 			
 			return false;
 			

@@ -21,7 +21,6 @@ Ship.prototype.draw = function(canvContext) {
 	if(this.vertical) {
 		
 		for(var y = this.topY; y < (this.topY + this.length); y++) {
-
 			canvContext.fillStyle = Ship.COLOR;
 			canvContext.fillRect(this.leftX * Board.FIELD_SIZE, y * Board.FIELD_SIZE, 
 					Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);

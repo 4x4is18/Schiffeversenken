@@ -1,9 +1,6 @@
 /*
  * TODO:
- * - Schiffe nur auf dem linken Feld setzen können
- * - Schiff als Overlay anzeigen, wenn man mit der Maus über das Feld geht
- * - Button clear
- * - Button play
+ * - Komentare schreiben
  */
 
 var ownBoard = new Board('ownBoard');
@@ -11,7 +8,7 @@ var enemyBoard = new Board('enemyBoard');
 
 var selectedShip = null;
 var selectedShipLength = null;
-var vertical = false;
+var vertical = true;
 
 if(window.addEventListener){
 
@@ -31,9 +28,10 @@ function doKeyDown(evt){
 }
 
 function draw() {
-	
+
 	ownBoard.draw();
 	enemyBoard.draw();
+	alert("Prepare yourself!");
 	
 }
 
@@ -42,5 +40,34 @@ function selectShip(id, length) {
 	selectedShip = id;
 	selectedShipLength = length;
 	document.getElementById(id).style.display="none";
+	
+}
+
+function clearBoard() {
+	
+	selectedShip = null;
+	selectedShipLength = null;
+	vertical = true;
+	ownBoard = new Board('ownBoard');
+	ownBoard.draw();
+	document.getElementById('ship50').style.display="inline-block";
+	document.getElementById('ship40').style.display="inline-block";
+	document.getElementById('ship32').style.display="inline-block";
+	document.getElementById('ship31').style.display="inline-block";
+	document.getElementById('ship20').style.display="inline-block";
+	document.getElementById('go').disabled = true;
+	
+}
+
+function readyToPlay() {
+	
+	document.getElementById('go').disabled = false;
+	
+}
+
+function play() {
+	
+	// TODO: Verbindung zum Server
+	alert("Ich bin soweit, wenn mein Gegner es auch ist!");
 	
 }

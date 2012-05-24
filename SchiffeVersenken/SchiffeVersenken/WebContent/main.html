@@ -55,10 +55,10 @@
 							<img id="ship20" onmousedown = "if(selectedShip == null) selectShip('ship20', 2);" src="images/zweierschiff.png"></img>
 						</td>
 						<td width="150" valign="top" >
-		         			<input type="button" value="Reset">
+		         			<input type="button" onmousedown = "clearBoard();" value="Reset">
 						</td>
 						<td width="150" valign="top" >
-		          			<input type="button" ID="go" value="Go">
+		          			<input type="button" id="go" onmousedown = "play();" value="Go" disabled>
 		                </td> 
 					</tr>
 				</table>
