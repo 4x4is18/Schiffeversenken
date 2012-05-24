@@ -2,33 +2,53 @@ Ship.COLOR = "rgba(0, 255, 255, 0.7)";
 
 Ship.prototype.id;
 Ship.prototype.length;
-Ship.prototype.x;
-Ship.prototype.y;
+Ship.prototype.leftX;
+Ship.prototype.topY;
+Ship.prototype.vertical;
 
-function Ship(id, length, y, x) {
+function Ship(id, length, topY, leftX, vertical) {
 	
 	this.id = id;
 	this.length = length;
-	this.y = y;
-	this.x = x;
+	this.topY = topY;
+	this.leftX = leftX;
+	this.vertical = vertical;
 	
 }
 
 Ship.prototype.draw = function(canvContext) {
-
-	for(var x = this.x; x < (this.x + this.length); x++) {
+	
+	if(this.vertical) {
 		
-		canvContext.fillStyle = Ship.COLOR;
-		canvContext.fillRect(x * Board.FIELD_SIZE, this.y * Board.FIELD_SIZE, 
-				Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);
-        	
+		for(var y = this.topY; y < (this.topY + this.length); y++) {
+
+			canvContext.fillStyle = Ship.COLOR;
+			canvContext.fillRect(this.leftX * Board.FIELD_SIZE, y * Board.FIELD_SIZE, 
+					Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);
+	        	
+		}
+		
+	} else {
+
+		for(var x = this.leftX; x < (this.leftX + this.length); x++) {
+			
+			canvContext.fillStyle = Ship.COLOR;
+			canvContext.fillRect(x * Board.FIELD_SIZE, this.topY * Board.FIELD_SIZE, 
+					Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);
+	        	
+		}
+		
 	}
 	
 };
 
-Ship.isOnField = function(y, x) {
-	
-	if(y == this.y && x >= this.x && x < this.x + this.length) {
+Ship.prototype.isOnField = function(y, x) {
+
+	if(this.vertical && x == this.leftX && y >= this.topY && y <= this.topY + this.length) {
+
+		return true;
+		
+	} else if(!this.vertical && y == this.topY && x >= this.leftX && x < this.leftX + this.length) {
 		
 		return true;
 		

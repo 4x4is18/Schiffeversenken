@@ -1,3 +1,7 @@
+/*
+ * alert(selectedShip + ", " + selectedShipLength);
+ */
+
 Board.WATER_COLOR = "rgba(0, 0, 200, 1)";
 Board.NUM_FIELDS = 10;
 Board.FIELD_SIZE = 30;
@@ -23,14 +27,18 @@ Board.prototype.draw = function() {
 	this.canvas.onmousedown = function(event) {
 		
 		if(selectedShip != null) {
-							
-			var y = parseInt(board.getMousePosY() / Board.FIELD_SIZE);
-			var x = parseInt(board.getMousePosX() / Board.FIELD_SIZE);
+				
+			var topY = parseInt(board.getMousePosY() / Board.FIELD_SIZE);
+			var leftX = parseInt(board.getMousePosX() / Board.FIELD_SIZE);
 			
-			board.ships[board.ships_set++] = new Ship(selectedShip, 
-					selectedShipLength, y, x);
-			selectedShip = null;
-			board.draw();
+			if(board.canSetShip(selectedShipLength, topY, leftX, vertical)) {
+
+				board.ships[board.ships_set++] = new Ship(selectedShip, 
+						selectedShipLength, topY, leftX, vertical);
+				selectedShip = null;
+				board.draw();
+				
+			}
 			
 		}
 		
@@ -98,9 +106,9 @@ Board.prototype.getMousePosX = function() {
 };
 
 Board.prototype.isShipOnField = function(y, x) {
-
+	
 	for(var s = 0; s < this.ships_set; s++) {
-
+		
 		if(this.ships[s].isOnField(y, x)) {
 			
 			return true;
@@ -110,5 +118,52 @@ Board.prototype.isShipOnField = function(y, x) {
 	}
 	
 	return false;
+	
+};
+
+Board.prototype.canSetShip = function(selectedShipLength, topY, leftX, vertical) {
+	
+	var start = null;
+	var end = null;
+	
+	if(vertical) {
+		
+		if(topY + selectedShipLength >= Board.NUM_FIELDS) {
+			
+			return false;
+			
+		}
+			
+		for(var y = topY; y < topY + selectedShipLength; y++) {
+				
+			if(this.isShipOnField(y, leftX)) {
+					
+				return false;
+					
+			}
+				
+		}
+		
+	} else {
+		
+		if(leftX + selectedShipLength >= Board.NUM_FIELDS) {
+			
+			return false;
+			
+		}
+		
+		for(var x = leftX; x < leftX + selectedShipLength; x++) {
+				
+			if(this.isShipOnField(topY, x)) {
+					
+				return false;
+					
+			}
+				
+		}
+		
+	}
+	
+	return true;
 	
 };

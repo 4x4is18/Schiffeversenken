@@ -40,26 +40,26 @@
 					</tr>
 		            <tr height="200">
 		            	<td width="60">
-		            		<img id="ship50" onmousedown = "selectShip('ship50', 5); hideShip(id);"; src="images/fuenferschiff.png"></img>
+		            		<img id="ship50" onmousedown = "if(selectedShip == null) selectShip('ship50', 5);" src="images/fuenferschiff.png"></img>
 		            	</td>
 						<td width="60">
-							<img id="ship40" onmousedown = "selectShip('ship40', 4); hideShip(id);" src="images/viererschiff.png"></img>
+							<img id="ship40" onmousedown = "if(selectedShip == null) selectShip('ship40', 4);" src="images/viererschiff.png"></img>
 						</td>
 						<td width="60">
-							<img id="ship32" onmousedown = "selectShip('ship32', 3); hideShip(id);" src="images/dreierschiff.png"></img>
+							<img id="ship32" onmousedown = "if(selectedShip == null) selectShip('ship32', 3);" src="images/dreierschiff.png"></img>
 						</td>
 						<td width="60">
-							<img id="ship31" onmousedown = "selectShip('ship31', 3); hideShip(id);" src="images/dreierschiff.png"></img>
+							<img id="ship31" onmousedown = "if(selectedShip == null) selectShip('ship31', 3);" src="images/dreierschiff.png"></img>
 						</td>
 						<td width="60">
-							<img id="ship20" onmousedown = "selectShip('ship20', 2); hideShip(id);" src="images/zweierschiff.png"></img>
+							<img id="ship20" onmousedown = "if(selectedShip == null) selectShip('ship20', 2);" src="images/zweierschiff.png"></img>
 						</td>
 						<td width="150" valign="top" >
 		         			<input type="button" value="Reset">
 						</td>
 						<td width="150" valign="top" >
 		          			<input type="button" ID="go" value="Go">
-		                </td>
+		                </td> 
 					</tr>
 				</table>
 			</div>
