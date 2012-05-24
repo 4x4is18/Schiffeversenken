@@ -1,0 +1,25 @@
+//var ownCanvas = document.getElementById('ownBoard');
+//var enemyCanvas = document.getElementById('enemyBoard');
+
+//var ownBoard = new Board(ownCanvas);
+var ownBoard = new Board('ownBoard');
+//var enemyBoard = new Board(enemyCanvas);
+
+if(window.addEventListener){
+
+	addEventListener("load", draw, false);
+	
+}
+
+function draw() {
+	
+	ownBoard.draw();
+	enemyBoard.draw();
+	
+}
+
+function hide(id) {
+	
+	document.getElementById(id).style.display="none";
+	
+}

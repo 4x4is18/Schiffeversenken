@@ -1,0 +1,42 @@
+//Ship.COLOR = "rgba(0, 255, 255, 0.7)";
+
+Ship.prototype.id;
+Ship.prototype.length;
+Ship.prototype.leftX;
+Ship.prototype.topY;
+
+function Ship(id, length, topY, leftX) {
+	
+	this.id = id;
+	this.length = length;
+	this.topY = topY;
+	this.leftX = leftX;
+	
+}
+
+Ship.prototype.draw = function(canvContext) {
+
+	alert(canvContext)
+	for(var x = this.leftX; x < (this.leftX + this.length); x++) {
+		
+		canvContext.fillStyle = Ship.COLOR;
+		canvContext.fillRect(x * Board.FIELD_SIZE, this.topY * Board.FIELD_SIZE, 
+				Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);
+        	
+	}
+	
+};
+
+Ship.isOnField = function(y, x) {
+	
+	if(y == this.topY && x >= this.leftX && x < this.leftX + this.length) {
+		
+		return true;
+		
+	} else {
+		
+		return false;
+		
+	}
+	
+};

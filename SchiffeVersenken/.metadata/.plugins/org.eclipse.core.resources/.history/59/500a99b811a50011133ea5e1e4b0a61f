@@ -1,0 +1,21 @@
+Ship.COLOR = "rgba(0, 255, 255, 0.7)";
+
+Ship.prototype.id;
+Ship.prototype.length;
+Ship.prototype.x;
+Ship.prototype.y;
+
+function Ship(id, length, y, x) {
+	
+	this.id = id;
+	this.length = length;
+	this.id = y;
+	this.id = x;
+	
+}
+
+Ship.prototype.draw = function(canvContext) {
+	
+	alert("test");
+	
+};

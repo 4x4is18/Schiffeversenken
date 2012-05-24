@@ -1,0 +1,190 @@
+!SESSION 2012-05-23 20:00:50.410 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Windows 7 x86-32 jvmwi3260sr8-20100401_55940 (JIT enabled, AOT enabled)
+J9VM - 20100401_055940
+JIT  - r9_20100401_15339
+GC   - 20100308_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_DE
+Framework arguments:  -product com.ibm.rational.rsa.product.v80.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rsa.product.v80.ide
+
+!ENTRY com.ibm.xtools.emf.ram.ui 4 0 2012-05-23 20:02:22.614
+!MESSAGE RAM Client is not installed. Please install the RAM Client to enable the RAM integration functionality.
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-05-23 20:21:44.039
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle_1.6.5
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-05-23 20:21:46.425
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.4.0.v201205091048-rel-r36
+
+!ENTRY org.eclipse.wst.jsdt.ui 4 2 2012-05-23 22:19:21.741
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.wst.jsdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.wst.jsdt.core.dom.InfixExpression.setOperator(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.AST.convertCompilationUnit(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.CompilationUnit.buildStructure(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.Openable.generateInfos(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.CompilationUnit.makeConsistent(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelOperation.run(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelOperation.runOperation(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.CompilationUnit.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.JavaReconciler.process(Unknown Source)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(Unknown Source)
+
+!ENTRY org.eclipse.wst.jsdt.ui 4 0 2012-05-23 22:19:21.756
+!MESSAGE Error in JSDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.wst.jsdt.core.dom.InfixExpression.setOperator(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.ASTConverter.convert(Unknown Source)
+	at org.eclipse.wst.jsdt.core.dom.AST.convertCompilationUnit(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.CompilationUnit.buildStructure(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.Openable.generateInfos(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.JavaElement.openWhenClosed(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.CompilationUnit.makeConsistent(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelOperation.run(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelOperation.runOperation(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.core.CompilationUnit.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(Unknown Source)
+	at org.eclipse.core.runtime.SafeRunner.run(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(Unknown Source)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(Unknown Source)
+	at org.eclipse.wst.jsdt.internal.ui.text.JavaReconciler.process(Unknown Source)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(Unknown Source)
+!SESSION 2012-05-24 06:12:18.271 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Windows 7 x86-32 jvmwi3260sr8-20100401_55940 (JIT enabled, AOT enabled)
+J9VM - 20100401_055940
+JIT  - r9_20100401_15339
+GC   - 20100308_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_DE
+Framework arguments:  -product com.ibm.rational.rsa.product.v80.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rsa.product.v80.ide
+
+!ENTRY com.ibm.xtools.emf.ram.ui 4 0 2012-05-24 06:12:30.501
+!MESSAGE RAM Client is not installed. Please install the RAM Client to enable the RAM integration functionality.
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-05-24 06:16:32.964
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle_1.6.5
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-05-24 06:16:33.081
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.4.0.v201205021203-rel-r36
+
+!ENTRY com.google.gwt.eclipse.core 4 0 2012-05-24 06:16:33.087
+!MESSAGE Cannot get version of GWT SDK "GWT", ensure it is configured properly
+!STACK 0
+java.lang.ClassNotFoundException: com.google.gwt.dev.About
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at com.google.gwt.eclipse.core.runtime.GWTRuntime.getVersion(Unknown Source)
+	at com.google.gdt.eclipse.core.sdk.AbstractSdk.toXml(Unknown Source)
+	at com.google.gdt.eclipse.core.sdk.SdkSet.toXml(Unknown Source)
+	at com.google.gdt.eclipse.core.sdk.SdkSetSerializer.serialize(Unknown Source)
+	at com.google.gdt.eclipse.core.sdk.SdkManager.setSdks(Unknown Source)
+	at com.google.gwt.eclipse.core.sdk.GWTSdkRegistrant.registerSdk(Unknown Source)
+	at com.google.gdt.eclipse.suite.preferences.GdtPreferences.registerBundleSdk(Unknown Source)
+	at com.google.gdt.eclipse.suite.preferences.GdtPreferences.registerSdks(Unknown Source)
+	at com.google.gdt.eclipse.suite.GdtPlugin.start(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(Unknown Source)
+	at org.eclipse.osgi.framework.util.SecureAction.start(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.setLazyTrigger(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(Unknown Source)
+	at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(Unknown Source)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at org.eclipse.osgi.internal.loader.BundleLoader.loadClass(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.loadClass(Unknown Source)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.loadClass(Unknown Source)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(Unknown Source)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(Unknown Source)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(Unknown Source)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(Unknown Source)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchShortcutExtension.getDelegate(Unknown Source)
+	at org.eclipse.debug.internal.ui.launchConfigurations.LaunchShortcutExtension.getLaunchConfigurations(Unknown Source)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.getParticipatingLaunchConfigurations(Unknown Source)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.getLabel(Unknown Source)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager.computeLabels(Unknown Source)
+	at org.eclipse.debug.internal.ui.contextlaunching.LaunchingResourceManager$2.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)
+!SESSION 2012-05-24 07:20:09.604 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Windows 7 x86-32 jvmwi3260sr8-20100401_55940 (JIT enabled, AOT enabled)
+J9VM - 20100401_055940
+JIT  - r9_20100401_15339
+GC   - 20100308_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_DE
+Framework arguments:  -product com.ibm.rational.rsa.product.v80.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rsa.product.v80.ide
+
+!ENTRY com.ibm.xtools.emf.ram.ui 4 0 2012-05-24 07:20:17.888
+!MESSAGE RAM Client is not installed. Please install the RAM Client to enable the RAM integration functionality.
+!SESSION 2012-05-24 07:22:45.020 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Windows 7 x86-32 jvmwi3260sr8-20100401_55940 (JIT enabled, AOT enabled)
+J9VM - 20100401_055940
+JIT  - r9_20100401_15339
+GC   - 20100308_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_DE
+Framework arguments:  -product com.ibm.rational.rsa.product.v80.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rsa.product.v80.ide
+
+!ENTRY com.ibm.xtools.emf.ram.ui 4 0 2012-05-24 07:22:55.440
+!MESSAGE RAM Client is not installed. Please install the RAM Client to enable the RAM integration functionality.
