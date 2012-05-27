@@ -1,10 +1,23 @@
 /*
+ * Neu:
+ * - Spielmodi eingeführt
+ * - Schiff speichert Treffer und gibt an, ob es getroffen/versenkt wurde
+ * - Schiff zeichnet ein rotes Feld, wenn es dort getroffen wurde
+ */
+
+/*
  * TODO:
  * - Komentare schreiben
+ * - Client auf's Spiel vorbereiten
+ * - linker Mausclick auf dem gegnerischen Feld
  */
 
 var ownBoard = new Board('ownBoard');
 var enemyBoard = new Board('enemyBoard');
+
+var PREPARE = 0;
+var INGAME = 1;
+var mode = PREPARE;
 
 var selectedShip = null;
 var selectedShipLength = null;
@@ -66,6 +79,8 @@ function readyToPlay() {
 }
 
 function play() {
+	
+	mode = INGAME;
 	
 	// TODO: Verbindung zum Server
 	alert("Ich bin soweit, wenn mein Gegner es auch ist!");

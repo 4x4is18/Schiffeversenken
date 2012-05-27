@@ -24,8 +24,8 @@ Board.prototype.draw = function() {
 	var board = this;
 	
 	this.canvas.onmousedown = function(event) {
-		
-		if(board == ownBoard && selectedShip != null) {
+		// TODO: Klicken auf gegnerischem Feld
+		if(mode == PREPARE && board == ownBoard && selectedShip != null) {
 			
 			board.overlayShip = null;
 				
@@ -48,7 +48,7 @@ Board.prototype.draw = function() {
 				
 			}
 			
-		}
+		} //else if(mode == INGAME && board == enemyBoard)
 		
 	};
 	
