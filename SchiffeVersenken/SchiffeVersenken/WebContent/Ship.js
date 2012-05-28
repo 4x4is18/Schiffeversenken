@@ -1,5 +1,5 @@
 Ship.COLOR = "rgba(0, 255, 255, 0.7)";
-Ship.COLOR_HIT = "rgba(255, 0, 0, 0.7";
+Ship.COLOR_HIT = "rgba(255, 0, 0, 0.7)";
 Ship.NO_HIT = 0;
 Ship.HIT = 1;
 Ship.SUNK_IN = 2;
@@ -18,7 +18,7 @@ function Ship(id, length, topY, leftX, vertical) {
 	this.topY = topY;
 	this.leftX = leftX;
 	this.vertical = vertical;
-	this.hits = 0;
+	this.hits = new Array(length);
 	for(var i = 0; i < length; i++) {
 		
 		this.hits[i] = false;
@@ -33,8 +33,8 @@ Ship.prototype.draw = function(canvContext) {
 	if(this.vertical) {
 		
 		for(var y = this.topY; y < (this.topY + this.length); y++) {
-			
-			if(this.hits[y]) {
+
+			if(this.hits[y - this.topY]) {
 				
 				canvContext.fillStyle = Ship.COLOR_HIT;
 				
@@ -74,15 +74,15 @@ Ship.prototype.isOnField = function(y, x) {
 
 	if(this.vertical && x == this.leftX && y >= this.topY && y <= this.topY + this.length) {
 
-		return true;
+		return this;
 		
 	} else if(!this.vertical && y == this.topY && x >= this.leftX && x < this.leftX + this.length) {
 		
-		return true;
+		return this;
 		
 	} else {
 		
-		return false;
+		return null;
 		
 	}
 	
@@ -96,7 +96,7 @@ Ship.prototype.getHitPos = function(y, x) {
 			
 			if(y == pos) {
 				
-				return pos;
+				return pos - this.topY;
 				
 			}
 	        	
@@ -108,7 +108,7 @@ Ship.prototype.getHitPos = function(y, x) {
 			
 			if(x == pos) {
 				
-				return pos;
+				return pos - this.leftX;
 				
 			}
 	        	
@@ -125,7 +125,8 @@ Ship.prototype.getHit = function(y, x) {
 		hitPos = this.getHitPos(y, x);
 		if(!this.hits[hitPos]) {
 			
-			this.hits[hitPos];
+			this.hits[hitPos] = true;
+			
 			if(++this.numHits == this.length) {
 				
 				return Ship.SUNK_IN;

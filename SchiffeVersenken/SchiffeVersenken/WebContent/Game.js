@@ -3,13 +3,15 @@
  * - Spielmodi eingeführt
  * - Schiff speichert Treffer und gibt an, ob es getroffen/versenkt wurde
  * - Schiff zeichnet ein rotes Feld, wenn es dort getroffen wurde
+ * - Ship.isOnField und Board.isShipOnField liefern das Schiff oder null zurück statt true/false
+ * - Schüsse auf gegnerischem Feld möglich
+ * - Treffer und Versenken möglich
  */
 
 /*
  * TODO:
  * - Komentare schreiben
- * - Client auf's Spiel vorbereiten
- * - linker Mausclick auf dem gegnerischen Feld
+ * - Schiffe runterzählen um den Gewinner zu ermitteln
  */
 
 var ownBoard = new Board('ownBoard');
