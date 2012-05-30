@@ -46,7 +46,7 @@ function draw() {
 
 	ownBoard.draw();
 	enemyBoard.draw();
-	alert("Prepare yourself!");
+	//alert("Prepare yourself!");
 	
 }
 

@@ -138,17 +138,13 @@ Ship.prototype.draw = function(canvContext) {
 		// Alle Schiffsteile von oben nach unten durchgehen und je nach dem, 
 		// ob es ein intaktes Schiffsteil oder ein getroffenes ist, die Farbe 
 		// waehlen.
-		
 		for(var y = this.topY; y < (this.topY + this.length); y++) {
-
 			// Erstes Teil: this.topY
 			// Letztes Teil this.topY + this.length
 			if(this.hits[y - this.topY]) {
-				
 				canvContext.fillStyle = Ship.COLOR_HIT;
 				
 			} else {
-				
 				canvContext.fillStyle = Ship.COLOR;
 				
 			}
