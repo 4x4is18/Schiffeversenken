@@ -14,6 +14,8 @@ public class ShipWebSocketServlet extends WebSocketServlet {
     
     @Override
     public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
-        return new ShipWebSocket(user);
+    	ShipWebSocket neuesWebSocket = new ShipWebSocket(user);
+    	WebSocketConnections.addSocket(neuesWebSocket);
+        return neuesWebSocket;
     }
 }
