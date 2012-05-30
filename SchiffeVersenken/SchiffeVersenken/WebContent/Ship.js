@@ -190,7 +190,7 @@ Ship.prototype.draw = function(canvContext) {
 Ship.prototype.isOnField = function(y, x) {
 
 	if(this.vertical && x == this.leftX && y >= this.topY && 
-			y <= this.topY + this.length) {
+			y < this.topY + this.length) {
 		// Vertikales Schiff:
 		// Erstes Teil: this.topY
 		// Letztes Teil this.topY + this.length

@@ -134,14 +134,14 @@ Board.prototype.draw = function() {
 		if(mode == PREPARE && board == ownBoard && selectedShip != null) {
 			
 			// Bestimmung, auf welchem Feld der Mauszeiger sind befindet.
-			var topY = parseInt(board.getMousePosY(event) / Board.FIELD_SIZE);
-			var leftX = parseInt(board.getMousePosX(event) / Board.FIELD_SIZE);
+			var y = parseInt(board.getMousePosY(event) / Board.FIELD_SIZE);
+			var x = parseInt(board.getMousePosX(event) / Board.FIELD_SIZE);
 			
 			// Sofern ein Schiff an dieser stelle gezeichnet werden kann,
 			// wird ein neues temporäres Schiff erzeugt.
-			if(board.canSetShip(selectedShipLength, topY, leftX, vertical)) {
+			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
 				board.overlayShip = new Ship(selectShip, 
-						selectedShipLength, topY, leftX, vertical);
+						selectedShipLength, y, x, vertical);
 				
 			} else {
 				
@@ -167,29 +167,30 @@ Board.prototype.draw = function() {
 Board.prototype.drawField = function() {
 	
 	if(this.canvas.getContext) {
-	var canvContext = this.canvas.getContext('2d');
-	
-	// Zunächst wird das gesammte Spielfeld mit Wasserfeldern überzeichnet.
-	for(var y = 0; y < Board.NUM_FIELDS; y++) {
-        
-    	for(var x = 0; x < Board.NUM_FIELDS; x++) {
-    		 			        		
-    			if(this.shots[y][x]) {
-    				
-    				canvContext.fillStyle = Board.SHOT_COLOR;
-    				
-    			} else {
-    				
-    				canvContext.fillStyle = Board.WATER_COLOR;
-    				
-    			}
-        		canvContext.fillRect(x * Board.FIELD_SIZE, y * Board.FIELD_SIZE, 
-        				Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);
-    			
-    	}
-        	
-	}
 		
+		var canvContext = this.canvas.getContext('2d');
+		
+		// Zunächst wird das gesammte Spielfeld mit Wasserfeldern überzeichnet.
+		for(var y = 0; y < Board.NUM_FIELDS; y++) {
+	        
+	    	for(var x = 0; x < Board.NUM_FIELDS; x++) {
+	    		 			        		
+	    			if(this.shots[y][x]) {
+	    				
+	    				canvContext.fillStyle = Board.SHOT_COLOR;
+	    				
+	    			} else {
+	    				
+	    				canvContext.fillStyle = Board.WATER_COLOR;
+	    				
+	    			}
+	        		canvContext.fillRect(x * Board.FIELD_SIZE, y * Board.FIELD_SIZE, 
+	        				Board.FIELD_SIZE - 1, Board.FIELD_SIZE - 1);
+	    			
+	    	}
+	        	
+		}
+			
 		// Die fest erstellen Schiffe zeichnen
 		for(var s = 0; s < this.ships_set; s++) {
 			
@@ -203,11 +204,10 @@ Board.prototype.drawField = function() {
 			this.overlayShip.draw(canvContext);
 			
 		}
-		
-
-        	
+	      	
 	}
-}
+	
+};
 
 /**
  * Besetimmt die Y-Koordinate des Mauszeigers, beginnent bei

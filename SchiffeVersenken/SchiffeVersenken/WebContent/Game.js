@@ -83,6 +83,7 @@ function readyToPlay() {
 function play() {
 	
 	mode = INGAME;
+	document.getElementById('clear').disabled = true;
 	
 	// TODO: Verbindung zum Server
 	alert("Ich bin soweit, wenn mein Gegner es auch ist!");
