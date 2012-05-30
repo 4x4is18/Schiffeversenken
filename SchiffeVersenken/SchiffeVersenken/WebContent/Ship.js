@@ -21,11 +21,6 @@ Ship.COLOR_HIT = "rgba(255, 0, 0, 0.7)";	// READ ONLY
  * Ship - Instanzvariablen
  */
 
-// TODO: von ID zu OWN
-Ship.prototype.id;
-// Die Angabe, ob das Schiff ein eigenes oder gegniersches ist:
-//Ship.prototype.own;
-
 // Die Laenge des Schiffes:
 Ship.prototype.length;
 
@@ -49,12 +44,14 @@ Ship.prototype.numHits;
 /*
  * Konstruktor zum Erstellen eines Schiffes.
  */
-//TODO: von ID zu OWN
 //TODO: von HITS zu PARTS
 //TODO: NUMHITS rausnehmen
-function Ship(id, length, topY, leftX, vertical) {
+function Ship() {
 	
-	this.id = id;
+}
+
+Ship.prototype.init = function(length, topY, leftX, vertical) {
+	
 	this.length = length;
 	this.topY = topY;
 	this.leftX = leftX;
@@ -67,7 +64,42 @@ function Ship(id, length, topY, leftX, vertical) {
 	}
 	this.numHits = 0;
 	
-}
+};
+
+Ship.prototype.clone = function(string) {
+	
+	alert(string);
+	
+	var splitResult = string.split(",");
+	
+	this.length = splitResult[0];
+	this.topY = splitResult[1];
+	this.leftX = splitResult[2];
+	this.vertical = splitResult[3];
+	for(var i = 0; i < this.length; i++) {
+		
+		this.hits[i] = splitResult[4 + i];
+		
+	}
+	this.numHits = splitResult[4 + this.length];
+	
+};
+
+Ship.prototype.toString = function() {
+	
+	var ship = this.length.toString() + 
+			"," + this.topY.toString() + "," + this.leftX.toString() + "," +
+			this.vertical.toString() + ",";
+	
+	for(var i = 0; i < length; i++) {
+		
+		ship += this.hits[i].toString() + ",";
+		
+	}
+	
+	return ship += this.numHits;
+	
+};
 
 /*
  * Getter fuer die Angabe, ob das Schiff ein eigenes oder gegniersches ist.

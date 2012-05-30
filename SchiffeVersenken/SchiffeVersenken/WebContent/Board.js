@@ -29,12 +29,23 @@ Board.prototype.overlayShip;
 Board.prototype.shots;
 
 
-function Board(id) {
+function Board() {
+	
+}
+
+Board.prototype.init = function(id) {
 	
 	this.id = id;
 	this.canvas = document.getElementById(id);	
 	this.ships_set = 0;
 	this.ships = new Array(Board.MAX_SHIPS);
+	// TODO
+	for(var s = 0; s < Board.MAX_SHIPS; s++) {
+		
+		this.ships[s] = new Ship();
+		
+	}
+	
 	this.overlayShip = null;
 	this.shots = new Array(10);
 	for(var y = 0; y < 10; y++) {
@@ -49,7 +60,67 @@ function Board(id) {
 		
 	}
 	
-}
+};
+
+Board.prototype.clone = function(string) {
+	
+	var splitResult = string.split(";");
+	
+	this.ships_set = splitResult[0];
+	
+	for(var s = 0; s < this.ships_set; s++) {
+
+		alert(this.ships[s]);
+		this.ships[s].clone(splitResult[1 + s]);
+		
+	}
+	
+/*	this.shots = new Array(10);
+   	for(var y = 0; y < 10; y++) {
+   	
+   		this.shots[y] = new Array(10);
+		
+		for(var x = 0; x < 10; x++) {
+			
+			this.shots[y][x] = splitResult[1 + this.ships_set + (y * 10) + x];
+			
+		}
+		
+	}*/	
+	
+};
+
+Board.prototype.toString = function() {
+	
+	var board = this.ships_set.toString() + ";";
+	
+	for(var s = 0; s < this.ships_set; s++) {
+		
+		board += this.ships[s].toString() + ";";
+		
+	}/*
+
+	for(var y = 0; y < 10; y++) {
+			
+		for(var x = 0; x < 10; x++) {
+			
+			if(y == 9 && x == 9) {
+				
+				board += this.shots[y][x].toString();
+				
+			} else {
+				
+				board += this.shots[y][x].toString() + ";";
+				
+			}
+			
+		}
+		
+	}*/
+	
+	return board;
+	
+};
 
 /**
  * Das Spielfeld und sämtliche Eventhandler werden erstellt
@@ -78,8 +149,10 @@ Board.prototype.draw = function() {
 			 *  temporäre Schiff (Für Mauszeigerbewegungen) entfernt
 			 */
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
-				board.ships[board.ships_set++] = new Ship(selectedShip, 
-						selectedShipLength, y, x, vertical);
+				
+				//TODO board.ships[board.ships_set] = new Ship();
+				board.ships[board.ships_set++].init(selectedShipLength, y, x, 
+						vertical);
 				selectedShip = null;
 				
 				// Sind alle Schiffe gesetzt, kann der Spieler auf GO klicken
@@ -140,8 +213,9 @@ Board.prototype.draw = function() {
 			// Sofern ein Schiff an dieser stelle gezeichnet werden kann,
 			// wird ein neues temporäres Schiff erzeugt.
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
-				board.overlayShip = new Ship(selectShip, 
-						selectedShipLength, y, x, vertical);
+				
+				board.overlayShip = new Ship();
+				board.overlayShip.init(selectedShipLength, y, x, vertical);
 				
 			} else {
 				
@@ -191,14 +265,14 @@ Board.prototype.drawField = function() {
 	        	
 		}
 		// Nur wenn man auf dem eigenen Board ist kann man die Schiffe zeichnen
-		if(this == ownBoard){
+//TODO		if(this == ownBoard){
 			// Die fest erstellen Schiffe zeichnen
 			for(var s = 0; s < this.ships_set; s++) {
 				
 				this.ships[s].draw(canvContext);
 				
 			}
-		}
+//		}
 		// Das temporäre Schiff zeichnen, falls der Mauszeiger über einem gültigen Feld ist
 		if(this.overlayShip != null) {
 			

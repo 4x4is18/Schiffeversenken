@@ -14,8 +14,8 @@
  * - Schiffe runterzählen um den Gewinner zu ermitteln
  */
 
-var ownBoard = new Board('ownBoard');
-var enemyBoard = new Board('enemyBoard');
+var ownBoard = new Board();
+var enemyBoard = new Board();
 
 var PREPARE = 0;
 var INGAME = 1;
@@ -44,9 +44,13 @@ function doKeyDown(evt){
 
 function draw() {
 
+	ownBoard.init('ownBoard');
+	enemyBoard.init('enemyBoard');
+	
 	ownBoard.draw();
 	enemyBoard.draw();
-	alert("Prepare yourself!");
+	// TODO:
+	//alert("Prepare yourself!");
 	
 }
 
@@ -63,7 +67,7 @@ function clearBoard() {
 	selectedShip = null;
 	selectedShipLength = null;
 	vertical = true;
-	ownBoard = new Board('ownBoard');
+	ownBoard.init('ownBoard');
 	ownBoard.draw();
 	document.getElementById('ship50').style.display="inline-block";
 	document.getElementById('ship40').style.display="inline-block";
@@ -88,6 +92,11 @@ function play() {
 	document.getElementById('go').disabled = true;
 	
 	// TODO: Verbindung zum Server
-	alert("Ich bin soweit, wenn mein Gegner es auch ist!");
+//	alert("Ich bin soweit, wenn mein Gegner es auch ist!");
+	// TODO: Test
+	var string = ownBoard.toString();
+	enemyBoard.clone(string);
+	alert(enemyBoard);
+	enemyBoard.draw();
 	
 }
