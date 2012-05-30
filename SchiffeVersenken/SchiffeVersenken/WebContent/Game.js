@@ -46,7 +46,7 @@ function draw() {
 
 	ownBoard.draw();
 	enemyBoard.draw();
-	//alert("Prepare yourself!");
+	alert("Prepare yourself!");
 	
 }
 
@@ -78,12 +78,14 @@ function readyToPlay() {
 	
 	document.getElementById('go').disabled = false;
 	
+	
 }
 
 function play() {
 	
 	mode = INGAME;
 	document.getElementById('clear').disabled = true;
+	document.getElementById('go').disabled = true;
 	
 	// TODO: Verbindung zum Server
 	alert("Ich bin soweit, wenn mein Gegner es auch ist!");

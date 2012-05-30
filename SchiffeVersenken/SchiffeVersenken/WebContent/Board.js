@@ -190,14 +190,15 @@ Board.prototype.drawField = function() {
 	    	}
 	        	
 		}
-			
-		// Die fest erstellen Schiffe zeichnen
-		for(var s = 0; s < this.ships_set; s++) {
-			
-			this.ships[s].draw(canvContext);
-			
+		// Nur wenn man auf dem eigenen Board ist kann man die Schiffe zeichnen
+		if(this == ownBoard){
+			// Die fest erstellen Schiffe zeichnen
+			for(var s = 0; s < this.ships_set; s++) {
+				
+				this.ships[s].draw(canvContext);
+				
+			}
 		}
-		
 		// Das temporäre Schiff zeichnen, falls der Mauszeiger über einem gültigen Feld ist
 		if(this.overlayShip != null) {
 			
