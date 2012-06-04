@@ -1,0 +1,21 @@
+var ownBoard = new Board('ownBoard');
+var enemyBoard = new Board('enemyCanvas');
+
+if(window.addEventListener){
+
+	addEventListener("load", draw, false);
+	
+}
+
+function draw() {
+	
+	ownBoard.draw();
+	enemyBoard.draw();
+	
+}
+
+function hideShip(id) {
+	
+	document.getElementById(id).style.display="none";
+	
+}

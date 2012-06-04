@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+		<meta charset="ISO-8859-1">
+		<title>Main</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<style type ="text/css"></style>
+				
+	</head>
+
+	<body>
+	
+		<div id="Seite">
+		
+			<h1></h1>
+			<ul id="Navigation">
+        		<li><a href="index.html">Startseite</a></li>
+        		<li><a href="news.html">News</a></li>
+        		<li><a href="spieleanleitung.html">Spielanleitung</a></li>
+        		<li><a href="team.html">Das Team</a></li>
+        		<li><a href="highscore.html">Highscore</a></li>
+			</ul>
+
+			<div id="Inhalt" style="text-align:center">
+	
+				<p></p>
+				<table border="0">
+					<tr>
+		        		<td  colspan="5">
+		                	<canvas id="ownBoard" width="300" height="300" style="border: 1px solid black" ownmousedown = "setShip();">
+		                    	Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
+		                   	</canvas>
+		                </td>
+		                <td colspan="5">
+							<canvas id="enemyBoard" width="300" height="300" style="border: 1px solid black">
+			                    Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
+		                    </canvas>
+		                </td>
+					</tr>
+		            <tr height="200">
+		            	<td width="60">
+		            		<img id="ship50" onmousedown = "createShip('ship50');"; src="images/fuenferschiff.png"></img>
+		            	</td>
+						<td width="60">
+							<img id="ship40" onmousedown = "createShip('ship40');" src="images/viererschiff.png"></img>
+						</td>
+						<td width="60">
+							<img id="ship32" onmousedown = "createShip('ship32');" src="images/dreierschiff.png"></img>
+						</td>
+						<td width="60">
+							<img id="ship31" onmousedown = "createShip('ship32');" src="images/dreierschiff.png"></img>
+						</td>
+						<td width="60">
+							<img id="ship20" onmousedown = "createShip('ship20');" src="images/zweierschiff.png"></img>
+						</td>
+						<td width="150" valign="top" >
+		         			<input type="button" value="Reset">
+						</td>
+						<td width="150" valign="top" >
+		          			<input type="button" ID="go" value="Go">
+		                </td>
+					</tr>
+				</table>
+			</div>
+			
+			<script src="Ship.js" type="text/javascript"></script>
+			<script src="Board.js" type="text/javascript"></script>
+			<script src="Game.js" type="text/javascript"></script>
+
+			<p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
+		</div>
+	</body>
+</html>
