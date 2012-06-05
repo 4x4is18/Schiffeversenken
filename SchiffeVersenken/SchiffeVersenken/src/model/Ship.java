@@ -12,9 +12,9 @@ public class Ship {
 	
 	public static final int ID_CRUISER = 40;
 	
-	public static final int ID_FRIGATE_1 = 31;
+	public static final int ID_FRIGATE_1 = 35;
 	
-	public static final int ID_FRIGATE_2 = 32;
+	public static final int ID_FRIGATE_2 = 30;
 	
 	public static final int ID_MINESLOCATOR = 20;
 	
@@ -55,12 +55,7 @@ public class Ship {
 		// für ein Schlachtschiff mit einem Treffer
 		// (52 = ID_BATTLESHIP + HIT)
 		
-		this.id = id;
-		this.length = id / 10;
-		this.top = top;
-		this.left = left;
-		this.vertical = vertical;
-		this.parts = new int[length];
+		this(id, top, left, vertical);
 		for(int p = 0; p < this.length; p++)
 			this.parts[p] = intShip[p] - this.id;
 		
@@ -69,6 +64,8 @@ public class Ship {
 	public Ship(Ship orig) {
 		
 		this(orig.id, orig.top, orig.left, orig.vertical);
+		for(int p = 0; p < this.length; p++)
+			this.parts[p] = orig.parts[p];
 		
 	}
 	
@@ -160,14 +157,13 @@ public class Ship {
 		
 	}
 
-	public boolean isOnField(int y, int x) {
+	public int isOnField(int y, int x) {
 		
-		if((this.vertical && x == this.left && 
-				y >= this.top && y < this.top + this.length) || 
-				(!this.vertical && y == this.top && 
-				x >= left && x < this.left + this.length))
-			return true;
-		else return false;
+		if(this.vertical && x == this.left && y >= this.top && y < this.top + this.length)
+			return this.parts[y - this.top];
+		else if(!this.vertical && y == this.top && x >= left && x < this.left + this.length)
+			return this.parts[x - this.top];
+		else return -1;
 		
 	}
 	
@@ -239,7 +235,7 @@ public class Ship {
 	
 	public int update(int y, int x) {
 		
-		if(!this.isOnField(y, x))
+		if(this.isOnField(y, x) == -1)
 			return NO_HIT;
 		
 		if(this.vertical)
