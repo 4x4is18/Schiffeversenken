@@ -8,11 +8,23 @@ package model;
  */
 public class Ship {
 	
+	public static final int ID_BATTLESHIP = 50;
+	
+	public static final int ID_CRUISER = 40;
+	
+	public static final int ID_FRIGATE_1 = 31;
+	
+	public static final int ID_FRIGATE_2 = 32;
+	
+	public static final int ID_MINESLOCATOR = 20;
+	
 	public static final int NO_HIT = 0;
 	
 	public static final int HIT = 1;
 	
 	public static final int SUNK = 2;
+	
+	private int id;
 	
 	private int length;
 	
@@ -25,9 +37,10 @@ public class Ship {
 	private int[] parts;
 		
 	@SuppressWarnings("unused")	// Für die Schleifenvariable p
-	public Ship(int length, int top, int left, boolean vertical) {
+	public Ship(int id, int top, int left, boolean vertical) {
 		
-		this.length = length;
+		this.id = id;
+		this.length = id / 10;
 		this.top = top;
 		this.left = left;
 		this.vertical = vertical;
@@ -37,22 +50,41 @@ public class Ship {
 		
 	}
 	
+	public Ship(int id, int top, int left, boolean vertical, int[] intShip) {
+		// Muster für intShip: {50, 50, 50, 50, 51}
+		// für ein Schlachtschiff mit einem Treffer
+		// (52 = ID_BATTLESHIP + HIT)
+		
+		this.id = id;
+		this.length = id / 10;
+		this.top = top;
+		this.left = left;
+		this.vertical = vertical;
+		this.parts = new int[length];
+		for(int p = 0; p < this.length; p++)
+			this.parts[p] = intShip[p] - this.id;
+		
+	}
+	
 	public Ship(Ship orig) {
 		
-		this(orig.length, orig.top, orig.left, orig.vertical);
+		this(orig.id, orig.top, orig.left, orig.vertical);
 		
 	}
 	
 	public Ship(String strOrig) {
-		// Muster: "length 5 top 0 left 0 vertical true 0 0 0 0 0
+		// Muster: "id 50 top 0 left 0 vertical true 0 0 0 0 0
 		
 		String[] strParts = strOrig.split(" ");
 		
 		for(int str = 0; str < strParts.length; str++) {
 			
-			if(strParts[str].equals("length"))
-				this.length = Integer.valueOf(strParts[++str]);
-			else if(strParts[str].equals("top"))
+			if(strParts[str].equals("id")) {
+				
+				this.id = Integer.valueOf(strParts[++str]);
+				this.length = this.id / 10;
+				
+			} else if(strParts[str].equals("top"))
 				this.top = Integer.valueOf(strParts[++str]);
 			else if(strParts[str].equals("left"))
 				this.left = Integer.valueOf(strParts[++str]);
@@ -80,10 +112,18 @@ public class Ship {
 	}
 	
 	@Override
-	public String toString() {
-		// Muster: "length 5 top 0 left 0 vertical true 0 0 0 0 0
+	public boolean equals(Object obj) {
 		
-		String strShip = "length " + String.valueOf(this.length) + 
+		Ship ship = (Ship) obj;
+		return this.id == ship.id;
+		
+	}
+	
+	@Override
+	public String toString() {
+		// Muster: "id 50 top 0 left 0 vertical true 0 0 0 0 0
+		
+		String strShip = "id " + String.valueOf(this.id) + 
 				" top " + String.valueOf(this.top) + 
 				" left " + String.valueOf(this.top) + 
 				" vertical " + String.valueOf(this.vertical) + 
@@ -92,6 +132,18 @@ public class Ship {
 			strShip += " " + String.valueOf(p);
 		
 		return strShip;
+		
+	}
+	
+	public int[] toIntegerArray() {
+		// Muster: {50, 50, 50, 50, 51}
+		// für ein Schlachtschiff mit einem Treffer
+		// (52 = ID_BATTLESHIP + HIT)
+		
+		int intShip[] = new int[this.length];
+		for(int p = 0; p < this.length; p++)
+			intShip[p] = this.id + this.parts[p];
+		return intShip;
 		
 	}
 	
@@ -116,6 +168,36 @@ public class Ship {
 				x >= left && x < this.left + this.length))
 			return true;
 		else return false;
+		
+	}
+	
+	public int getID() {
+		
+		return this.id;
+		
+	}
+	
+	public boolean isBattleship() {
+		
+		return this.id == ID_BATTLESHIP;
+		
+	}
+	
+	public boolean isCruiser() {
+		
+		return this.id == ID_CRUISER;
+		
+	}
+	
+	public boolean isFrigate() {
+		
+		return this.id == ID_FRIGATE_1 || this.id == ID_FRIGATE_2;
+		
+	}
+	
+	public boolean isMinesLocator() {
+		
+		return this.id == ID_MINESLOCATOR;
 		
 	}
 	

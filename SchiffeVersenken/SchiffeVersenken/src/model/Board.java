@@ -2,7 +2,6 @@ package model;
 
 /**
  * TODO:
- * - definieren
  * - implementieren
  * - javaDoc schreiben
  * - testen
@@ -10,7 +9,9 @@ package model;
  */
 public class Board {
 	
-	public int MAX_SHIPS = 5;
+	public static final int MAX_SHIPS = 5;
+	
+	public static final int WATER = 0;
 	
 	private int height;
 	
@@ -22,12 +23,22 @@ public class Board {
 	
 	public Board(int height, int width, Ship[] ships) {}
 	
+	public Board(int height, int width, Ship[] ships, int[] intBoard) {}
+	
 	public Board(Board orig) {}
 	
 	public Board(String strBoard) {}
 	
 	@Override
 	public Object clone() {}
+	
+	@Override
+	public boolean equals(Object obj) {}
+	
+	@Override
+	public String toString() {}
+	
+	public int[] toIntegerArray() {}
 	
 	public int getHeight() {}
 	
@@ -39,11 +50,6 @@ public class Board {
 	
 	public void setShips(Ship[] ships) {}
 	
-	public void update(int[][] iBoard) {}
-	
-	@Override
-	public String toString() {}
-	
-	public int[] toIntegerArray() {}
+	public void update(int[][] intBoard) {}
 
 }
