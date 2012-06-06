@@ -1,53 +1,55 @@
 package model;
 
 /**
- * TODO:
- * - javaDoc schreiben
- * - testen
+ * Die Modellklasse zur Beschreibung von Schiffen 
+ * fuer das Spiel Schiffe Versenken.
+ * @see model.Game
  * @author Team easy
+ * @category model
+ * @version 1.0
  */
-public class Ship {
+class Ship {
 	
 	/**
 	 * Konstante ID des Schachschiffes der Laenge 5.
 	 */
-	public static final int ID_BATTLESHIP = 50;
+	static final int ID_BATTLESHIP = 50;
 	
 	/**
 	 * Konstante ID des Kreutzers der Laenge 3.
 	 */
-	public static final int ID_CRUISER = 40;
+	static final int ID_CRUISER = 40;
 	
 	/**
 	 * Konstante ID einer der Fregatten der Laenge 3.
 	 */
-	public static final int ID_FRIGATE_1 = 35;
+	static final int ID_FRIGATE_1 = 35;
 	
 	/**
 	 * Konstante ID einer der Fregatten der Laenge 3.
 	 */
-	public static final int ID_FRIGATE_2 = 30;
+	static final int ID_FRIGATE_2 = 30;
 	
 	/**
 	 * Konstante ID des Minensuchers der Laenge 2.
 	 */
-	public static final int ID_MINESLOCATOR = 20;
+	static final int ID_MINESLOCATOR = 20;
 	
 	/**
 	 * Konstante fuer ein unversehrtes Schiffsteil.
 	 */
-	public static final int NO_HIT = 0;
+	static final int NO_HIT = 0;
 	
 	/**
 	 * Konstante fuer ein getroffenes Schiffsteil.
 	 */
-	public static final int HIT = 1;
+	static final int HIT = 1;
 	
 	/**
 	 * Konstante fuer ein gesunkenes Schiff <br />
 	 * D.h. alle Schiffsteile wurden getroffen.
 	 */
-	public static final int SUNK = 2;
+	static final int SUNK = 2;
 	
 	/**
 	 * Die ID des Schiffes.
@@ -78,90 +80,136 @@ public class Ship {
 	 */
 	private int left;
 	
+	/**
+	 * Die Angabe, ob das Schiff vertikal oder horizontal auf 
+	 * dem Brett liegt.
+	 */
 	private boolean vertical;
 	
+	/**
+	 * Die Schiffsteile. <br />
+	 * Ein Schiffsteil ist entweder intakt oder getroffen.
+	 * @see model.Ship#NO_HIT
+	 * @see model.Ship#HIT
+	 */
 	private int[] parts;
-		
+	
+	/**
+	 * Die Angabe, ob das Schiff bereits gesunken ist. <br />
+	 * Sie wird wie folgt berechnet: <br />
+	 * Wenn alle Schiffsteile getroffen wurden, ist das Schiff gesunken.
+	 * @see model.Ship#parts
+	 */
+	private boolean sunk;
+	
+	/**
+	 * Konstruktor zum Erstellen eines Schiffes mit standardmaessig 
+	 * intakten Schiffsteilen.	
+	 * @param id Die ID des Schiffes.
+	 * @param top Die y-Koordinate des obersten Schiffsteils. <br />
+	 * Es ist die niedrigste y-Koordinate aller Schiffsteile.
+	 * @param left Die x-Koordinate des am linkesten Schiffsteils. <br />
+	 * Es ist die niedrigste x-Koordinate aller Schiffsteile.
+	 * @param vertical Die Angabe, ob das Schiff vertikal oder horizontal auf 
+	 * dem Brett liegt.
+	 */
 	@SuppressWarnings("unused")	// Für die Schleifenvariable p
-	public Ship(int id, int top, int left, boolean vertical) {
+	Ship(int id, int top, int left, boolean vertical) {
 		
 		this.id = id;
 		this.length = id / 10;
 		this.top = top;
 		this.left = left;
 		this.vertical = vertical;
-		this.parts = new int[length];
-		for(int p : this.parts)
+		this.parts = new int[this.length];
+		for(int p : this.parts)			
 			p = NO_HIT;
+		this.sunk = false;
 		
 	}
 	
-	public Ship(int id, int top, int left, boolean vertical, int[] parts) {
+	/**
+	 * Konstruktor zum Erstellen eines Schiffes mit Schiffsteilen.	
+	 * @param id Die ID des Schiffes.
+	 * @param top Die y-Koordinate des obersten Schiffsteils. <br />
+	 * Es ist die niedrigste y-Koordinate aller Schiffsteile.
+	 * @param left Die x-Koordinate des am linkesten Schiffsteils. <br />
+	 * Es ist die niedrigste x-Koordinate aller Schiffsteile.
+	 * @param vertical Die Angabe, ob das Schiff vertikal oder horizontal auf 
+	 * dem Brett liegt.
+	 * @param parts Die Schiffsteile. <br />
+	 * Ein Schiffsteil ist entweder intakt oder getroffen.
+	 * @see model.Ship#NO_HIT
+	 * @see model.Ship#HIT
+	 */
+	Ship(int id, int top, int left, boolean vertical, int[] parts) {
 		
 		this.id = id;
 		this.length = id / 10;
 		this.top = top;
 		this.left = left;
 		this.vertical = vertical;
-		this.parts = new int[length];
-		for(int p = 0; p < this.length; p++)
+		this.parts = new int[this.length];
+		this.sunk = true;
+		for(int p = 0; p < this.length; p++) {
+			
 			this.parts[p] = parts[p];
+			if(parts[p] == NO_HIT)
+				this.sunk = false;
 		
+		}
 	}
 	
-	public Ship(Ship orig) {
+	/**
+	 * Konstruktor zum Erstellen eines Schiffes aus einem String.
+	 * @param strOrig Muster: "id 50 top 0 left 0 vertical 1 50, 50, 50, 50, 50"
+	 */
+	Ship(String strOrig) {
 		
-		this(orig.id, orig.top, orig.left, orig.vertical);
-		for(int p = 0; p < this.length; p++)
-			this.parts[p] = orig.parts[p];
-		
-	}
-	
-	public Ship(int[] intShip) {
-		/* Muster: {id, top, left, vertical, id + parts[0], id + parts[1] + 
-		 * 			NO_HIT, id + parts[2] + NO_HIT, id + parts[3] + NO_HIT, 
-		 * 			id + parts[4] + HIT}
-		 * für ein Schlachtschiff mit einem Treffer.
+		String[] strSplit = strOrig.split(" ", 13);
+		/*
+		 * strSplit[0] = id
+		 * strSplit[1] = 50
+		 * strSplit[2] = top
+		 * strSplit[3] = 0
+		 * strSplit[4] = left
+		 * strSplit[5] = 0
+		 * strSplit[6] = vertical
+		 * strSplit[7] = 1
+		 * strSplit[8...] = id + HIT oder NOHIT
 		 */
-		
-		this(intShip[0], intShip[1], intShip[2], intShip[3] == 1);
-		for(int p = 0; p < this.length; p++)
-			this.parts[p] = intShip[p] - this.id;
-		
-	}
-	
-	public Ship(String strOrig) {
-		// Muster: "id 50 top 0 left 0 vertical true 50 50 50 50 50
-		
-		String[] strParts = strOrig.split(" ");
-		
-		for(int str = 0; str < strParts.length; str++) {
+		this.id = Integer.valueOf(strSplit[1]);
+		this.top = Integer.valueOf(strSplit[3]);
+		this.left = Integer.valueOf(strSplit[5]);
+		if(Integer.valueOf(strSplit[7]) == 1)
+			this.vertical = true;
+		else this.vertical = false;
+		this.sunk = true;
+		for(int part = 8; part < strSplit.length; part++) {
 			
-			if(strParts[str].equals("id")) {
-				
-				this.id = Integer.valueOf(strParts[++str]);
-				this.length = this.id / 10;
-				
-			} else if(strParts[str].equals("top"))
-				this.top = Integer.valueOf(strParts[++str]);
-			else if(strParts[str].equals("left"))
-				this.left = Integer.valueOf(strParts[++str]);
-			else if(strParts[str].equals("vertical"))
-				this.vertical = Boolean.valueOf(strParts[++str]);
-			else if(strParts[str].equals("parts")) {
-				
-				this.parts = new int[this.length];
-				str++;
-				for(int p = str; p < str + this.length; p++)
-					this.parts[p] = Integer.valueOf(strParts[p]) - this.id;
-				str += this.length;
-				
-			} else return;			
-			
+			this.parts[part - 8] = Integer.valueOf(strSplit[part]) - this.id;
+			if(this.parts[part - 8] == NO_HIT)
+				this.sunk = false;
 		}
 		
 	}
 	
+	/**
+	 * Copykontruktor zum Erstellen eines Schiffes anhand eines vorhandenen.
+	 * @param orig Das Schiff, das als Vorlage dient.
+	 */
+	Ship(Ship orig) {
+		
+		this(orig.id, orig.top, orig.left, orig.vertical);
+		for(int p = 0; p < this.length; p++)
+			this.parts[p] = orig.parts[p];
+		this.sunk = orig.sunk;
+		
+	}
+	
+	/**
+	 * Erstellen einer Kopie des Schiffes.
+	 */
 	@Override
 	public Object clone() {
 		
@@ -169,17 +217,24 @@ public class Ship {
 		
 	}
 	
+	/**
+	 * Vergleichen des Schiffes mit einem andern anhand ihrer IDs.
+	 * @param obj Das Schiff mit dem verglichen werden soll.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		
-		Ship ship = (Ship) obj;
-		return this.id == ship.id;
+		return this.id == ((Ship) obj).id;
 		
 	}
 	
+	/**
+	 * Die String-Repraensentation des Schiffes. <br />
+	 * Muster fuer ein Schlachtschiff, das noch nicht getroffen wurde: <br />
+	 * "id 50 top 0 left 0 vertical true 50 50 50 50 50"
+	 */
 	@Override
 	public String toString() {
-		// Muster: "id 50 top 0 left 0 vertical true 50 50 50 50 50
 		
 		String strShip = "id " + String.valueOf(this.id) + 
 				" top " + String.valueOf(this.top) + 
@@ -193,12 +248,12 @@ public class Ship {
 		
 	}
 	
-	public int[] toIntegerArray() {
-		/* Muster: {id, top, left, vertical, id + parts[0], id + parts[1] + 
-		 * 			NO_HIT, id + parts[2] + NO_HIT, id + parts[3] + NO_HIT, 
-		 * 			id + parts[4] + HIT}
-		 * für ein Schlachtschiff mit einem Treffer.
-		 */
+	/**
+	 * Integer-Repraensentation des Schiffes. <br />
+	 * Muster: {id, top, left, vertical (0 oder 1), id + parts[0],
+	 * 			id + parts[1], ..., id + parts[length]}
+	 */
+	int[] toIntegerArray() {
 		
 		int intShip[] = new int[this.length + 4];
 		intShip[0] = this.id;
@@ -212,108 +267,190 @@ public class Ship {
 		return intShip;
 		
 	}
-	
-	public boolean isSunk() {
 
-		for(int p : this.parts) {
-			
-			if(p == NO_HIT)
-				return false;
-			
-		}
-		
-		return true;
-		
-	}
-
-	public int isOnField(int y, int x) {
+	/**
+	 * Angabe, ob sich das Schiff auf einem bestimmten Feld befindet.
+	 * @param y Die y-Koordinate des Feldes.
+	 * @param x Die x-Koordinate des Feldes.
+	 * @return Die Kombination aus der Schiffsid und dem Schiffsteil 
+	 * (id + parts[i])
+	 * @return -1, wenn das Schiff nicht auf dem Feld ist.
+	 */
+	int isOnField(int y, int x) {
 		
 		if(this.vertical && x == this.left && y >= this.top && y < this.top + this.length)
-			return this.parts[y - this.top];
+			return this.id + this.parts[y - this.top];
 		else if(!this.vertical && y == this.top && x >= left && x < this.left + this.length)
-			return this.parts[x - this.top];
+			return this.id + this.parts[x - this.top];
 		else return -1;
 		
 	}
 	
-	public int getID() {
+	/**
+	 * Die ID des Schiffes.
+	 * @see model.Ship#ID_BATTLESHIP
+	 * @see model.Ship#ID_CRUISER
+	 * @see model.Ship#ID_FRIGATE_1
+	 * @see model.Ship#ID_FRIGATE_2
+	 * @see model.Ship#ID_MINESLOCATOR
+	 */
+	int getID() {
 		
 		return this.id;
 		
 	}
 	
-	public boolean isBattleship() {
+	/**
+	 * Angabe, ob es sich bei dem Schiff um ein Schlachtschiff handelt.
+	 * @see model.Ship#ID_BATTLESHIP
+	 */
+	boolean isBattleship() {
 		
 		return this.id == ID_BATTLESHIP;
 		
 	}
 	
-	public boolean isCruiser() {
+	/**
+	 * Angabe, ob es sich bei dem Schiff um einen Kreutzer handelt.
+	 * @see model.Ship#ID_CRUISER
+	 */
+	boolean isCruiser() {
 		
 		return this.id == ID_CRUISER;
 		
 	}
 	
-	public boolean isFrigate() {
+	/**
+	 * Angabe, ob es sich bei dem Schiff um eine Fregatte handelt.
+	 * @see model.Ship#ID_FRIGATE_1
+	 * @see model.Ship#ID_FRIGATE_2
+	 */
+	boolean isFrigate() {
 		
 		return this.id == ID_FRIGATE_1 || this.id == ID_FRIGATE_2;
 		
 	}
 	
-	public boolean isMinesLocator() {
+	/**
+	 * Angabe, ob es sich bei dem Schiff um einen Minensucher handelt.
+	 * @see model.Ship#ID_MINESLOCATOR
+	 */
+	boolean isMinesLocator() {
 		
 		return this.id == ID_MINESLOCATOR;
 		
 	}
 	
-	public int getLength() {
+	/**
+	 * Die Laenge des Schiffes.
+	 */
+	int getLength() {
 		
 		return this.length;
 		
 	}
 	
-	public int getTop() {
+	/**
+	 * Die y-Koordinate des obersten Schiffsteils. <br />
+	 * Es ist die niedrigste y-Koordinate aller Schiffsteile.
+	 */
+	int getTop() {
 		
 		return this.top;
 		
 	}
 	
-	public int getLeft() {
+	/**
+	 * Die x-Koordinate des linkesten Schiffsteils. <br />
+	 * Es ist die niedrigste x-Koordinate aller Schiffsteile.
+	 */
+	int getLeft() {
 		
 		return this.left;
 		
 	}
 	
-	public boolean isVertical() {
+	/**
+	 * Die Angabe, ob das Schiff vertikal auf dem Brett liegt.
+	 */
+	boolean isVertical() {
 		
 		return this.vertical;
 		
 	}
 	
-	public int[] getParts() {
+	/**
+	 * Die Schiffsteile. <br />
+	 * Ein Schiffsteil ist entweder intakt oder getroffen.
+	 * @see model.Ship#NO_HIT
+	 * @see model.Ship#HIT
+	 */
+	int[] getParts() {
 		
 		return this.parts;
 		
 	}
 	
-	public int getPart(int index) {
+	/**
+	 * Ein bestimmtes Schiffsteil. <br />
+	 * Ein Schiffsteil ist entweder intakt oder getroffen.
+	 * @see model.Ship#NO_HIT
+	 * @see model.Ship#HIT
+	 * @param index 0 <= index < length
+	 */
+	int getPart(int index) {
 		
 		return this.parts[index];
 		
 	}
 	
-	public int update(int y, int x) {
+	/**
+	 * Die Angabe, ob das Schiff bereits gesunken ist. <br />
+	 * Sie wird wie folgt berechnet: <br />
+	 * Wenn alle Schiffsteile getroffen wurden, ist das Schiff gesunken.
+	 * @see model.Ship#parts
+	 */
+	boolean isSunk() {
 		
-		if(this.isOnField(y, x) == -1)
-			return NO_HIT;
+		return this.sunk;
+		
+	}
+	
+	/**
+	 * Updaten des Schiffes nach einem Beschuss.
+	 * @param y Die y-Koordinate, auf die geschossen wurde.
+	 * @param x Die x-Koordinate, auf die geschossen wurde.
+	 * @return this.id + Ship.NO_HIT, wenn das Schiff nicht getroffen wurde.
+	 * @return this.id + Ship.HIT, wenn das Schiff getroffen wurde.
+	 * @return this.id + Ship.SUNK, wenn das Schiff versenkt wurde.
+	 */
+	int update(int y, int x) {
+		
+		if(this.isOnField(y, x) == -1) {
+			
+			// Das Schiff wurde nicht getroffen.
+			return this.id + NO_HIT;
+			
+		}
 		
 		if(this.vertical)
 			this.parts[y - this.top] = HIT;
 		else this.parts[x - this.left] = HIT;
 		
-		if(this.isSunk())
-			return SUNK;
-		else return HIT;
+		for(int p : this.parts) {
+			
+			if(p == NO_HIT) {
+				
+				// Das Schiff wurde getroffen, ist aber noch nicht gesunken.
+				return this.id + HIT;
+				
+			}
+			
+		}
+		
+		// Das Schiff wurde versenkt.
+		this.sunk = true;
+		return this.id + SUNK;
 		
 	}
 
