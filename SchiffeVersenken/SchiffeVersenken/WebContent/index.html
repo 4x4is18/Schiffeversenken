@@ -7,7 +7,8 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <style type ="text/css"></style>
     </head>
-
+    
+    
     <body>
         <div id="Seite">
             <h1></h1>
@@ -25,9 +26,38 @@
 
                 <p>Klicke hier um zu starten:</p>
 
-                <form action="main.html" target="_blank">
-                    <p><input type="submit" value="Starten">
+                <form onsubmit="checkFormular()" name="formular">
+                	<p>Spielername: <input type="text" name="user" size="20" maxlength="20" />
+                    <input type="submit" value="Starten">
                 </form>
+                
+                <script>
+                	var webSocket;
+	
+					if ( "WebSocket" in window ) {
+    					webSocket = new WebSocket( 'ws://localhost:8080/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+    
+	   					webSocket.onopen = function( event ) {
+	        				// wird bei Verbindungsaufbau aufgerufen
+					    };
+					    webSocket.onmessage = function( event ) {
+					        webSocket.get
+					    };
+					    // Hier wird gechecked ob das Feld Spielername leer ist.
+					 
+					}
+					
+					function checkFormular() {
+						if (document.formular.user.value == "") {
+    						alert("Bitte einen Benutzernamen eingeben!");
+    					} else {
+    					webSocket.send(document.formular.user.value);
+    					
+    					}
+  					}
+					
+                	
+                </script>
             </div>
 
             <p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>

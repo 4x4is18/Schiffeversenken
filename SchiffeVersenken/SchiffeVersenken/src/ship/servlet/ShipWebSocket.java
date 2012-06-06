@@ -2,6 +2,7 @@ package ship.servlet;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Set;
 
 import org.eclipse.jetty.websocket.WebSocket.OnTextMessage;
@@ -10,14 +11,8 @@ public class ShipWebSocket implements OnTextMessage {
     private Connection connection;
     private Set<ShipWebSocket> user;
 
-    
     public ShipWebSocket(Set<ShipWebSocket> user) {
         this.user = user;
-    }
-    
-    
-    public Connection getConnection() {
-    	return connection;
     }
 
     /**
@@ -27,7 +22,7 @@ public class ShipWebSocket implements OnTextMessage {
     public void onOpen( Connection connection ) {
         this.connection = connection;
         this.user.add( this );
-        
+        System.out.println("Websocket OPEN");
     }
     
     /**
@@ -35,14 +30,8 @@ public class ShipWebSocket implements OnTextMessage {
      */
     @Override
     public void onClose( int closeCode, String message ) {
-        
-        Connection enemyConnection = WebSocketConnections.getShipWebSocket(this).getConnection();
-    	try {
-			enemyConnection.sendMessage("Connection close");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-		}
-    	this.user.remove( this );
+        this.user.remove( this );
+        System.out.println("Websocket CLOSE - " + this.connection.toString());
     }
 
     /**
@@ -50,14 +39,18 @@ public class ShipWebSocket implements OnTextMessage {
      */
     @Override
     public void onMessage(String data) {
-    	
-    	// Bei eingehenden Nachrichten werden diese zuänchst direkt weitergesendet
-    	// TODO Irgendwann mal serverseitig implementieren und für mehrere Benutzer implementieren
-    	Connection enemyConnection = WebSocketConnections.getShipWebSocket(this).getConnection();
+    	DBConnection con = new DBConnection();
     	try {
-			enemyConnection.sendMessage(data);
+			con.query("INSERT INTO Schiffeversenken.spieler (spielerid, name) VALUES ('1', '" + data +"')");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	try {
+			connection.sendMessage(data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     }
 } 

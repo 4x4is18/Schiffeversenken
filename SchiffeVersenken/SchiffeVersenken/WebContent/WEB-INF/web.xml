@@ -16,7 +16,7 @@
     
     <servlet-mapping>
         <servlet-name>WebSocket</servlet-name>
-        <url-pattern>/WebSocket</url-pattern>
+        <url-pattern>/WebSocket/*</url-pattern>
     </servlet-mapping> 
   
 </web-app>
