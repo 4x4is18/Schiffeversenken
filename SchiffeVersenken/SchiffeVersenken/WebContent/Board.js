@@ -1,126 +1,78 @@
-
-// Die Farbe des Wassers
+/**
+ * Die Farbe des Wassers.
+ */
 Board.WATER_COLOR = "rgba(0, 0, 200, 1)";
 
-// Die Farbe, wenn auf dem Feld geschossen wurde
+/**
+ * Die Farbe von Schuessen ins Wasser.
+ */
 Board.SHOT_COLOR = "rgba(200, 200, 0, 1)";
 
-// Die Anzahl der Felder pro Achse
-Board.NUM_FIELDS = 10;
+/**
+ * Die Breite des Brettes.
+ */
+Board.WIDTH = 10;
 
-// Die Groesse der einzelnen Felder
+/**
+ * Die Hoehe des Brettes.
+ */
+Board.HEIGHT = 10;
+
+/**
+ * Die Groesse der einzelnen Felder in Pixeln.
+ */
 Board.FIELD_SIZE = 30;
 
-// Die Anzahl der zu setzenden Schiffe
-Board.MAX_SHIPS = 5;
+/**
+ * Konstante Anzahl von Schiffen auf einem Brett.
+ */
+Board.NUM_SHIPS = 5;
 
+/**
+ * Die HTML-Div-ID des Brettes.
+ */
 Board.prototype.id;
 
+/**
+ * Das HTML-Canvas-Element, in dem das Brett gezeichnet wird.
+ */
 Board.prototype.canvas;
 
+/**
+ * Die Anzahl der bereits gesetzten Schiffe.
+ */
 Board.prototype.ships_set;
 
-// Das Array, welches die Schiffe enthält
+/**
+ * Das Array, welches die Schiffe enthält.
+ */
 Board.prototype.ships;
 
-// Das temporäre Schiff (durch Mauszeigerbewegung)
+/**
+ * Das temporäre Schiff (durch Mauszeigerbewegung).
+ */
 Board.prototype.overlayShip;
 
-Board.prototype.shots;
+// TODO: Array shots schreiben, wo alle Schüsse gespeichert werden
 
-
-function Board() {
-	
-}
-
-Board.prototype.init = function(id) {
+/**
+ * Konstruktor zum Erstellen eines Brettes.
+ * @param id Die HTML-Div-ID des Brettes.
+ */
+function Board(id) {
 	
 	this.id = id;
 	this.canvas = document.getElementById(id);	
 	this.ships_set = 0;
-	this.ships = new Array(Board.MAX_SHIPS);
-	// TODO
-	for(var s = 0; s < Board.MAX_SHIPS; s++) {
+	this.ships = new Array(Board.NUM_SHIPS);
+	for(var s = 0; s < Board.NUM_SHIPS; s++) {
 		
-		this.ships[s] = new Ship();
+		this.ships[s] = null;
 		
-	}
-	
+	}	
 	this.overlayShip = null;
-	this.shots = new Array(10);
-	for(var y = 0; y < 10; y++) {
-		
-		this.shots[y] = new Array(10);
-		
-		for(var x = 0; x < 10; x++) {
-			
-			this.shots[y][x] = false;
-			
-		}
-		
-	}
 	
-};
-
-Board.prototype.clone = function(string) {
-	
-	var splitResult = string.split(";");
-	
-	this.ships_set = splitResult[0];
-	
-	for(var s = 0; s < this.ships_set; s++) {
-
-		alert(this.ships[s]);
-		this.ships[s].clone(splitResult[1 + s]);
-		
-	}
-	
-/*	this.shots = new Array(10);
-   	for(var y = 0; y < 10; y++) {
-   	
-   		this.shots[y] = new Array(10);
-		
-		for(var x = 0; x < 10; x++) {
-			
-			this.shots[y][x] = splitResult[1 + this.ships_set + (y * 10) + x];
-			
-		}
-		
-	}*/	
-	
-};
-
-Board.prototype.toString = function() {
-	
-	var board = this.ships_set.toString() + ";";
-	
-	for(var s = 0; s < this.ships_set; s++) {
-		
-		board += this.ships[s].toString() + ";";
-		
-	}/*
-
-	for(var y = 0; y < 10; y++) {
-			
-		for(var x = 0; x < 10; x++) {
-			
-			if(y == 9 && x == 9) {
-				
-				board += this.shots[y][x].toString();
-				
-			} else {
-				
-				board += this.shots[y][x].toString() + ";";
-				
-			}
-			
-		}
-		
-	}*/
-	
-	return board;
-	
-};
+}
 
 /**
  * Das Spielfeld und sämtliche Eventhandler werden erstellt
@@ -132,10 +84,11 @@ Board.prototype.draw = function() {
 	var board = this;
 	
 	// Zunächst wird das (leere) Spielfeld gezeichnet.
-	board.drawField();	
+	board.drawBoard();	
 
 	// Mouseklick-Handler
 	this.canvas.onmousedown = function(event) {
+		
 		// Vor Spielbeginn können Schiffe (nur auf dem eigenen Feld) gesetzt werden
 		if(mode == PREPARE && board == ownBoard && selectedShip != null) {
 			
@@ -144,57 +97,37 @@ Board.prototype.draw = function() {
 			var x = parseInt(board.getMousePosX(event) / Board.FIELD_SIZE);
 			
 			/*
-			 *  Wenn ein Schiff an dieser Stelle möglich ist.
+			 *  Wenn das Setzen eines Schiff an dieser Stelle möglich ist,
 			 *  wird es zunächst erstellt. Zusätzlich wird das
-			 *  temporäre Schiff (Für Mauszeigerbewegungen) entfernt
+			 *  temporäre Schiff (für Mauszeigerbewegungen) entfernt
 			 */
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
 				
-				//TODO board.ships[board.ships_set] = new Ship();
 				board.ships[board.ships_set++].init(selectedShipLength, y, x, 
 						vertical);
 				selectedShip = null;
 				
 				// Sind alle Schiffe gesetzt, kann der Spieler auf GO klicken
-				if(board.ships_set == Board.MAX_SHIPS) {
+				if(board.ships_set == Board.NUM_SHIPS) {
 					
 					readyToPlay();
 					
 				}
 				
-				// Nach erstellen des Schiffs das Spielfeld neu zeichnen
-				board.drawField();
+				// Nach dem Erstellen des Schiffs das Spielfeld neu gezeichnet
+				board.drawBoard();
 				
 			}
 			
-		// Während des Spiels kann nur (auf gegnerischem Feld) geschossen werden
 		} else if(mode == INGAME && board == enemyBoard) {
 			
+			// Während des Spiels kann nur (auf gegnerischem Feld) geschossen werden
 			var y = parseInt(board.getMousePosY(event) / Board.FIELD_SIZE);
 			var x = parseInt(board.getMousePosX(event) / Board.FIELD_SIZE);		
-			var ship = board.isShipOnField(y, x);
 			
-			if(ship == null) {
-				
-				board.shots[y][x] = true;
-				
-			} else {
-				
-				var hitInfo = ship.getHit(y, x);
-				
-				if(hitInfo == Ship.HIT) {
-					
-					window.alert("Treffer!");
-					
-				} else if(hitInfo == Ship.SUNK_IN) {
-					
-					window.alert("Versenkt!");
-					
-				}
-				
-			}
+			// TODO: Serverkommunikation
 			
-			board.drawField();
+			board.drawBoard();
 			
 		}
 		
@@ -210,12 +143,11 @@ Board.prototype.draw = function() {
 			var y = parseInt(board.getMousePosY(event) / Board.FIELD_SIZE);
 			var x = parseInt(board.getMousePosX(event) / Board.FIELD_SIZE);
 			
-			// Sofern ein Schiff an dieser stelle gezeichnet werden kann,
+			// Sofern ein Schiff an diese Stelle gesetzt werden kann,
 			// wird ein neues temporäres Schiff erzeugt.
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
 				
-				board.overlayShip = new Ship();
-				board.overlayShip.init(selectedShipLength, y, x, vertical);
+				board.overlayShip = new Ship(selectedShipLength, y, x, vertical);
 				
 			} else {
 				
@@ -226,7 +158,7 @@ Board.prototype.draw = function() {
 			}
 			
 			// Abschließend wird das Spielfeld gezeichnet.
-			board.drawField();
+			board.drawBoard();
 			
 		}
 		
@@ -250,7 +182,7 @@ Board.prototype.drawField = function() {
 	    	for(var x = 0; x < Board.NUM_FIELDS; x++) {
 	    		 			        		
 	    			if(this.shots[y][x]) {
-	    				
+	    				// TODO: HIer stehengeblieben
 	    				canvContext.fillStyle = Board.SHOT_COLOR;
 	    				
 	    			} else {
