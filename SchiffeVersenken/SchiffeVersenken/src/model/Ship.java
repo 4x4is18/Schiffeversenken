@@ -8,28 +8,74 @@ package model;
  */
 public class Ship {
 	
+	/**
+	 * Konstante ID des Schachschiffes der Laenge 5.
+	 */
 	public static final int ID_BATTLESHIP = 50;
 	
+	/**
+	 * Konstante ID des Kreutzers der Laenge 3.
+	 */
 	public static final int ID_CRUISER = 40;
 	
+	/**
+	 * Konstante ID einer der Fregatten der Laenge 3.
+	 */
 	public static final int ID_FRIGATE_1 = 35;
 	
+	/**
+	 * Konstante ID einer der Fregatten der Laenge 3.
+	 */
 	public static final int ID_FRIGATE_2 = 30;
 	
+	/**
+	 * Konstante ID des Minensuchers der Laenge 2.
+	 */
 	public static final int ID_MINESLOCATOR = 20;
 	
+	/**
+	 * Konstante fuer ein unversehrtes Schiffsteil.
+	 */
 	public static final int NO_HIT = 0;
 	
+	/**
+	 * Konstante fuer ein getroffenes Schiffsteil.
+	 */
 	public static final int HIT = 1;
 	
+	/**
+	 * Konstante fuer ein gesunkenes Schiff <br />
+	 * D.h. alle Schiffsteile wurden getroffen.
+	 */
 	public static final int SUNK = 2;
 	
+	/**
+	 * Die ID des Schiffes.
+	 * @see #ID_BATTLESHIP
+	 * @see #ID_CRUISER
+	 * @see #ID_FRIGATE_1
+	 * @see #ID_FRIGATE_2
+	 * @see #ID_MINESLOCATOR
+	 */
 	private int id;
 	
+	/**
+	 * Die Laenge des Schiffes. <br />
+	 * Sie wird wie folgt berechnet: id / 10 (abgerundet)
+	 * @see #id
+	 */
 	private int length;
 	
+	/**
+	 * Die y-Koordinate des obersten Schiffsteils. <br />
+	 * Es ist die niedrigste y-Koordinate aller Schiffsteile.
+	 */
 	private int top;
 	
+	/**
+	 * Die x-Koordinate des am linkesten Schiffsteils. <br />
+	 * Es ist die niedrigste x-Koordinate aller Schiffsteile.
+	 */
 	private int left;
 	
 	private boolean vertical;
@@ -50,14 +96,16 @@ public class Ship {
 		
 	}
 	
-	public Ship(int id, int top, int left, boolean vertical, int[] intShip) {
-		// Muster für intShip: {50, 50, 50, 50, 51}
-		// für ein Schlachtschiff mit einem Treffer
-		// (52 = ID_BATTLESHIP + HIT)
+	public Ship(int id, int top, int left, boolean vertical, int[] parts) {
 		
-		this(id, top, left, vertical);
+		this.id = id;
+		this.length = id / 10;
+		this.top = top;
+		this.left = left;
+		this.vertical = vertical;
+		this.parts = new int[length];
 		for(int p = 0; p < this.length; p++)
-			this.parts[p] = intShip[p] - this.id;
+			this.parts[p] = parts[p];
 		
 	}
 	
@@ -69,8 +117,21 @@ public class Ship {
 		
 	}
 	
+	public Ship(int[] intShip) {
+		/* Muster: {id, top, left, vertical, id + parts[0], id + parts[1] + 
+		 * 			NO_HIT, id + parts[2] + NO_HIT, id + parts[3] + NO_HIT, 
+		 * 			id + parts[4] + HIT}
+		 * für ein Schlachtschiff mit einem Treffer.
+		 */
+		
+		this(intShip[0], intShip[1], intShip[2], intShip[3] == 1);
+		for(int p = 0; p < this.length; p++)
+			this.parts[p] = intShip[p] - this.id;
+		
+	}
+	
 	public Ship(String strOrig) {
-		// Muster: "id 50 top 0 left 0 vertical true 0 0 0 0 0
+		// Muster: "id 50 top 0 left 0 vertical true 50 50 50 50 50
 		
 		String[] strParts = strOrig.split(" ");
 		
@@ -92,7 +153,7 @@ public class Ship {
 				this.parts = new int[this.length];
 				str++;
 				for(int p = str; p < str + this.length; p++)
-					this.parts[p] = Integer.valueOf(strParts[p]);
+					this.parts[p] = Integer.valueOf(strParts[p]) - this.id;
 				str += this.length;
 				
 			} else return;			
@@ -118,7 +179,7 @@ public class Ship {
 	
 	@Override
 	public String toString() {
-		// Muster: "id 50 top 0 left 0 vertical true 0 0 0 0 0
+		// Muster: "id 50 top 0 left 0 vertical true 50 50 50 50 50
 		
 		String strShip = "id " + String.valueOf(this.id) + 
 				" top " + String.valueOf(this.top) + 
@@ -126,18 +187,26 @@ public class Ship {
 				" vertical " + String.valueOf(this.vertical) + 
 				" parts";
 		for(int p : this.parts)
-			strShip += " " + String.valueOf(p);
+			strShip += " " + String.valueOf(this.id + p);
 		
 		return strShip;
 		
 	}
 	
 	public int[] toIntegerArray() {
-		// Muster: {50, 50, 50, 50, 51}
-		// für ein Schlachtschiff mit einem Treffer
-		// (52 = ID_BATTLESHIP + HIT)
+		/* Muster: {id, top, left, vertical, id + parts[0], id + parts[1] + 
+		 * 			NO_HIT, id + parts[2] + NO_HIT, id + parts[3] + NO_HIT, 
+		 * 			id + parts[4] + HIT}
+		 * für ein Schlachtschiff mit einem Treffer.
+		 */
 		
-		int intShip[] = new int[this.length];
+		int intShip[] = new int[this.length + 4];
+		intShip[0] = this.id;
+		intShip[1] = this.top;
+		intShip[2] = this.left;
+		if(this.vertical)
+			intShip[3] = 1;
+		else intShip[4] = 0;
 		for(int p = 0; p < this.length; p++)
 			intShip[p] = this.id + this.parts[p];
 		return intShip;

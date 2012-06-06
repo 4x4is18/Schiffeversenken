@@ -181,7 +181,7 @@ public class Board {
 				int shipID;			
 				switch(intBoard[y][x]) {
 				
-				case Ship.ID_BATTLESHIP + Ship.NO_HIT:
+					case Ship.ID_BATTLESHIP + Ship.NO_HIT:
 					case Ship.ID_BATTLESHIP + Ship.HIT:
 						shipID = Ship.ID_BATTLESHIP;
 						break;
