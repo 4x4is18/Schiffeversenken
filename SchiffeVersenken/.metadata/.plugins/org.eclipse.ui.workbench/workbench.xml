@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="96" version="2.0">
+<workbench progressCount="86" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="175" y="32">
 <fastViewData fastViewLocation="1024">
-<orientation position="512" view="com.ibm.xtools.mde.guidance"/>
 <orientation position="512" view="com.ibm.ccl.erf.ui.views.reportexplorer"/>
+<orientation position="512" view="com.ibm.xtools.mde.guidance"/>
 </fastViewData>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
-<coolbarLayout locked="0">
+<coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="122" y="22"/>
-<coolItem id="com.google.gdt.eclipse.suite.GDTPulldownToolbar" itemType="typeToolBarContribution" x="53" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.google.gdt.eclipse.suite.GDTPulldownToolbar" itemType="typeToolBarContribution" x="53" y="22"/>
+<coolItem id="com.ibm.cic.licensing.common.ui.controlContribution" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="com.ibm.xtools.common.ui.reduction.modelingViewpointsActionSet" itemType="typeToolBarContribution" x="101" y="30"/>
 <coolItem id="com.ibm.xtools.modeler.ui.actions.ModelingActionSet" itemType="typeToolBarContribution" x="38" y="30"/>
 <coolItem id="com.ibm.xtools.publish.ui.internal.actions.PublishActionSet" itemType="typeToolBarContribution" x="38" y="30"/>
+<coolItem id="com.python.pydev.debug.actionSet" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="com.rational.clearcase.ActionSet" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="38" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="130" y="22"/>
+<coolItem id="org.eclipse.wst.html.core.htmlsource.source" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.server.ui.internal.webbrowser.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.wst.web.ui.wizardsActionSet" itemType="typeToolBarContribution" x="84" y="22"/>
-<coolItem id="org.eclipse.wst.ws.explorer.explorer" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.ws.explorer.explorer" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="130" y="22"/>
+<coolItem id="com.aptana.ui.globalActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.html.core.htmlsource.source" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.text" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.xml" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="com.aptana.editor.html" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
-<coolItem id="com.ibm.cic.licensing.common.ui.controlContribution" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
 <page aggregateWorkingSetId="Aggregate for window 1337796457346" focus="true" label="Workspace - Web">
@@ -43,46 +51,48 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="3"/>
 <part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.wst.html.core.htmlsource.source" name="main.html" partName="main.html" path="C:/Users/Michael Brand/Dropbox/Projects/SchiffeVersenken/SchiffeVersenken/WebContent/main.html" title="main.html" tooltip="SchiffeVersenken/WebContent/main.html" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/main.html"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1867" selectionTopPixel="0"/>
+<editor id="com.aptana.editor.html" name="index.html" partName="index.html" path="C:/Users/marius/Dropbox/2012 - Sommersemester/Internet-Technologien I/internettechnologien_praktikum/SchiffeVersenken/SchiffeVersenken/WebContent/index.html" title="index.html" tooltip="SchiffeVersenken/WebContent/index.html" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/index.html"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="551" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Game.js" partName="Game.js" path="C:/Users/Michael Brand/Dropbox/Projects/SchiffeVersenken/SchiffeVersenken/WebContent/Game.js" title="Game.js" tooltip="SchiffeVersenken/WebContent/Game.js" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/Game.js"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="313" selectionTopPixel="0"/>
+<editor id="com.aptana.editor.html" name="lobby.html" partName="lobby.html" path="C:/Users/marius/Dropbox/2012 - Sommersemester/Internet-Technologien I/internettechnologien_praktikum/SchiffeVersenken/SchiffeVersenken/WebContent/lobby.html" title="lobby.html" tooltip="SchiffeVersenken/WebContent/lobby.html" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/lobby.html"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1111" selectionTopPixel="105"/>
 </editor>
-<editor id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Ship.js" partName="Ship.js" path="C:/Users/Michael Brand/Dropbox/Projects/SchiffeVersenken/SchiffeVersenken/WebContent/Ship.js" title="Ship.js" tooltip="SchiffeVersenken/WebContent/Ship.js" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/Ship.js"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2281" selectionTopPixel="1853"/>
+<editor id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="lobby.js" partName="lobby.js" path="C:/Users/marius/Dropbox/2012 - Sommersemester/Internet-Technologien I/internettechnologien_praktikum/SchiffeVersenken/SchiffeVersenken/WebContent/lobby.js" title="lobby.js" tooltip="SchiffeVersenken/WebContent/lobby.js" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/lobby.js"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1567" selectionTopPixel="574"/>
 </editor>
-<editor id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Board.js" partName="Board.js" path="C:/Users/Michael Brand/Dropbox/Projects/SchiffeVersenken/SchiffeVersenken/WebContent/Board.js" title="Board.js" tooltip="SchiffeVersenken/WebContent/Board.js" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/WebContent/Board.js"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1185" selectionTopPixel="119"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ShipWebSocket.java" partName="ShipWebSocket.java" path="C:/Users/marius/Dropbox/2012 - Sommersemester/Internet-Technologien I/internettechnologien_praktikum/SchiffeVersenken/SchiffeVersenken/src/ship/servlet/ShipWebSocket.java" title="ShipWebSocket.java" tooltip="SchiffeVersenken/src/ship/servlet/ShipWebSocket.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SchiffeVersenken/src/ship/servlet/ShipWebSocket.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="497" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
 <view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" partName="Snippets"/>
 <view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
 <viewState/>
 </view>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<view id="com.aptana.js.debug.ui.scriptsView" partName="Loaded Scripts"/>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
-</view>
-<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
-<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.resourceField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
+<category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="1290"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -90,17 +100,24 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
 </view>
-<view id="com.ibm.xtools.rmp.ui.diagram.layers.LayersView" partName="Layers">
-<viewState/>
-</view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
-<view id="com.ibm.xtools.mde.guidance" partName="MDD Guidance"/>
-<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers"/>
-<view id="com.ibm.ccl.erf.ui.views.reportexplorer" partName="Report Explorer"/>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.eclipse.wst.server.ui.ServersView" partName="Servers">
+<viewState CommonNavigator.LINKING_ENABLED="0"/>
+</view>
 </views>
-<perspectives activePart="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.wst.web.ui.webDevPerspective">
+<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.wst.web.ui.webDevPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.ibm.xtools.rmp.ui.internal.perspective.ModelingPerspective" id="com.ibm.xtools.modeler.internal.ui.perspectives.ModelingPerspective" label="Modeling"/>
 <alwaysOnActionSet id="com.ibm.rational.welcome.core.helpSearchActionSet"/>
@@ -154,11 +171,11 @@
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
-<view id="com.ibm.xtools.rmp.ui.diagram.layers.LayersView"/>
+<view id="com.ibm.xtools.rmp.ui.diagram.layers.LayersView" removed="true"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.ui.views.PropertySheet"/>
-<fastViews>&#x0A;<view id="com.ibm.ccl.erf.ui.views.reportexplorer" ratio="0.25"/>
-<view id="com.ibm.xtools.mde.guidance" ratio="0.3"/>
+<fastViews>&#x0A;<view id="com.ibm.ccl.erf.ui.views.reportexplorer" ratio="0.25" removed="true"/>
+<view id="com.ibm.xtools.mde.guidance" ratio="0.3" removed="true"/>
 </fastViews>
 <fastViewBars/>
 <layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="projectExplorerArea">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
@@ -193,12 +210,6 @@
 </perspective>
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.wst.web.ui.internal.WebDevelopmentPerspective" id="org.eclipse.wst.web.ui.webDevPerspective" label="Web"/>
-<alwaysOnActionSet id="com.ibm.rational.welcome.core.helpSearchActionSet"/>
-<alwaysOnActionSet id="com.ibm.ccl.help.preferenceharvester.actionSet1"/>
-<alwaysOnActionSet id="com.ibm.rational.welcome.core.webResourcesActionSet"/>
-<alwaysOnActionSet id="com.ibm.cic.licensing.common.ui.actionSet"/>
-<alwaysOnActionSet id="com.ibm.process.actionSet"/>
-<alwaysOnActionSet id="com.ibm.xtools.modeler.ui.navigator.actions.ModelingActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
@@ -207,13 +218,17 @@
 <alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
-<alwaysOnActionSet id="com.google.gdt.eclipse.core.actionSet"/>
-<alwaysOnActionSet id="com.rational.clearcase.ActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.wst.web.ui.wizardsActionSet"/>
 <alwaysOnActionSet id="org.eclipse.wst.server.ui.internal.webbrowser.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
 <alwaysOnActionSet id="org.eclipse.wst.ws.explorer.explorer"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.rse.core.search.searchActionSet"/>
+<alwaysOnActionSet id="com.aptana.browser.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ruby.debug.ui.RubyDebugActionSet"/>
 <show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <show_view_action id="org.eclipse.ui.views.ContentOutline"/>
 <show_view_action id="org.eclipse.ui.views.PropertySheet"/>
@@ -232,16 +247,13 @@
 <perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.wst.common.snippets.internal.ui.SnippetsView"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.wst.server.ui.ServersView"/>
 <view id="org.eclipse.ui.views.PropertySheet"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
-<fastViews>
-<view id="com.ibm.xtools.mde.guidance" ratio="0.3"/>
-</fastViews>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -261,7 +273,7 @@
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="318" ratioRight="954" relationship="2" relative="topLeft"/>
+<info part="org.eclipse.ui.editorss" ratio="0.16867469" ratioLeft="322" ratioRight="1587" relationship="2" relative="topLeft"/>
 <info folder="true" part="topRight" ratio="0.7985232" ratioLeft="757" ratioRight="191" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
@@ -272,7 +284,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="bottom" ratio="0.69942194" ratioLeft="484" ratioRight="208" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.64055794" ratioLeft="597" ratioRight="335" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
@@ -293,165 +305,299 @@
 </mainWindow>
 </layout>
 </perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.rse.core.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="com.aptana.browser.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ruby.debug.ui.RubyDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="com.aptana.js.debug.ui.actionSet"/>
+<alwaysOnActionSet id="com.aptana.terminal.actionSet"/>
+<alwaysOnActionSet id="com.python.pydev.navigate.actionSet"/>
+<alwaysOnActionSet id="com.python.pydev.debug.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.python.pydev.exceptionBreakpoints"/>
+<alwaysOnActionSet id="org.python.pydev.pyPropertyTrace"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="com.aptana.js.debug.ui.scriptsView"/>
+<show_view_action id="com.aptana.js.debug.ui.AJAXMonitorView"/>
+<show_view_action id="com.aptana.ruby.debug.ui.DisplayView"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.datatools.sqltools.result.resultView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.jdt.debug.ui.DisplayView"/>
+<perspective_action id="com.aptana.ui.WebPerspective"/>
+<perspective_action id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.wst.jsdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.wst.xml.ui.perspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.wst.server.ui.ServersView"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="com.aptana.js.debug.ui.scriptsView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.wst.server.ui.ServersView" label="Servers"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.7497326" ratioLeft="701" ratioRight="234" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="com.aptana.ruby.debug.ui.DisplayView" label="LabelNotFound"/>
+<page content="org.eclipse.datatools.sqltools.result.resultView" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
+<page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
+<page content="org.eclipse.wst.xsl.jaxp.debug.ui.view1" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.44935805" ratioLeft="315" ratioRight="386" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
+<page content="com.aptana.js.debug.ui.scriptsView" label="Loaded Scripts"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
 </perspectives>
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/WebContent/Board.js"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/WebContent/Game.js"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/WebContent/Game.js"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.html.core.htmlsource.source" path="/SchiffeVersenken/WebContent/main.html"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/WebContent/Ship.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/WebContent/lobby.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/src/ship/servlet/ShipWebSocket.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/src/ship/servlet/WebSocketController.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/SchiffeVersenken/WebContent/lobby.html"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" path="/SchiffeVersenken/WebContent/index.html"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.websocket(WebSocketConnectionRFC6455.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.websocket(WebSocketParserRFC6455.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.io.nio(ChannelEndPoint.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.io.nio(SelectChannelEndPoint.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.websocket(WebSocketGeneratorRFC6455.class"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.util.thread(QueuedThreadPool.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/WebContent/login.js"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/src/model/Game.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SchiffeVersenken/src/ship/servlet/ShipWebSocketServlet.java"/>
 </editors>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="170" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1014" y="0"/>
 </item>
-<item historyLabel="Game.js" index="1">
-<position info="not_deleted" x="218" y="0"/>
+<item historyLabel="WebSocketController.java" index="2">
+<position info="not_deleted" x="305" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1466" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1805" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1464" y="1"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1803" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1254" y="0"/>
+</item>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1165" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1805" y="0"/>
+</item>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1344" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1805" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1466" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1420" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1468" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1512" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1886" y="0"/>
+</item>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1928" y="0"/>
+</item>
+<item historyLabel="WebSocketConnectionRFC6455.class" index="5">
 <position/>
 </item>
-<item historyLabel="Game.js" index="1">
-<position info="not_deleted" x="218" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
+<item historyLabel="WebSocketParserRFC6455.class" index="6">
 <position/>
 </item>
-<item historyLabel="Game.js" index="1">
-<position info="not_deleted" x="218" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
+<item historyLabel="WebSocketConnectionRFC6455.class" index="5">
 <position/>
 </item>
-<item historyLabel="Board.js" index="0">
+<item historyLabel="ChannelEndPoint.class" index="7">
+<position/>
+</item>
+<item historyLabel="WebSocketConnectionRFC6455.class" index="5">
+<position/>
+</item>
+<item historyLabel="SelectChannelEndPoint.class" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="460" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="607" y="0"/>
-</item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="460" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="607" y="0"/>
-</item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="1675" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="607" y="0"/>
-</item>
-<item historyLabel="main.html" index="3">
-<position info="not_deleted" x="1707" y="0"/>
-</item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="1675" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="900" y="0"/>
-</item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="900" y="0"/>
-</item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="597" y="0"/>
-</item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="550" y="0"/>
-</item>
-<item historyLabel="Ship.js" index="4">
+<item historyLabel="WebSocketConnectionRFC6455.class" index="5">
 <position/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="2583" y="0"/>
+<item historyLabel="WebSocketGeneratorRFC6455.class" index="9">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="2247" y="0"/>
+<item historyLabel="ChannelEndPoint.class" index="7">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="900" y="0"/>
+<item historyLabel="WebSocketGeneratorRFC6455.class" index="9">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="WebSocketConnectionRFC6455.class" index="5">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="2247" y="0"/>
+<item historyLabel="WebSocketParserRFC6455.class" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="79" y="0"/>
+<item historyLabel="ChannelEndPoint.class" index="7">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="1095" y="0"/>
+<item historyLabel="WebSocketParserRFC6455.class" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="WebSocketConnectionRFC6455.class" index="5">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="1095" y="0"/>
+<item historyLabel="SelectChannelEndPoint.class" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="QueuedThreadPool.class" index="10">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1230" y="0"/>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1928" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="lobby.html" index="3">
+<position info="not_deleted" x="1111" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1230" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1007" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="index.html" index="4">
+<position info="not_deleted" x="551" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1230" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1039" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="login.js" index="11">
+<position info="not_deleted" x="302" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1135" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1039" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="1928" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1135" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1039" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="WebSocketController.java" index="2">
+<position info="not_deleted" x="305" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="105" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1039" y="0"/>
 </item>
-<item historyLabel="Ship.js" index="4">
-<position info="not_deleted" x="2281" y="0"/>
+<item historyLabel="Game.java" index="12">
+<position info="not_deleted" x="258" y="0"/>
 </item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1185" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1039" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item historyLabel="ShipWebSocketServlet.java" index="13">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.html" index="3">
-<position info="not_deleted" x="1867" y="0"/>
+<item historyLabel="lobby.js" index="0">
+<position info="not_deleted" x="1567" y="0"/>
 </item>
-<item historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
-</item>
-<item historyLabel="Board.js" index="0">
-<position info="not_deleted" x="1185" y="0"/>
-</item>
-<item active="true" historyLabel="Game.js" index="2">
-<position info="not_deleted" x="180" y="0"/>
+<item active="true" historyLabel="ShipWebSocket.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -459,32 +605,69 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="topLeft"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="topRight"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
 <trimArea IMemento.internal.id="1024">
-<trimItem IMemento.internal.id="com.google.gdt.eclipse.login.status.trim"/>
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Board.js" tooltip="SchiffeVersenken/WebContent/Board.js">
-<persistable path="/SchiffeVersenken/WebContent/Board.js"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ShipWebSocket.java" tooltip="SchiffeVersenken/src/ship/servlet/ShipWebSocket.java">
+<persistable path="/SchiffeVersenken/src/ship/servlet/ShipWebSocket.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Ship.js" tooltip="SchiffeVersenken/WebContent/Ship.js">
-<persistable path="/SchiffeVersenken/WebContent/Ship.js"/>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="WebSocketConnectionRFC6455.class" tooltip="org.eclipse.jetty.websocket.WebSocketConnectionRFC6455">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.websocket(WebSocketConnectionRFC6455.class"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="dreierschiff.png" tooltip="SchiffeVersenken/WebContent/images/dreierschiff.png">
-<persistable path="/SchiffeVersenken/WebContent/images/dreierschiff.png"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ShipWebSocketServlet.java" tooltip="SchiffeVersenken/src/ship/servlet/ShipWebSocketServlet.java">
+<persistable path="/SchiffeVersenken/src/ship/servlet/ShipWebSocketServlet.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Game.java" tooltip="SchiffeVersenken/src/model/Game.java">
+<persistable path="/SchiffeVersenken/src/model/Game.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Board.java" tooltip="SchiffeVersenken/src/model/Board.java">
+<persistable path="/SchiffeVersenken/src/model/Board.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="WebSocketController.java" tooltip="SchiffeVersenken/src/model/WebSocketController.java">
+<persistable path="/SchiffeVersenken/src/model/WebSocketController.java"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="WebSocket.class" tooltip="org.eclipse.jetty.websocket.WebSocket">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=SchiffeVersenken/C:\/Users\/marius\/Dropbox\/2012 - Sommersemester\/Internet-Technologien I\/internettechnologien_praktikum\/SchiffeVersenken\/SchiffeVersenken\/WebContent\/WEB-INF\/lib\/jetty-all-7.6.2.v20120308.jar&lt;org.eclipse.jetty.websocket(WebSocket.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="login.js" tooltip="SchiffeVersenken/WebContent/login.js">
+<persistable path="/SchiffeVersenken/WebContent/login.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="lobby.js" tooltip="SchiffeVersenken/WebContent/lobby.js">
+<persistable path="/SchiffeVersenken/WebContent/lobby.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" name="lobby.html" tooltip="SchiffeVersenken/WebContent/lobby.html">
+<persistable path="/SchiffeVersenken/WebContent/lobby.html"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.html" name="index.html" tooltip="SchiffeVersenken/WebContent/index.html">
+<persistable path="/SchiffeVersenken/WebContent/index.html"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Game.js" tooltip="SchiffeVersenken/WebContent/Game.js">
 <persistable path="/SchiffeVersenken/WebContent/Game.js"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.html.core.htmlsource.source" name="main.html" tooltip="SchiffeVersenken/WebContent/main.html">
-<persistable path="/SchiffeVersenken/WebContent/main.html"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" name="Ship.js" tooltip="SchiffeVersenken/WebContent/Ship.js">
+<persistable path="/SchiffeVersenken/WebContent/Ship.js"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ChatWebSocket.java" tooltip="SchiffeVersenken/src/ship/servlet/ChatWebSocket.java">
+<persistable path="/SchiffeVersenken/src/ship/servlet/ChatWebSocket.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.aptana.editor.text" name="Neues Textdokument.txt" tooltip="SchiffeVersenken/WebContent/Neues Textdokument.txt">
+<persistable path="/SchiffeVersenken/WebContent/Neues Textdokument.txt"/>
 </file>
 </mruList>
 </workbench>

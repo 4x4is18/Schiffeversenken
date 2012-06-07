@@ -7,9 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <style type ="text/css"></style>
     </head>
-    
-    
-    <body onunload="store()">
+    <body onload="onload()">
         <div id="Seite">
             <h1></h1>
 
@@ -22,25 +20,25 @@
             </ul>
 
             <div id="Inhalt">
-                <h2>Herzlich Willkommen zu Schiffe versenken</h2>
+                <h2>Schiffeversenken - Lobby</h2>
+                
 
-                <p>Bitte wähle einen Spielernamen aus,<br /> um Schiffeversenken zu spielen:</p>
+					<form name="message" action="">
+					<textarea id="messages" rows="16" cols="48" readonly="readonly"></textarea>
+					<textarea id="spiele" rows="16" cols="12" readonly="readonly"></textarea>
 
-                <form action="lobby.html" name="formular" method="post">
-                	<label>
-                		Spielername: <input type="color" name="user" size="40" maxlength="20" placeholder="Benutzername eingeben" required />
-						
-                    </label>
-                    <input type="submit" value="Starten">
-                </form>
-                <p>(Wenn kein Name angegeben wird, erstellt das Spiel für dich einen Spielernamen)</p> 
-
+	
+				
+					<input name="usermsg" type="text" id="message" size="63" value="" />
+					<input type="button" name="submitmsg" value="Send..." onclick="sendMessage();" />
+				</form>
+                
             </div>
 
             <p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
         </div>
     </body>
-    <script src="login.js" type="text/javascript"></script>
+    
+    <script src="lobby.js" type="text/javascript"></script>
 </html>
- 
  
