@@ -19,6 +19,11 @@ Board.prototype.ships;
 Board.prototype.overlayShip;
 
 /**
+ * Die abgefeuerten Schuesse ins Wasser.
+ */
+Board.prototype.shots;
+
+/**
  * Konstruktor zum Erstellen eines Brettes.
  * @param id Die HTML-Div-ID des Brettes.
  */
@@ -33,6 +38,15 @@ function Board(id) {
 	}	
 	this.ships_set = 0;
 	this.overlayShip = null;
+	this.shots = new Array(BOARD_HEIGHT);
+	for(var y = 0; y < BOARD_HEIGHT; y++) {
+		
+		this.shots[y] = new Array(BOARD_WIDTH);
+		for(var x = 0; x < BOARD_WIDTH; x++)
+			this.shots[y][x] = NO_HIT;
+		
+	}
+	this.numShots = 0;
 	
 }
 
@@ -103,13 +117,14 @@ Board.prototype.load = function() {
 				// Nach dem Erstellen des Schiffs das Spielfeld neu gezeichnet
 				board.draw();
 				
-			} else if(mode == INGAME && board == enemyBoard) {
+			} else if(mode == ACTION && board == enemyBoard) {
 				
 				// Während des Spiels kann nur (auf gegnerischem Feld) geschossen werden
 				var y = parseInt(board.getMousePosY(event) / FIELD_SIZE);
 				var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);		
 				
-				// TODO: Serverkommunikation
+				numShots++;
+				update(y, x);
 				
 				board.draw();
 				
@@ -134,8 +149,13 @@ Board.prototype.draw = function() {
 		for(var y = 0; y < BOARD_HEIGHT; y++) {
 	        
 	    	for(var x = 0; x < BOARD_WIDTH; x++) {
-   				
-    			canvContext.fillStyle = WATER_COLOR;	
+	    		
+	    		if(this.shots[y][x] == HIT)
+	    			canvContext.fillStyle = WATER_HIT_COLOR;
+	    		else if(this.shots[y][x] == NO_HIT)
+	    			canvContext.fillStyle = WATER_COLOR;
+	    		else canvContext.fillStyle = SHIP_HIT_COLOR;
+    			
         		canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
         				FIELD_SIZE - 1, FIELD_SIZE - 1);
     			
@@ -286,5 +306,46 @@ Board.prototype.isShipOnField = function(y, x) {
 	}
 	
 	return null;
+	
+};
+
+/**
+ * Die String-Repraesentation des Brettes.
+ * Muster: "height 10 width 10;<muster von Schiff 1>;<muster von Schiff 2>;...<muster von Schiff 5>"
+ */
+Board.prototype.toString = function() {
+	
+	var strBoard = "height " + BOARD_HEIGHT + " width " + BOARD_WIDTH;
+	
+	for(var s = 0; s < this.settedShips; s++) {
+		
+		strBoard += ";" + this.ships[s].toString();
+		
+	}
+	
+	return strBoard;
+	
+};
+
+/**
+ * Updaten des Brettes nach einem Beschuss.
+ * @param y Die y-Koordinate, auf die geschossen wurde.
+ * @param x Die x-Koordinate, auf die geschossen wurde.
+ * @param result WATER_HIT, wenn ins Wasser geschossen wurde <br />
+ * shipID + HIT := Das Schiff wurde getroffen <br />
+ * shipID + SUNK := Das Schiff wurde versenkt
+ */
+Board.prototype.update = function(y, x, result) {
+	
+	this.shots[y][x] = result;
+	
+	if(result == SHIP_ID_BATTLESHIP + SUNK || result == SHIP_ID_CRUISER + SUNK || 
+			result == SHIP_ID_FRIGATE_1 + SUNK || result == SHIP_ID_FRIGATE_2 + SUNK || result == SHIP_ID_MINESLOCATOR + SUNK) {
+		
+		if(this == ownBoard)
+			alert("Ein Schiff von dir wurde versenkt!");
+		else alert("Du hast ein Schiff versenkt!");
+		
+	}
 	
 };
