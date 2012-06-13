@@ -1,5 +1,3 @@
-
-var name = "Gast";
 var webSocket;
 
 /**
@@ -19,10 +17,10 @@ function onload() {
  * 
  */
 function doKeyDown(evt){
-	// TODO: Der Cursor springt aus dem Textfeld usermsg. Es ist sehr unbequem immer wieder darein zuclicken.
+	// TODO: Der Cursor springt aus dem Textfeld usermsg. Es ist sehr unbequem immer wieder darein zuklicken.
 	if(evt.keyCode == 13) {
 		document.message.submitmsg.focus();
-		sendMessage();		
+		sendMessage();	
 	}
 	
 };
@@ -53,7 +51,7 @@ function websocket() {
  */
 function sendMessage() {
 	
-		// TODO: Es können noch leere NAchrichten abgeschickt werden. Sofern +1 Leerzeichen geschrieben wird.
+		// TODO: Es können noch leere Nachrichten abgeschickt werden. Sofern +1 Leerzeichen geschrieben wird.
 		if(document.message.usermsg.value == "") {
 			
 		} else {
