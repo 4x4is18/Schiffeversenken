@@ -46,11 +46,12 @@ public class ShipWebSocket implements OnTextMessage {
      * Wenn eine Nachricht vom Client empfangen wird, wird jedem User der auf dem Websocket ist diese Nachricht übermittelt. Alle User stehen in einem Array
      */
     public void onMessage(String data) {
+    	System.out.println(data);
     	/* 
     	 * Der String wird in den Messageparameter und den Inhalt geteilt.
     	 * TODO:_Schrecklich geschirben, bitte verbesser
     	 */
-    	String delimiter = ";";
+    	String delimiter = ":";
     	String[] message = data.split(delimiter);
     	
     	/**
@@ -76,6 +77,14 @@ public class ShipWebSocket implements OnTextMessage {
           case 3:
 
           case 4:
+        	  
+          case 10:
+        	  try {
+				connection.sendMessage(String.valueOf(1));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
           default:
 

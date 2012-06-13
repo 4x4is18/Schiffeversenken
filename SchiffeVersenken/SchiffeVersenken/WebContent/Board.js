@@ -117,18 +117,16 @@ Board.prototype.load = function() {
 				// Nach dem Erstellen des Schiffs das Spielfeld neu gezeichnet
 				board.draw();
 				
-			} else if(mode == ACTION && board == enemyBoard) {
-				
-				// Während des Spiels kann nur (auf gegnerischem Feld) geschossen werden
-				var y = parseInt(board.getMousePosY(event) / FIELD_SIZE);
-				var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);		
-				
-				numShots++;
-				update(y, x);
-				
-				board.draw();
-				
 			}
+			
+		} else if(mode == ACTION && board == enemyBoard) {
+			
+			// Während des Spiels kann nur (auf gegnerischem Feld) geschossen werden
+			var y = parseInt(board.getMousePosY(event) / FIELD_SIZE);
+			var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);		
+			
+			numShots++;
+			update(y, x);
 			
 		}
 		
@@ -151,7 +149,7 @@ Board.prototype.draw = function() {
 	    	for(var x = 0; x < BOARD_WIDTH; x++) {
 	    		
 	    		if(this.shots[y][x] == HIT)
-	    			canvContext.fillStyle = WATER_HIT_COLOR;
+	    			canvContext.fillStyle = WATER_SHOT_COLOR;
 	    		else if(this.shots[y][x] == NO_HIT)
 	    			canvContext.fillStyle = WATER_COLOR;
 	    		else canvContext.fillStyle = SHIP_HIT_COLOR;
@@ -317,7 +315,7 @@ Board.prototype.toString = function() {
 	
 	var strBoard = "height " + BOARD_HEIGHT + " width " + BOARD_WIDTH;
 	
-	for(var s = 0; s < this.settedShips; s++) {
+	for(var s = 0; s < this.ships_set; s++) {
 		
 		strBoard += ";" + this.ships[s].toString();
 		
@@ -347,5 +345,7 @@ Board.prototype.update = function(y, x, result) {
 		else alert("Du hast ein Schiff versenkt!");
 		
 	}
+	
+	this.draw();
 	
 };

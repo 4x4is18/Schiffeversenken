@@ -3,6 +3,7 @@
  * - Das zeichnen des Overlay-Schiffes ist buggy. Mal wird es garnicht angezeigt, wenn man mit der Maus stehen bleibt. MB
  * - Die SpielID muss in der globalen Variable gameID gespiechert werden.
  * - Eventuell kann der Client vor dem Setzen eines Schusses ueberpruefen, ob dort schon einmal hingeschossen wurde.
+ * - serverseitig: Splitter auf ":" setzen
  */
 
 /**
@@ -165,7 +166,7 @@ if(window.addEventListener){
 	/*
 	 * Starten des Programmes vom Client aus.
 	 */
-	addEventListener("load", init, false);
+	addEventListener("load", gameWS(), false);
 	
 	/*
 	 * Ueberwachen der Tastatur.
@@ -190,7 +191,7 @@ function doKeyDown(evt){
 /**
  * Initialisieren des Clients.
  */
-function init() {
+/*function init() {
 	
 	document.getElementById('go').disabled = true;
 	document.getElementById('clear').disabled = false;
@@ -209,7 +210,7 @@ function init() {
 	ownBoard.load();
 	enemyBoard.load();
 	
-}
+}*/
 
 /**
  * Auswaehlen eines Schiffes zum Setzen im Vorbereitungsmodus.
@@ -265,13 +266,14 @@ function play() {
 	var strBoard = ownBoard.toString();
 	
 	/*
-	 * TODO: Serverkommunikation
+	 * Serverkommunikation
 	 * Dem Server muss folgendes uebergeben werden: gameID und strBoard.
 	 * Vom Server muss ein Befehl kommen, der mode = ACTION setzt.
 	 * Danach ein alert, dass der Spieler dran ist.
 	 */
-	mode = ACTION;
-	alert("Du bist dran!");
+	// TODO: gameID benutzen oder ohne? Wenn mit gameID, so muss diese vorher
+	// gesetzt werden
+	webSocket.send(10 + ":" /*gameID + ":"*/ + strBoard);
 	
 }
 
@@ -281,9 +283,7 @@ function play() {
  * @param x Die x-Koordinate.
  */
 function update(y, x) {
-	
-	var result;
-	
+		
 	mode = WAIT;
 	
 	/*
@@ -291,19 +291,14 @@ function update(y, x) {
 	 * Senden der beiden Koordinaten an den Server.
 	 * Als Antwort vom Server kommt ein als String gepacktes int-Array:
 	 * Das erste Element ist der eigene Schuss, der zweite ist der des Gegners.
-	 * Muster: "i;j". Für i,j gilt:
+	 * Muster: "i:j". Für i,j gilt: "y:x:result"
 	 * 1 := Es wurde ins Wasser geschossen.
 	 * sonst: 	shipID + HIT := Das Schiff wurde getroffen
 	 * 			shipID + SUNK := Das Schiff wurde versenkt
 	 * Dieser Wert muss in result abgespeichert werden.
 	 */
-	
-	var results = result.split(";");
-	
-	enemyBoard.update(y, x, results[0]);
-	ownBoard.update(y, x, results[1]);
-	
-	mode = ACTION;
-	alert("Du bist dran!");
+	// TODO: gameID benutzen oder ohne? Wenn mit gameID, so muss diese vorher
+	// gesetzt werden
+	webSocket.send(11 + ":" /*gameID + ":"*/ + y + ":" + x);
 	
 }
