@@ -7,7 +7,8 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <style type ="text/css"></style>
     </head>
-    <body onload="onload()">
+    <body onload="onload()">  
+    	
         <div id="Seite">
             <h1></h1>
 
@@ -22,16 +23,32 @@
             <div id="Inhalt">
                 <h2>Schiffeversenken - Lobby</h2>
                 
-
-					<form name="message" action="">
-					<textarea id="messages" rows="16" cols="48" readonly="readonly"></textarea>
-					<textarea id="spiele" rows="16" cols="12" readonly="readonly"></textarea>
-
-	
+					<table>
+						<tr>
+							<td>
+								<form name="message" action="" >
+									<textarea id="messages" rows="16" cols="48" readonly="readonly"></textarea>
+									<input name="usermsg" type="text" id="message" size="53" value="" />
+									<input type="button" name="submitmsg" value="Send..." onclick="sendMessage();" />
+								</form>
+							</td>
+							
+							<td>
+								<form name="spiel" action="main.html" method="post">
+									<select id="spiele" rows="16" cols="12" readonly="readonly" size = "16">
+										<option>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
+									</select>
+									<input type="submit" name="spielerstellen" value="Create" onclick=""/>
+									<input type="submit" name="spielbeitreten" value="Joint" onclick="joinGame();" />
+								</form>
+							</td>
+						</tr>
+						
+						
+						
 				
-					<input name="usermsg" type="text" id="message" size="63" value="" />
-					<input type="button" name="submitmsg" value="Send..." onclick="sendMessage();" />
-				</form>
+				</table>			
+					
                 
             </div>
 

@@ -1,5 +1,9 @@
 var webSocket;
 
+var userName;
+
+var DELIMITER = ":";
+
 /**
  * Wird beim Seitenaufruf aufgerufen.
  * Startet den Websocket und den Eventlistener für die Returntaste
@@ -29,17 +33,41 @@ function doKeyDown(evt){
  * Initialisiert den Websocket.
  * Bei einer neuen Nachticht die vom Websocket gesendet wird, wird die Value der Textarea um eine Zeile erweitert 
  */
+
+
 function websocket() {
 	if ( "WebSocket" in window ) {
 		
 		webSocket = new WebSocket( 'ws://localhost:8080/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
-
+		
 					webSocket.onopen = function( event ) {
-						webSocket.send("1;" + name); 
+						
+						if (UserIDExists()) {
+							webSocket.send("3;" + getUserID()); 
+						} else {
+							webSocket.send("1;" + getUserName()); 
+						}						
 		    		};
 		    		
 		    		webSocket.onmessage = function( event ) {
-		    			document.message.messages.value += event.data + "\n"; 
+		    			var result = event.data.split(";");
+		    			alert(event.data);
+		    			switch(result[0]) {
+		    			case "0":
+		    				
+		    			case "1":
+		    				var key = "playerID";
+		    		        var data = result[1];
+		    		        localStorage.setItem(key, data);
+		    		        break;
+		    			case "2":
+		    				document.message.messages.value += result[1] + "\n";
+		    				
+		    				break;
+		    			case "3":
+		    				
+		    			}
+		    			
 		   			};
 		   		 }
 	
@@ -62,11 +90,25 @@ function sendMessage() {
 		}
 };
 
-/**
- *  Läd den Usernamen aus dem Clientstorage und speichert ihn in die Variable name
- */
-function read() {
+
+function getUserName() {
 	 	var key = "benutzername";
-	 	name = localStorage.getItem(key);
-	 		};
+	 	return localStorage.getItem(key);
+};
+
+function getUserID() {
+	var key = "playerID";
+ 	return localStorage.getItem(key);
+};
+
+function UserIDExists() {
+	var key = "playerID";
+ 	if (localStorage.getItem(key) == "") {
+ 		return false;
+ 	}
+ 		return true;	
+};
+	 		
+
+
 
