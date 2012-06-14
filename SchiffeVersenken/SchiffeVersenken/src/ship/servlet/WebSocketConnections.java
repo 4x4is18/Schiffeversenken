@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class WebSocketConnections {
 	private static ShipWebSocket[] sockets = new ShipWebSocket[2];
+	
 
 	public static void addSocket(ShipWebSocket socket) {
 		if (sockets[0] == null) {

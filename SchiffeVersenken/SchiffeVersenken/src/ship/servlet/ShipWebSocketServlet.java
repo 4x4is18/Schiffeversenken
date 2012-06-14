@@ -1,9 +1,12 @@
 package ship.servlet;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.servlet.http.HttpServletRequest;
+
+import model.Player;
 
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocketServlet;
@@ -18,10 +21,24 @@ public class ShipWebSocketServlet extends WebSocketServlet {
 	 * genau dann optimal, wenn wenig ver‰ndert ñ das ist teuer ñ und fast ausschlieﬂlich gelesen wird.
 	 * (http://openbook.galileodesign.de/javainsel8/javainsel_12_011.htm#mj7ea0af34a657da6801fadfe13bd23bcb)
 	 */
-    public final Set<ShipWebSocket> user = new CopyOnWriteArraySet<ShipWebSocket>(); 
+    public final Set<ShipWebSocket> user = new CopyOnWriteArraySet<ShipWebSocket>();
+    private static ArrayList<Player> players = new ArrayList<Player>(); 
     
     @Override
     public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
         return new ShipWebSocket(user);
+    }
+    
+    public static void addPlayer(Player player) {
+    	players.add(player);
+    }
+    
+    public static Player getPlayer(String playerID) {
+    	for (int i = 0; i < players.size(); i++) {
+    		if (String.valueOf(players.get(i).getID()).equals(playerID)) {
+    			return players.get(i);
+    		}
+    	}
+    	return null;
     }
 } 
