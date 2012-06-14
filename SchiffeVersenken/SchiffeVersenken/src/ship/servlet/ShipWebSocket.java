@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.util.Set;
 
+import model.Game;
 import model.Player;
 
 import org.eclipse.jetty.websocket.WebSocket.OnTextMessage;
@@ -13,7 +14,7 @@ public class ShipWebSocket implements OnTextMessage {
     private Set<ShipWebSocket> user;
     Player player;
     
-    static final String SPLITDELIMITER = ":"; 
+    static final String SPLITDELIMITER = "ÿ"; 
     
     /**
      * Konstante am Anfang des Strings, wenn ein Benutzername gesendet wird. data = "1;Benutzername"
@@ -31,6 +32,14 @@ public class ShipWebSocket implements OnTextMessage {
      *
      */
     static final int HANDSHAKE = 3;
+    
+    
+    /**
+     * Konstante für das Erstellen eines Spieles
+     */
+    static final int CREATEGAME = 4;
+    
+    static final int JOINGAME = 5;
     
     
     public ShipWebSocket(Set<ShipWebSocket> user) {
@@ -64,6 +73,8 @@ public class ShipWebSocket implements OnTextMessage {
     	 * Der String wird in den Messageparameter und den Inhalt geteilt.
     	 * TODO:_Schrecklich geschirben, bitte verbessern
     	 */
+    	Game game;
+    	System.out.println(data);
     	String[] message = data.split(SPLITDELIMITER);
     	
     	/**
@@ -78,6 +89,7 @@ public class ShipWebSocket implements OnTextMessage {
         	ShipWebSocketServlet.addPlayer(player);
           	try {
 				this.connection.sendMessage(CREATE + SPLITDELIMITER + String.valueOf(player.getID()));
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 			}
@@ -96,13 +108,40 @@ public class ShipWebSocket implements OnTextMessage {
         	  String userID = message[1];
         	  player = ShipWebSocketServlet.getPlayer(userID);
         	  break;
-          case 4:
-
+          
+          case CREATEGAME:
+        	  game = new Game(this.player, "bla");
+        	  System.out.print(this.player.getName());
+        	  ShipWebSocketServlet.addGame(game);
+        	  try {
+  				this.connection.sendMessage(CREATEGAME + SPLITDELIMITER + "bla");
+  				
+  			} catch (IOException e) {
+  				// TODO Auto-generated catch block
+  			}
+        	 
+  			break;
+  			
+          case JOINGAME:
+        	  String gameName = message[2];
+        	  game = ShipWebSocketServlet.getGame(gameName);
+        	  String playerID = message[1]; 
+        	  Player player = ShipWebSocketServlet.getPlayer(playerID);
+        	  game.addPlayer(player);
+        	  
+        	  try {
+    				this.connection.sendMessage(JOINGAME + SPLITDELIMITER + game.getName());
+    				this.connection.sendMessage(String.valueOf(game.getNumPlayers()) );
+    				
+    			} catch (IOException e) {
+    				// TODO Auto-generated catch block
+    			}
+        	  break;
           default:
 
         }
     	// TODO: System.out.println entfernen
-    	System.out.println(data);
+    	//System.out.println(data);
    	}
 		
 }

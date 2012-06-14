@@ -1,8 +1,10 @@
+
 /**
  * Initialisiert den Websocket.
  * Bei einer neuen Nachticht die vom Websocket gesendet wird, wird die Value der Textarea um eine Zeile erweitert 
  */
 function gameWS() {
+	
 	if ( "WebSocket" in window ) {
 		
 		webSocket = new WebSocket( 'ws://localhost:8080/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
@@ -22,9 +24,14 @@ function gameWS() {
 						vertical = true;
 						
 						numShots = 0;
+	    		        
+						var key = "gameID";
+	    		        gameID = localStorage.getItem(key);
+						//alert(gameID);
 						
 						ownBoard.load();
 						enemyBoard.load();
+						
 						
 		    		};
 		    		

@@ -2,7 +2,7 @@ var webSocket;
 
 var userName;
 
-var DELIMITER = ":";
+var DELIMITER = "ÿ";
 
 /**
  * Wird beim Seitenaufruf aufgerufen.
@@ -43,17 +43,16 @@ function websocket() {
 					webSocket.onopen = function( event ) {
 						
 						if (UserIDExists()) {
-							webSocket.send("3;" + getUserID()); 
+							webSocket.send("3" + DELIMITER + getUserID()); 
 						} else {
-							webSocket.send("1;" + getUserName()); 
+							webSocket.send("1" + DELIMITER + getUserName()); 
 						}						
 		    		};
 		    		
 		    		webSocket.onmessage = function( event ) {
-		    			var result = event.data.split(";");
 		    			alert(event.data);
+		    			var result = event.data.split(DELIMITER);
 		    			switch(result[0]) {
-		    			case "0":
 		    				
 		    			case "1":
 		    				var key = "playerID";
@@ -66,8 +65,23 @@ function websocket() {
 		    				break;
 		    			case "3":
 		    				
-		    			}
 		    			
+		    			case "4":
+		    				var key = "gameID";
+		    		        var data = result[1];
+		    		        alert(data);
+		    		        localStorage.setItem(key, data);
+		    		        window.location="main.html";
+		    		        break;
+		    		        
+		    			case "5":
+		    				var key = "gameID";
+		    		        var data = result[1];
+		    		        localStorage.setItem(key, data);
+		    		        alert(data);
+		    		        window.location="main.html";
+		    		        break;
+		    			}
 		   			};
 		   		 }
 	
@@ -84,11 +98,17 @@ function sendMessage() {
 			
 		} else {
 			
-			var text = "2;" + document.message.usermsg.value;
+			var text = "2" + DELIMITER + document.message.usermsg.value;
 			document.message.usermsg.value = "";
 			webSocket.send(text);
 		}
 };
+
+function sendGames() {
+	
+	
+	
+}
 
 
 function getUserName() {
@@ -107,6 +127,19 @@ function UserIDExists() {
  		return false;
  	}
  		return true;	
+};
+
+function createGame() {
+	
+	webSocket.send("4" + DELIMITER + getUserID());
+	
+	
+};
+
+function joinGame() {
+	//alert("5" + DELIMITER + getUserID() + DELIMITER + "bla");
+	webSocket.send("5" + DELIMITER + getUserID() + DELIMITER + "bla");
+	
 };
 	 		
 

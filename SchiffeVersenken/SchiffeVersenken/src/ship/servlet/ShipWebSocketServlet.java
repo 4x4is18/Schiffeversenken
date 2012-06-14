@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.Game;
 import model.Player;
 
 import org.eclipse.jetty.websocket.WebSocket;
@@ -23,6 +24,7 @@ public class ShipWebSocketServlet extends WebSocketServlet {
 	 */
     public final Set<ShipWebSocket> user = new CopyOnWriteArraySet<ShipWebSocket>();
     private static ArrayList<Player> players = new ArrayList<Player>(); 
+    private static ArrayList<Game> games = new ArrayList<Game>();
     
     @Override
     public WebSocket doWebSocketConnect(HttpServletRequest request, String protocol) {
@@ -41,4 +43,20 @@ public class ShipWebSocketServlet extends WebSocketServlet {
     	}
     	return null;
     }
+    
+    public static void addGame(Game game) {
+    	games.add(game);
+    	
+    }
+    
+    public static Game getGame(String gameID) {
+    	for (int i = 0; i < games.size(); i++) {
+    		if (String.valueOf(games.get(i).getName()).equals(gameID)) {
+    			return games.get(i);
+    		}
+    	}
+    	return null;
+    }
+    
+    
 } 

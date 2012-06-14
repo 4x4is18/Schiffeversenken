@@ -1,5 +1,8 @@
 package model;
 
+import java.sql.Date;
+import java.text.DateFormat;
+
 /**
  * Die Modellklasse zur Beschreibung von Spielern 
  * fuer das Spiel Schiffe Versenken.
@@ -15,7 +18,7 @@ public class Player {
 	 * Primary Key
 	 * TODO: Wie ist die ID aufgebaut?
 	 */
-	private int id;
+	private long id;
 	
 	/**
 	 * Der Name des Spielers.
@@ -33,13 +36,14 @@ public class Player {
 	 * @param id Die ID des Spielers.
 	 * @param name Der Name des Spielers.
 	 */
-	public Player(int id, String name) {
+	public Player(String name) {
 		
-		this.id = id;
+		this.id = this.createID();
 		this.name = name;
 		this.board = null;
 		
 	}
+	
 	
 	/**
 	 * Konstruktor zum Erstellen eines Spielers mit Board.
@@ -50,7 +54,7 @@ public class Player {
 	 */
 	public Player(int id, String name, Board board) {
 		
-		this(id, name);
+		this(name);
 		this.board = new Board(board);
 		
 	}
@@ -79,7 +83,7 @@ public class Player {
 	/**
 	 * Die ID des Spielers.
 	 */
-	public int getID() {
+	public long getID() {
 		
 		return this.id;
 		
@@ -124,6 +128,11 @@ public class Player {
 	public int updateBoard(int y, int x) {
 		
 		return this.board.update(y, x);
+		
+	}
+	
+	private long createID() {
+		 return System.currentTimeMillis();
 		
 	}
 	

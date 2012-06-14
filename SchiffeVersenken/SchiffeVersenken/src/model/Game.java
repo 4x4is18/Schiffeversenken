@@ -48,7 +48,7 @@ public class Game {
 	 */
 	public Game(Player creator, String name) {
 		
-		this.name = name;
+		this.name = name;  //bisher immer nur "bla"
 		this.numPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.players.add(creator);
@@ -226,5 +226,6 @@ public class Game {
 		return targets;
 		
 	}
+	
 
 }

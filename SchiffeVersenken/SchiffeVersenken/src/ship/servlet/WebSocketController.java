@@ -5,7 +5,7 @@ package ship.servlet;
  */
 public class WebSocketController {
 	
-	private static String delimiter = "-";
+	private static String delimiter = ":";
 	
 	
 	public static String[] recieve(String data) {

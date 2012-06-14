@@ -34,12 +34,18 @@
 							</td>
 							
 							<td>
-								<form name="spiel" action="main.html" method="post">
+								<form name="beitreten">
 									<select id="spiele" rows="16" cols="12" readonly="readonly" size = "16">
 										<option>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</option>
+										<option>Game 1 </option>
+										<option>Game 2 </option>
 									</select>
-									<input type="submit" name="spielerstellen" value="Create" onclick=""/>
-									<input type="submit" name="spielbeitreten" value="Joint" onclick="joinGame();" />
+									<input type="button" name="spielbeitreten" value="Joint" onclick="joinGame();" />
+									</form>
+								<form name="erstellen">
+								
+									<input type="button" name="spielerstellen" value="Create" onclick="createGame();"/>
+									
 								</form>
 							</td>
 						</tr>
