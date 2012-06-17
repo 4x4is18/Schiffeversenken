@@ -1,3 +1,15 @@
+/**
+ * Dieser Parameter gibt an, auf welchem Server der Websocket läuft
+ * 134.106.56.164 oder localhost
+ * READ ONLY
+ */
+var SERVERIP = "134.106.56.164";
+
+/**
+ * Dieser Parameter gibt an, auf welchem Port der Websocket läuft
+ * READ ONLY
+ */
+var PORT = 8080;
 
 /**
  * Initialisiert den Websocket.
@@ -7,7 +19,7 @@ function gameWS() {
 	
 	if ( "WebSocket" in window ) {
 		
-		webSocket = new WebSocket( 'ws://localhost:8080/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+		webSocket = new WebSocket( 'ws://' + SERVERIP + ':' + PORT + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
 
 					webSocket.onopen = function( event ) {
 						
