@@ -12,7 +12,7 @@ function store() {
         var key = "playerID";
         var data = "";
         localStorage.setItem(key, data);
-        window.location.replace('http://134.106.56.164:8080/SchiffeVersenken/lobby.html');
+        window.location.replace('lobby.html');
       };
 
 /* Über diese Funktion kann auf JEDER Seite die Variable abgerufen werden.

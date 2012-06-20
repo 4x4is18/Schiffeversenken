@@ -36,6 +36,7 @@ public class ShipWebSocketServlet extends WebSocketServlet {
     }
     
     public static Player getPlayer(String playerID) {
+    	
     	for (int i = 0; i < players.size(); i++) {
     		if (String.valueOf(players.get(i).getID()).equals(playerID)) {
     			return players.get(i);

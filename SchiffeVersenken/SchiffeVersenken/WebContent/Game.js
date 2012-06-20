@@ -136,9 +136,9 @@ var HIT = 1;
 var SUNK = 2;
 
 /**
- * Die ID des Spiels.
+ * Konstante für den Trenner von Strings, die an den Server gehen
  */
-var gameID;
+var DELIMITER = "ÿ";
 
 /**
  * Das zur Zeit ausgewaehlte Schiff (ID). <br />
@@ -159,6 +159,7 @@ var vertical;
 /**
  * Die Anzahl der abgefeuerten Schuesse.
  */
+// TODO: muss auf den Server
 var numShots;
 
 if(window.addEventListener){
@@ -187,30 +188,6 @@ function doKeyDown(evt){
 	}
 
 }
-
-/**
- * Initialisieren des Clients.
- */
-/*function init() {
-	
-	document.getElementById('go').disabled = true;
-	document.getElementById('clear').disabled = false;
-	
-	ownBoard = new Board('ownBoard');
-	enemyBoard = new Board('enemyBoard');
-	
-	mode = PREPARE;
-	
-	selectedShip = null;
-	selectedShipLength = null;
-	vertical = true;
-	
-	numShots = 0;
-	
-	ownBoard.load();
-	enemyBoard.load();
-	
-}*/
 
 /**
  * Auswaehlen eines Schiffes zum Setzen im Vorbereitungsmodus.
@@ -259,22 +236,23 @@ function readyToPlay() {
  */
 function play() {
 	
-	mode = WAIT;
+	// Schaltflächen disablen:
 	document.getElementById('clear').disabled = true;
 	document.getElementById('go').disabled = true;
 	
+	// Brett zu einem String packen:
 	var strBoard = ownBoard.toString();
 	
 	/*
 	 * Serverkommunikation
 	 * Dem Server muss folgendes uebergeben werden: gameID und strBoard.
 	 * Vom Server muss ein Befehl kommen, der mode = ACTION setzt.
-	 * Danach ein alert, dass der Spieler dran ist.
 	 */
-	// TODO: gameID benutzen oder ohne? Wenn mit gameID, so muss diese vorher
-	// gesetzt werden
-	webSocket.send(10 + ":" /*gameID + ":"*/ + strBoard);
+	webSocket.send(10 + DELIMITER + localStorage.getItem("gameID") + DELIMITER + localStorage.getItem("playerID") + DELIMITER + strBoard);
 	
+	// Warten, bis man dran ist:
+	mode = WAIT;
+		
 }
 
 /**
@@ -283,22 +261,22 @@ function play() {
  * @param x Die x-Koordinate.
  */
 function update(y, x) {
-		
-	mode = WAIT;
 	
 	/*
 	 * TODO: Serverkommunikation
 	 * Senden der beiden Koordinaten an den Server.
 	 * Als Antwort vom Server kommt ein als String gepacktes int-Array:
 	 * Das erste Element ist der eigene Schuss, der zweite ist der des Gegners.
-	 * Muster: "i:j". Für i,j gilt: "y:x:result"
+	 * Muster: "ergebnis"
 	 * 1 := Es wurde ins Wasser geschossen.
 	 * sonst: 	shipID + HIT := Das Schiff wurde getroffen
 	 * 			shipID + SUNK := Das Schiff wurde versenkt
 	 * Dieser Wert muss in result abgespeichert werden.
 	 */
-	// TODO: gameID benutzen oder ohne? Wenn mit gameID, so muss diese vorher
-	// gesetzt werden
-	webSocket.send(11 + ":" /*gameID + ":"*/ + y + ":" + x);
+	// TODO: Ergebnis vom Server
+	webSocket.send(11 + DELIMITER + gameID + DELIMITER + y + DELIMITER + x);
+	
+	// Warten, bis man dran ist:
+	mode = WAIT;
 	
 }

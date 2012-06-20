@@ -9,7 +9,9 @@ var DELIMITER = "ÿ";
  * 134.106.56.164 oder localhost
  * READ ONLY
  */
-var SERVERIP = "134.106.56.164";
+//var SERVERIP = "134.106.56.164";
+var SERVERIP = "192.168.178.67";
+
 
 /**
  * Dieser Parameter gibt an, auf welchem Port der Websocket läuft
@@ -64,7 +66,6 @@ function websocket() {
 		    		};
 		    		
 		    		webSocket.onmessage = function( event ) {
-		    			alert(event.data);
 		    			var result = event.data.split(DELIMITER);
 		    			switch(result[0]) {
 		    				
@@ -83,7 +84,6 @@ function websocket() {
 		    			case "4":
 		    				var key = "gameID";
 		    		        var data = result[1];
-		    		        alert(data);
 		    		        localStorage.setItem(key, data);
 		    		        window.location="main.html";
 		    		        break;
@@ -92,7 +92,6 @@ function websocket() {
 		    				var key = "gameID";
 		    		        var data = result[1];
 		    		        localStorage.setItem(key, data);
-		    		        alert(data);
 		    		        window.location="main.html";
 		    		        break;
 		    			}

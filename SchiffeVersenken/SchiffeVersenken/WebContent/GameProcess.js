@@ -3,7 +3,8 @@
  * 134.106.56.164 oder localhost
  * READ ONLY
  */
-var SERVERIP = "134.106.56.164";
+//var SERVERIP = "134.106.56.164"; //TODO
+var SERVERIP = "localhost";
 
 /**
  * Dieser Parameter gibt an, auf welchem Port der Websocket läuft
@@ -39,7 +40,6 @@ function gameWS() {
 	    		        
 						var key = "gameID";
 	    		        gameID = localStorage.getItem(key);
-						//alert(gameID);
 						
 						ownBoard.load();
 						enemyBoard.load();
@@ -48,15 +48,22 @@ function gameWS() {
 		    		};
 		    		
 		    		webSocket.onmessage = function( event ) {
-		    			
-		    			alert(event.data);
 		    		
 		    			if(event.data != null) {
+		    				var result = event.data.split(DELIMITER);
+		    				if (result[0] == "12") {
+		    					
+		    					mode = ACTION;
+			    				alert("DUUUUU bist dran du Ratte!");
+			    				
+		    				}
 		    				
-		    				var result = event.data.split(":");
 		    				
-		    				enemyBoard.update(result[0], result[1], result[2]);
-		    				ownBoard.update(result[3], result[4], result[5]);
+		    				
+		    				//TODO enemyBoard.update(result[0], result[1], result[2]);
+
+
+		    				
 		    				
 		    			}
 		    			

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @category model
  * @version 1.0
  */
-class Board {
+public class Board {
 	
 	/**
 	 * Konstante Anzahl von Schiffen auf einem Brett.
@@ -56,7 +56,7 @@ class Board {
 	 * @param width Die Breite des Brettes.
 	 * @param ships Die Schiffe.
 	 */
-	Board(int height, int width, Ship[] ships) {
+	public Board(int height, int width, Ship[] ships) {
 		
 		this.height = height;
 		this.width = width;
@@ -71,7 +71,7 @@ class Board {
 	 * Copykontruktor zum Erstellen eines Brettes anhand eines vorhandenen.
 	 * @param orig Das Brett, das als Vorlage dient.
 	 */
-	Board(Board orig) {
+	public Board(Board orig) {
 		
 		this(orig.height, orig.width, orig.ships);
 		this.numShips = orig.numShips;
@@ -88,7 +88,7 @@ class Board {
 	 * @see model.Ship#getID()
 	 * @see model.Ship#getPart(int)
 	 */
-	Board(int height, int width, int[][] intBoard) {
+	public Board(int height, int width, int[][] intBoard) {
 		
 		this.height = height;
 		this.width = width;
@@ -158,7 +158,7 @@ class Board {
 	 * Konstruktor zum Erstellen eines Brettes aus einem String heraus.
 	 * @param strOrig Muster: "height 10 width 10;<muster von Schiff 1>;<muster von Schiff 2>;...<muster von Schiff 5>"
 	 */
-	Board(String strOrig) {
+	public Board(String strOrig) {
 				
 		String[] strSplit = strOrig.split(";", 6);
 		/*
@@ -232,7 +232,7 @@ class Board {
 	 * 			{40, 41, 0, 0, 0, 0, 0, 0, 0, 0},
 	 * 			...}
 	 */
-	int[][] toIntegerArray() {
+	public int[][] toIntegerArray() {
 		
 		int intBoard[][] = new int[this.height][this.width];
 		
@@ -277,7 +277,7 @@ class Board {
 	/**
 	 * Die Hoehe des Brettes.
 	 */
-	int getHeight() {
+	public int getHeight() {
 		
 		return this.height;
 		
@@ -286,7 +286,7 @@ class Board {
 	/**
 	 * Die Breite des Brettes.
 	 */
-	int getWidth() {
+	public int getWidth() {
 		
 		return this.width;
 		
@@ -296,7 +296,7 @@ class Board {
 	 * Die Schiffe auf dem Brett. <br />
 	 * ships.length = NUM_SHIPS
 	 */
-	Ship[] getShips() {
+	public Ship[] getShips() {
 		
 		return this.ships;
 		
@@ -306,7 +306,7 @@ class Board {
 	 * Ein bestimmtes Schiff auf dem Brett.
 	 * @param index 0 <= index < NUM_SHIPS
 	 */
-	Ship getShip(int index) {
+	public Ship getShip(int index) {
 		
 		return this.ships[index];
 		
@@ -317,7 +317,7 @@ class Board {
 	 * Sie berechnet sich aus der Anzahl zu Beginn minus der 
 	 * versenkten Schiffe.
 	 */
-	int getNumShips() {
+	public int getNumShips() {
 		
 		return this.numShips;
 		
@@ -330,7 +330,7 @@ class Board {
 	 * @return {@link model.Ship#update(int, int)}, wenn ein Schiff getroffen wurde
 	 * @return {@link model.Board#WATER_HIT}, wenn ins Wasser geschossen wurde
 	 */
-	int update(int y, int x) {
+	public int update(int y, int x) {
 		
 		for(Ship ship : this.ships) {
 			

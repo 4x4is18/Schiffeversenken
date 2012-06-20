@@ -41,14 +41,21 @@ public class Game {
 	private String password;
 	
 	/**
+	 * Die eindeutige ID des Spiels.
+	 */
+	private String id;
+	
+	/**
 	 * Konstruktor fuer ein offenes Spiel fuer zwei Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
+	 * @param id Die eindeutige ID des Spiels.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name) {
+	public Game(Player creator, String name, String id) {
 		
 		this.name = name;  //bisher immer nur "bla"
+		this.id = id;
 		this.numPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.players.add(creator);
@@ -61,12 +68,13 @@ public class Game {
 	 * Konstruktor fuer ein passwort-geschütztes Spiel fuer zwei Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
+	 * @param id Die eindeutige ID des Spiels.
 	 * @param password Das Passwort fuer das Spiel.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, String password) {
+	public Game(Player creator, String name, String id, String password) {
 		
-		this(creator, name);
+		this(creator, name, id);
 		this.password = password;
 		
 	}
@@ -75,12 +83,14 @@ public class Game {
 	 * Konstruktor fuer ein offenes Spiel fuer beliebig viele Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
+	 * @param id Die eindeutige ID des Spiels.
 	 * @param numPlayers Die Anzahl der Spieler.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, int numPlayers) {
+	public Game(Player creator, String name, String id, int numPlayers) {
 		
 		this.name = name;
+		this.id = id;
 		this.numPlayers = numPlayers;
 		this.players = new ArrayList<Player>(numPlayers);
 		this.players.add(creator);
@@ -94,16 +104,19 @@ public class Game {
 	 * Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
+	 * @param id Die eindeutige ID des Spiels.
 	 * @param numPlayers Die Anzahl der Spieler.
 	 * @param password Das Passwort fuer das Spiel.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, int numPlayers, String password) {
+	public Game(Player creator, String name, String id, int numPlayers, String password) {
 		
-		this(creator, name, numPlayers);
+		this(creator, name, id, numPlayers);
 		this.password = password;
 		
 	}
+	
+	
 	
 	/**
 	 * Der Name des Spiels.
@@ -111,6 +124,26 @@ public class Game {
 	public String getName() {
 		
 		return this.name;
+		
+	}
+	/**
+	 * Prüft, ob alle Spieler auf Go geklickt haben und das Spiel gestartet
+	 * werden kann
+	 * @return
+	 */
+	public boolean allPlayersReady() {
+		for (int i = 0; i < players.size(); i++) {
+			if (!players.get(i).isReady()) return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Die eindeutige ID des Spiels
+	 */
+	public String getID() {
+		
+		return this.id;
 		
 	}
 	
@@ -190,16 +223,20 @@ public class Game {
 	}
 	
 	/**
-	 * Das Starten eines Spiels.
+	 * Das Starten eines Spiels. Der Startspieler wird via Zufall ermittelt.
 	 * @return Der Spieler, der beginnt.
 	 * @see model.Player
 	 */
-	public Player startGame() {
-		
-		this.actPlayer = 0;
-		return this.players.get(this.actPlayer);
+	public void startGame() {
+
+		this.actPlayer = (int)(Math.random() * this.players.size());
+		Player nextPlayer = this.getNextPlayer();
+		GameProcess.callNextPlayer(nextPlayer.getWebSocketConnection());
 		
 	}
+	
+	
+	
 	
 	/**
 	 * Updaten aller Bretter nach einem Schuss.

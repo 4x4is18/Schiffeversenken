@@ -179,12 +179,14 @@ class Ship {
 		 * strSplit[8...] = id + HIT oder NOHIT
 		 */
 		this.id = Integer.valueOf(strSplit[1]);
+		this.length = this.id / 10;
 		this.top = Integer.valueOf(strSplit[3]);
 		this.left = Integer.valueOf(strSplit[5]);
 		if(Integer.valueOf(strSplit[7]) == 1)
 			this.vertical = true;
 		else this.vertical = false;
 		this.sunk = true;
+		this.parts = new int[this.length];
 		for(int part = 8; part < strSplit.length; part++) {
 			
 			this.parts[part - 8] = Integer.valueOf(strSplit[part]) - this.id;

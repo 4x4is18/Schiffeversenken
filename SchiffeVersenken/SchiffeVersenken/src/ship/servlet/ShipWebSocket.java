@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.util.Set;
 
+import model.Board;
 import model.Game;
 import model.Player;
 
@@ -32,18 +33,35 @@ public class ShipWebSocket implements OnTextMessage {
      *
      */
     static final int HANDSHAKE = 3;
-    
-    
+     
     /**
      * Konstante für das Erstellen eines Spieles
      */
     static final int CREATEGAME = 4;
     
+    /**
+     * TODO
+     */
     static final int JOINGAME = 5;
     
+    /**
+     * Konstante fuer das Empfangen eines Brettes
+     */
+    static final int GETBOARD = 10;
     
+    /**
+     * Konstante fuer das Empfangen eines Schusses
+     */
+    static final int GETSHOOT = 11;
+    
+    /**
+     * TODO
+     * @param user
+     */
     public ShipWebSocket(Set<ShipWebSocket> user) {
-        this.user = user;       
+    	
+        this.user = user;
+        
     }
     
     /**
@@ -51,9 +69,11 @@ public class ShipWebSocket implements OnTextMessage {
      */
     @Override
     public void onOpen(Connection connection ) {
+    	
         this.connection = connection;
         this.user.add( this );
         System.out.println("Websocket OPEN");
+        
     }
     
     /**
@@ -61,8 +81,10 @@ public class ShipWebSocket implements OnTextMessage {
      */
     @Override
     public void onClose( int closeCode, String message ) {
+    	
         this.user.remove( this );
         System.out.println();
+        
     }
 
     /**
@@ -85,7 +107,7 @@ public class ShipWebSocket implements OnTextMessage {
     	switch (messageparameter){
     	
           case CREATE:
-        	player = new Player(message[1]);
+        	player = new Player(message[1], connection);
         	ShipWebSocketServlet.addPlayer(player);
           	try {
 				this.connection.sendMessage(CREATE + SPLITDELIMITER + String.valueOf(player.getID()));
@@ -110,8 +132,7 @@ public class ShipWebSocket implements OnTextMessage {
         	  break;
           
           case CREATEGAME:
-        	  game = new Game(this.player, "bla");
-        	  System.out.print(this.player.getName());
+        	  game = new Game(this.player, "bla", "bla");
         	  ShipWebSocketServlet.addGame(game);
         	  try {
   				this.connection.sendMessage(CREATEGAME + SPLITDELIMITER + "bla");
@@ -137,6 +158,26 @@ public class ShipWebSocket implements OnTextMessage {
     				// TODO Auto-generated catch block
     			}
         	  break;
+        	  
+          case GETBOARD:
+        	  String gameID = message[1];
+        	  game = ShipWebSocketServlet.getGame(gameID); // TODO
+        	  playerID = message[2]; 
+        	  
+        	  player = ShipWebSocketServlet.getPlayer(playerID);
+        	  player.setConneion(connection);
+        	  String strBoard = message[3];
+        	  Board board = new Board(strBoard);
+        	  player.setBoard(board);     
+        	  if (game.allPlayersReady()) {
+        		  game.startGame();
+        	  }
+        	  break;
+        	  
+          case GETSHOOT:
+        	  // TODO:
+        	  break;
+        	  
           default:
 
         }
@@ -145,5 +186,3 @@ public class ShipWebSocket implements OnTextMessage {
    	}
 		
 }
-		
-

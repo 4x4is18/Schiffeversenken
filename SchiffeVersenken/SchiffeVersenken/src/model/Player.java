@@ -1,5 +1,7 @@
 package model;
 
+import org.eclipse.jetty.websocket.WebSocket.Connection;
+
 /**
  * Die Modellklasse zur Beschreibung von Spielern 
  * fuer das Spiel Schiffe Versenken.
@@ -33,11 +35,18 @@ public class Player {
 	 * @param id Die ID des Spielers.
 	 * @param name Der Name des Spielers.
 	 */
-	public Player(String name) {
+	
+	private boolean ready;
+	
+	private Connection connection;
+	
+	public Player(String name, Connection connection) {
 		
+		this.connection = connection;
 		this.id = this.createID();
 		this.name = name;
 		this.board = null;
+		this.ready = false;
 		
 	}
 	
@@ -49,11 +58,11 @@ public class Player {
 	 * @param board Das Brett des Spielers.
 	 * @see model.Board
 	 */
-	public Player(int id, String name, Board board) {
+	public Player(int id, String name, Board board, Connection connection) {
 		
-		this(name);
+		this(name, connection);
 		this.board = new Board(board);
-		
+		this.ready = true;
 	}
 	
 	/**
@@ -64,6 +73,18 @@ public class Player {
 		
 		return this.id == ((Player)obj).id;
 		
+	}
+	
+	/**
+	 * Gibt die Verbindung zum Client zurück
+	 * @return
+	 */
+	public Connection getWebSocketConnection() {
+		return this.connection;
+	}
+	
+	public boolean isReady() {
+		return ready;
 	}
 	
 	/**
@@ -111,7 +132,16 @@ public class Player {
 	public void setBoard(Board board) {
 		
 		this.board = new Board(board);
+		this.ready = true;
 		
+	}
+	
+	/**
+	 * Setzen der neuen Websocket-Verbindung des Players
+	 * @param connection
+	 */
+	public void setConneion(Connection connection) {
+		this.connection = connection;
 	}
 	
 	/**
