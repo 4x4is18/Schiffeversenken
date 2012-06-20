@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.sql.SQLException;
 
 /**
@@ -49,10 +50,10 @@ public class Highscore extends HttpServlet {
 				
 				while (dbconnection.getResultSet().next()) {
 					
-				 out.println(" <tr> <td> " + dbconnection.getResultSet().getString(1) + " </td> "); //der Spielername
-				 out.println(     " <td> " + dbconnection.getResultSet().getString(2) + " </td> "); //das Datum
-				 out.println(     " <td> " + dbconnection.getResultSet().getInt(3) + " </td> </tr> ");// die Anzahl der Züge
-				 
+/*					out.println(" <tr> <td> " + dbconnection.getResultSet().getString(1) + " </td> "); //der Spielername
+					out.println(     " <td> " + dbconnection.getResultSet().getString(2) + " </td> "); //das Datum
+					out.println(     " <td> " + dbconnection.getResultSet().getInt(3) + " </td> </tr> ");// die Anzahl der Züge
+*/				 
 				}
 					
 				

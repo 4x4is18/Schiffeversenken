@@ -1,8 +1,5 @@
 package model;
 
-import java.sql.Date;
-import java.text.DateFormat;
-
 /**
  * Die Modellklasse zur Beschreibung von Spielern 
  * fuer das Spiel Schiffe Versenken.

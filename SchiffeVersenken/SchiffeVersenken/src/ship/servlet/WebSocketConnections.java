@@ -1,8 +1,5 @@
 package ship.servlet;
 
-import java.util.ArrayList;
-
-
 public class WebSocketConnections {
 	private static ShipWebSocket[] sockets = new ShipWebSocket[2];
 	
