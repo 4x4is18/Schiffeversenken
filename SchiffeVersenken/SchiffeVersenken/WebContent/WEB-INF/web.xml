@@ -17,4 +17,13 @@
     <servlet-name>WebSocket</servlet-name>
     <url-pattern>/WebSocket/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Highscore</servlet-name>
+  	<servlet-class>ship.servlet.Highscore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Highscore</servlet-name>
+  	<url-pattern>/Highscore/*</url-pattern>
+  </servlet-mapping>
+  	
 </web-app>
