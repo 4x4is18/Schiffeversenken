@@ -8,7 +8,7 @@ public class GameProcess {
 	
 	static final int SELECTPLAYER = 12;
 	
-	static final String SPLITDELIMITER = "ÿ"; 
+	static final String SPLITDELIMITER = "%"; 
 	
 	public static void SendData(String data) {
 		

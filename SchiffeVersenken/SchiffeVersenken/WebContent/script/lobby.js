@@ -2,7 +2,7 @@ var webSocket;
 
 var userName;
 
-var DELIMITER = "ÿ";
+var DELIMITER = "%";
 
 /**
  * Dieser Parameter gibt an, auf welchem Server der Websocket läuft
@@ -10,7 +10,7 @@ var DELIMITER = "ÿ";
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164";
-var SERVERIP = "192.168.178.67";
+var SERVERIP = "localhost";
 
 
 /**
@@ -26,7 +26,6 @@ var PORT = "8080";
  * @see read()
  */
 function onload() {
-
 	window.addEventListener('keydown',doKeyDown,true);
 	websocket();
 	read();
@@ -39,8 +38,9 @@ function onload() {
 function doKeyDown(evt){
 	// TODO: Der Cursor springt aus dem Textfeld usermsg. Es ist sehr unbequem immer wieder darein zuklicken.
 	if(evt.keyCode == 13) {
-		document.message.submitmsg.focus();
-		sendMessage();	
+		document.getElementById('submitmsg').focus();
+		sendMessage();
+
 	}
 	
 };
@@ -54,7 +54,7 @@ function doKeyDown(evt){
 function websocket() {
 	if ( "WebSocket" in window ) {
 		
-		webSocket = new WebSocket( 'ws://' + SERVERIP + ':' + PORT + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+		webSocket = new WebSocket( 'ws://' + location.host + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
 		
 					webSocket.onopen = function( event ) {
 						
@@ -75,7 +75,7 @@ function websocket() {
 		    		        localStorage.setItem(key, data);
 		    		        break;
 		    			case "2":
-		    				document.message.messages.value += result[1] + "\n";
+		    				document.getElementById('messages').value += result[1] + "\n";
 		    				
 		    				break;
 		    			case "3":
@@ -105,15 +105,16 @@ function websocket() {
  * 
  */
 function sendMessage() {
-	
+
 		// TODO: Es können noch leere Nachrichten abgeschickt werden. Sofern +1 Leerzeichen geschrieben wird.
-		if(document.message.usermsg.value == "") {
+		if(document.getElementById('usermsg').value == "") {
 			
 		} else {
 			
-			var text = "2" + DELIMITER + document.message.usermsg.value;
-			document.message.usermsg.value = "";
+			var text = "2" + DELIMITER + document.getElementById('usermsg').value;
+			document.getElementById('usermsg').value = "";
 			webSocket.send(text);
+			document.getElementById('usermsg').focus();
 		}
 };
 
@@ -145,6 +146,7 @@ function UserIDExists() {
 function createGame() {
 	
 	webSocket.send("4" + DELIMITER + getUserID());
+	window.location.replace('main.html');
 	
 	
 };
@@ -152,6 +154,7 @@ function createGame() {
 function joinGame() {
 	//alert("5" + DELIMITER + getUserID() + DELIMITER + "bla");
 	webSocket.send("5" + DELIMITER + getUserID() + DELIMITER + "bla");
+	window.location.replace('main.html');
 	
 };
 	 		

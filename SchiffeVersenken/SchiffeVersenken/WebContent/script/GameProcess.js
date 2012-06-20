@@ -19,8 +19,10 @@ var PORT = 8080;
 function gameWS() {
 	
 	if ( "WebSocket" in window ) {
-		
-		webSocket = new WebSocket( 'ws://' + SERVERIP + ':' + PORT + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+		/**
+		 * Der DELIMITER ist in der Game.js zufinden
+		 */
+		webSocket = new WebSocket( 'ws://' + location.host + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
 
 					webSocket.onopen = function( event ) {
 						
@@ -48,7 +50,7 @@ function gameWS() {
 		    		};
 		    		
 		    		webSocket.onmessage = function( event ) {
-		    		
+		    			alert(event.data);
 		    			if(event.data != null) {
 		    				var result = event.data.split(DELIMITER);
 		    				if (result[0] == "12") {

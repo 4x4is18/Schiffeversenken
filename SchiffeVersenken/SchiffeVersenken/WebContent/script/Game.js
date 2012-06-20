@@ -138,7 +138,7 @@ var SUNK = 2;
 /**
  * Konstante für den Trenner von Strings, die an den Server gehen
  */
-var DELIMITER = "ÿ";
+var DELIMITER = "%";
 
 /**
  * Das zur Zeit ausgewaehlte Schiff (ID). <br />

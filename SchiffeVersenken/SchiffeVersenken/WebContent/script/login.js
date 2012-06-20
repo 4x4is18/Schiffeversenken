@@ -4,7 +4,7 @@
  * 
  */
 function store() {
-		 
+		
 		var key = "benutzername";
         var data =  document.getElementById('username').value;
         localStorage.setItem(key, data);

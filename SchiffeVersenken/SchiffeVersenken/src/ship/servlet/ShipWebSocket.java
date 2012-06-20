@@ -15,7 +15,7 @@ public class ShipWebSocket implements OnTextMessage {
     private Set<ShipWebSocket> user;
     Player player;
     
-    static final String SPLITDELIMITER = "ÿ"; 
+    static final String SPLITDELIMITER = "%"; 
     
     /**
      * Konstante am Anfang des Strings, wenn ein Benutzername gesendet wird. data = "1;Benutzername"
