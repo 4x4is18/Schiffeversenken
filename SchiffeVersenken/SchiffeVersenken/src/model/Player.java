@@ -126,6 +126,7 @@ public class Player {
 		
 	}
 	
+	
 	/**
 	 * Zuweisen eines Boards an einen Spieler.
 	 */
@@ -160,6 +161,19 @@ public class Player {
 	
 	private long createID() {
 		 return System.currentTimeMillis();
+		
+	}
+	
+	public boolean hasLost() {
+		
+		for(Ship ship : this.board.getShips()) {
+			
+			if(!ship.isSunk())
+				return false;
+			
+		}
+		
+		return true;
 		
 	}
 	

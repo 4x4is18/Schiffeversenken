@@ -10,7 +10,7 @@ var DELIMITER = "%";
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164";
-var SERVERIP = "localhost";
+var SERVERIP = "192.168.178.28";
 
 
 /**
@@ -54,7 +54,7 @@ function doKeyDown(evt){
 function websocket() {
 	if ( "WebSocket" in window ) {
 		
-		webSocket = new WebSocket( 'ws://' + location.host + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+		webSocket = new WebSocket( 'ws://' + SERVERIP + ":" + PORT + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
 		
 					webSocket.onopen = function( event ) {
 						

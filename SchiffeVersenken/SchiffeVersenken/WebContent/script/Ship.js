@@ -109,9 +109,11 @@ Ship.prototype.toString = function() {
 	var strShip = "id " + this.id + " top " + this.top + " left " + this.left + " vertical ";
 	
 	// Umwandeln vertical: boolean -> int
-	if(vertical)
+	if(this.vertical) {
 		strShip += "1";
-	else strShip += "0";
+	} else {
+		strShip += "0";
+	}
 	
 	for(var p = 0; p < this.length; p++)
 		strShip += " " + this.id;

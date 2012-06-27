@@ -25,27 +25,27 @@ var BOARD_WIDTH = 10;
 var FIELD_SIZE = 30;
 
 /**
- * Die Farbe des Wassers.
+ * Die Farbe des Wassers. (Dunkel Blau)
  * READ ONLY
  */
 var WATER_COLOR = "rgba(0, 0, 200, 1)";
 
 /**
- * Die Farbe, in der intakte Schiffsteile gezeichnet werden.
+ * Die Farbe, in der intakte Schiffsteile gezeichnet werden. (Hell Blau)
  * READ ONLY
  */
-var SHIP_COLOR = "rgba(0, 255, 255, 0.7)";
+var SHIP_COLOR = "rgba(0, 255, 255, 1)";
 
 /**
- * Die Farbe von Schuessen ins Wasser.
+ * Die Farbe von Schuessen ins Wasser. (Gelb)
  * READ ONLY
  */
 var WATER_SHOT_COLOR = "rgba(200, 200, 0, 1)";
 
 /**
- * Die Farbe, in der getroffene Schiffsteile gezeichnet werden.
+ * Die Farbe, in der getroffene Schiffsteile gezeichnet werden. (Rot)
  */
-var SHIP_HIT_COLOR = "rgba(255, 0, 0, 0.7)";
+var SHIP_HIT_COLOR = "rgba(255, 0, 0, 1)";
 
 /**
  * Das eigene Spielbrett.
@@ -211,12 +211,12 @@ function clearBoard() {
 	selectedShipLength = null;
 	vertical = true;
 	ownBoard = new Board('ownBoard');
-	ownBoard.draw();
-	document.getElementById('ship50').style.display="inline-block";
-	document.getElementById('ship40').style.display="inline-block";
-	document.getElementById('ship32').style.display="inline-block";
-	document.getElementById('ship31').style.display="inline-block";
-	document.getElementById('ship20').style.display="inline-block";
+	ownBoard.load();
+	document.getElementById('50').style.display="inline-block";
+	document.getElementById('40').style.display="inline-block";
+	document.getElementById('35').style.display="inline-block";
+	document.getElementById('30').style.display="inline-block";
+	document.getElementById('20').style.display="inline-block";
 	document.getElementById('go').disabled = true;
 	
 }

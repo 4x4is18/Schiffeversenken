@@ -59,5 +59,11 @@ public class ShipWebSocketServlet extends WebSocketServlet {
     	return null;
     }
     
+    public static void removeGame(String gameID) {
+    		
+    	games.remove(getGame(gameID));
+    	
+    }
+    
     
 } 

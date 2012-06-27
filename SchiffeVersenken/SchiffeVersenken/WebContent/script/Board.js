@@ -86,7 +86,7 @@ Board.prototype.load = function() {
 			board.draw();
 			
 		}
-		
+	
 	};
 	
 	// Zeichnen eines Schiffes auf dem eigenen Feld
@@ -105,9 +105,11 @@ Board.prototype.load = function() {
 			 *  temporäre Schiff (für Mauszeigerbewegungen) entfernt
 			 */
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
+				
 				board.ships[board.ships_set++] = new Ship(selectedShip, selectedShipLength, y, x, 
 						vertical);
-				
+				vertical = true;
+
 				selectedShip = null;
 				
 				// Wurde das letzte Schiff gesetzt, ist der Spieler bereit für das Spiel
@@ -143,24 +145,6 @@ Board.prototype.draw = function() {
 		
 		var canvContext = this.canvas.getContext('2d');
 		
-		// Zunächst wird das gesammte Spielfeld mit Wasserfeldern überzeichnet.
-		for(var y = 0; y < BOARD_HEIGHT; y++) {
-	        
-	    	for(var x = 0; x < BOARD_WIDTH; x++) {
-	    		
-	    		if(this.shots[y][x] == HIT)
-	    			canvContext.fillStyle = WATER_SHOT_COLOR;
-	    		else if(this.shots[y][x] == NO_HIT)
-	    			canvContext.fillStyle = WATER_COLOR;
-	    		else canvContext.fillStyle = SHIP_HIT_COLOR;
-    			
-        		canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
-        				FIELD_SIZE - 1, FIELD_SIZE - 1);
-    			
-	    	}
-	        	
-		}
-		
 		// Nur wenn man auf dem eigenen Board ist kann man die Schiffe zeichnen
 		if(this == ownBoard){
 			
@@ -178,6 +162,50 @@ Board.prototype.draw = function() {
 				
 			}
 			
+		}
+		
+		// Die Schiffe dürfen NICHT zuerst gezeichnet werden, da sonst gegnerische Treffer überzeichnet werden
+		for(var y = 0; y < BOARD_HEIGHT; y++) {
+	        
+	    	for(var x = 0; x < BOARD_WIDTH; x++) {
+	    		
+	    		var ship = this.isShipOnField(y, x);
+	    		
+	    		if(ship != null) {
+	    			
+	    			if(this.shots[y][x] > SUNK) {
+	    				
+	    				// TODO: eigentlich muss das in der Klasse Ship geschehen
+	    				// im Moment werden die Treffer überzeichnet
+	    				canvContext.fillStyle = SHIP_HIT_COLOR;
+	    				
+	    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+	    				FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    			}
+	    			
+	    		} else {
+	    			
+	    			if(this.shots[y][x] == NO_HIT) {
+	    				
+	    				canvContext.fillStyle = WATER_COLOR;
+	    				
+	    			} else if(this.shots[y][x] == HIT) {
+	    				
+	    				canvContext.fillStyle = WATER_SHOT_COLOR;
+	   	
+	    			} else {
+	    				// gegnerisches Board
+	    				canvContext.fillStyle = SHIP_HIT_COLOR;
+	    				
+	    			} 
+	    			canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+	    						FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    		}
+	    		
+        		
+    			
+	    	}
+	        	
 		}
 	      	
 	}

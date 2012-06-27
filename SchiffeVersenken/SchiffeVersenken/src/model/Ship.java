@@ -283,7 +283,7 @@ class Ship {
 		if(this.vertical && x == this.left && y >= this.top && y < this.top + this.length)
 			return this.id + this.parts[y - this.top];
 		else if(!this.vertical && y == this.top && x >= left && x < this.left + this.length)
-			return this.id + this.parts[x - this.top];
+			return this.id + this.parts[x - this.left];
 		else return -1;
 		
 	}

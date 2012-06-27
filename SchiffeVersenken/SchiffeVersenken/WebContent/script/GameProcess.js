@@ -4,7 +4,7 @@
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164"; //TODO
-var SERVERIP = "localhost";
+var SERVERIP = "192.168.178.28";
 
 /**
  * Dieser Parameter gibt an, auf welchem Port der Websocket läuft
@@ -22,7 +22,8 @@ function gameWS() {
 		/**
 		 * Der DELIMITER ist in der Game.js zufinden
 		 */
-		webSocket = new WebSocket( 'ws://' + location.host + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+		webSocket = new WebSocket( 'ws://' + SERVERIP + ":" + PORT + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
+		//webSocket = new WebSocket( 'ws://' + location.host + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
 
 					webSocket.onopen = function( event ) {
 						
@@ -50,26 +51,35 @@ function gameWS() {
 		    		};
 		    		
 		    		webSocket.onmessage = function( event ) {
-		    			alert(event.data);
+		    			
+		    			// alert(event.data);
 		    			if(event.data != null) {
 		    				var result = event.data.split(DELIMITER);
-		    				if (result[0] == "12") {
+		    				
+		    				if(result[0] == "12") {
+		    					// 12 := Spieler aktivieren / er ist am Zug
 		    					
 		    					mode = ACTION;
 			    				alert("DUUUUU bist dran du Ratte!");
 			    				
+		    				} else if(result[0] == "13") {
+		    					// 13 := Ergebnis vom eigenen Schuss bekommen
+		    					
+		    					enemyBoard.update(result[1], result[2], result[3]);
+		    					
+		    				} else if(result[0] == "14") {
+		    					// 14 := Ergebnis vom gegnerischen Schuss bekommen
+		    					
+		    					ownBoard.update(result[1], result[2], result[3]);
+		    					
+		    				} else if(result[0] == "15") {
+		    					// 15 := Spielende
+		    					
+		    					alert(result[1]);
+		    					window.location.replace('lobby.html');
 		    				}
 		    				
-		    				
-		    				
-		    				//TODO enemyBoard.update(result[0], result[1], result[2]);
-
-
-		    				
-		    				
 		    			}
-		    			
-		    			mode = ACTION;
 
 		   			};
 		   		 }

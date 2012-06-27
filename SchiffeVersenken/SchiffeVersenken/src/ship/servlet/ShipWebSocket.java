@@ -6,6 +6,7 @@ import java.util.Set;
 
 import model.Board;
 import model.Game;
+import model.GameProcess;
 import model.Player;
 
 import org.eclipse.jetty.websocket.WebSocket.OnTextMessage;
@@ -53,6 +54,9 @@ public class ShipWebSocket implements OnTextMessage {
      * Konstante fuer das Empfangen eines Schusses
      */
     static final int GETSHOOT = 11;
+    
+    
+    static final int YOURTURN = 12;
     
     /**
      * TODO
@@ -171,12 +175,31 @@ public class ShipWebSocket implements OnTextMessage {
         	  player.setBoard(board);     
         	  if (game.allPlayersReady()) {
         		  game.startGame();
+        		
         	  }
         	  break;
         	  
-          case GETSHOOT:
-        	  // TODO:
+          case GETSHOOT: //TODO umbedingt optimieren!!!!!
+        	  gameID = message[1];
+        	  game = ShipWebSocketServlet.getGame(gameID);
+        	  /*
+        	   * TODO: nur für 2 Spieler implementiert:
+        	   */
+        	  int y = Integer.parseInt(message[2]);
+        	  int x = Integer.parseInt(message[3]);
+        	  int result = game.update(game.getActPlayer(), y, x).get(0);
+        	  
+        	  if(game.isGameOver()) {
+        		  // TODO: Datenbank
+        		  ShipWebSocketServlet.removeGame(gameID);
+        		  break;
+        	  }
+        	  
+        	  GameProcess.sendOwnResult(game.getActPlayer().getWebSocketConnection(), y, x, result);
+        	  GameProcess.sendEnemyResult(game.getNextPlayer().getWebSocketConnection(), y, x, result);
+        	  GameProcess.callNextPlayer(game.getActPlayer().getWebSocketConnection());
         	  break;
+        	
         	  
           default:
 
