@@ -127,7 +127,20 @@ function websocket() {
 		    		        localStorage.setItem(key, data);
 		    		        window.location="main.html";
 		    		        break;
+		    			
+		    			case "6":
+		    				for (var i = 1; i < result.length; i++) {
+		    					
+		    					document.getElementById('spiele').innerHTML += "<option value=\"" + result[i] + "\">" + result[i] +"</option>";
+		    					
+		    				}
+		    				break;
+		    			
+		    			default:
+		    					
+		    				break;
 		    			}
+		    			
 		   			};
 		   		 }
 	
@@ -226,6 +239,12 @@ function createGame() {
 	
 	webSocket.send("4" + DELIMITER + getUserID());
 	window.location.replace('main.html');
+	
+	// TODO: Entweder ein neues Window zum Spielerstellen (komplizierter) oder direkt in der Lobby
+	//("createGame.html", "", "width=300,height=300,status=yes,scrollbars=no,resizable=no");
+	//createGameWindow = window.open("createGame.html", "", "width=300,height=300,status=yes,scrollbars=no,resizable=no");
+	//createGameWindow.focus();
+	
 		
 };
 
@@ -236,7 +255,7 @@ function createGame() {
  */
 function joinGame() {
 	
-	webSocket.send("5" + DELIMITER + getUserID() + DELIMITER + "bla");
+	webSocket.send("5" + DELIMITER + getUserID() + DELIMITER + document.getElementById('spiele').value);
 	window.location.replace('main.html');
 	
 };

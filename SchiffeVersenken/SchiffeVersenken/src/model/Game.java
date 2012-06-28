@@ -283,4 +283,20 @@ public class Game {
 		return players.get(actPlayer);
 	}
 	
+	/**
+	 * Gibt zurück ob die maximale Anzahl an Spielern erreicht ist.
+	 * @return true wenn KEIN Platz mehr im Spiel ist. False wenn noch Platz im Spiel ist.
+	 */
+	public boolean isFull() {
+		
+		if(players.size() == this.numPlayers) {
+			
+			return true;
+			
+		}
+		
+		return false;
+		
+	}
+	
 }

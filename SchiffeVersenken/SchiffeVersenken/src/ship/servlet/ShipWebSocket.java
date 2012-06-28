@@ -41,9 +41,14 @@ public class ShipWebSocket implements OnTextMessage {
     static final int CREATEGAME = 4;
     
     /**
-     * TODO
+     * Konstante für das Spielerstellen 
      */
     static final int JOINGAME = 5;
+    
+   /**
+    * Konstante für das Senden an alle Clients, dass ein neues Spiel in der Liste ist. 
+    */
+    static final int NEWOPENGAME = 6;
     
     /**
      * Konstante fuer das Empfangen eines Brettes
@@ -85,6 +90,8 @@ public class ShipWebSocket implements OnTextMessage {
      */
     @Override
     public void onClose( int closeCode, String message ) {
+    	
+    	
         this.user.remove( this );
         System.out.println();
         
@@ -117,8 +124,10 @@ public class ShipWebSocket implements OnTextMessage {
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
+			
 			}
           	break;
+          	
           case CHATMESSAGE:
         	  for (ShipWebSocket users : user) {
         		  try {
@@ -129,6 +138,7 @@ public class ShipWebSocket implements OnTextMessage {
       		      }
       		   }
         	  break;
+        	  
           case HANDSHAKE:  	 
         	  String userID = message[1];
         	  player = ShipWebSocketServlet.getPlayer(userID);
@@ -136,14 +146,29 @@ public class ShipWebSocket implements OnTextMessage {
         	  break;
           
           case CREATEGAME:
+        	  
         	  game = new Game(this.player, "bla", "bla");
         	  ShipWebSocketServlet.addGame(game);
+        	  
         	  try {
+        		  
   				this.connection.sendMessage(CREATEGAME + SPLITDELIMITER + "bla");
   				
-  			} catch (IOException e) {
+  			  } catch (IOException e) {
   				// TODO Auto-generated catch block
-  			}
+  			  }
+        	  
+        	  for (ShipWebSocket users : user) {
+        		  
+        		  try {
+        			          			  
+      				users.connection.sendMessage(NEWOPENGAME + SPLITDELIMITER + ShipWebSocketServlet.getAllGames());
+      				
+      			  } catch (Exception e) {
+      				
+      		      }
+      		   }
+        	 
         	 
   			break;
   			

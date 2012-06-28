@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>Neues Spiel erstellen</title>
+        <style type ="text/css"></style>
+        <script type="text/javascript" src="script/link.js"></script>
+    </head>
+
+    <body bgcolor="#fed">
+		<h3> Bitte fülle folgende Felder aus:</h3>
+		<label>
+			Name des Spiels:
+			<input id="gamename" name="gamename" type="text" size="20" maxlength="20" required>
+		</label>
+		
+		<label>
+			Anzahl der Spieler:
+			<input id="playercount" type="range" min="2" max="4" step="1" value="2" readonly>
+		</label>
+		
+		<label>
+			Passwort:
+			<input id="gamepass" name="gamepass" type="text" size="20" maxlength="20">
+		</label>	
+		<input type="button" name="spielerstellen" value="Spiel erstellen" onclick="createGame();"/>
+    </body>
+</html>
+ 

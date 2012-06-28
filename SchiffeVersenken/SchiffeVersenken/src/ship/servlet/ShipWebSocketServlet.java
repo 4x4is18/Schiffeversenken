@@ -73,5 +73,18 @@ public class ShipWebSocketServlet extends WebSocketServlet {
     	System.gc();
     }
     
+    public static String getAllGames() {
+    	
+    	String allGames = "";
+    	
+    	for(int i = 0; i < games.size(); i++) {
+    		
+    		if(!games.get(i).isFull())
+    		allGames += games.get(i).getName() + "%";
+    	}
+    	
+    	return allGames;
+    }
+    
     
 } 

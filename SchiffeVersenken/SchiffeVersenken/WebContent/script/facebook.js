@@ -40,7 +40,7 @@
                                 }
                             }, {scope:'user_about_me'});  	
                         }
-                    }
+                    };
                 }
                 
                 
@@ -60,6 +60,7 @@
             function login(response, info){
                 if (response.authResponse) {
                     var accessToken =   response.authResponse.accessToken;
+                    
                     document.getElementById('username').value = info.name;
                     document.getElementById('fb-root').innerHTML = "";
                     showLoader(false);                   
