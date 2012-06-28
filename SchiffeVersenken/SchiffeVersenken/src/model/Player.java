@@ -15,7 +15,7 @@ public class Player {
 	/**
 	 * Die ID des Spielers. <br />
 	 * Primary Key
-	 * TODO: Wie ist die ID aufgebaut?
+	 * @see createID()
 	 */
 	private long id;
 	
@@ -30,15 +30,15 @@ public class Player {
 	 */
 	private Board board;
 	
+	private boolean ready;
+	
+	private Connection connection;
+	
 	/**
 	 * Konstruktor zum Erstellen eines Spielers ohne Board.
 	 * @param id Die ID des Spielers.
 	 * @param name Der Name des Spielers.
 	 */
-	
-	private boolean ready;
-	
-	private Connection connection;
 	
 	public Player(String name, Connection connection) {
 		
@@ -141,7 +141,7 @@ public class Player {
 	 * Setzen der neuen Websocket-Verbindung des Players
 	 * @param connection
 	 */
-	public void setConneion(Connection connection) {
+	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
 	
@@ -159,6 +159,12 @@ public class Player {
 		
 	}
 	
+	/**
+	 * Es wird eine 13 Stellige PlayerID erstellt. <br />
+	 * Die PlayerID ist die Erstellungszeit in ms
+	 * TODO: einen Randomwert addieren für mehr Sicherheit 
+	 * @return PlayerID
+	 */
 	private long createID() {
 		 return System.currentTimeMillis();
 		
@@ -175,6 +181,13 @@ public class Player {
 		
 		return true;
 		
+	}
+	
+	/**
+	 * Setzt den Spieler auf nicht Ready
+	 */
+	public void resetReady(){
+		this.ready = false;
 	}
 	
 }

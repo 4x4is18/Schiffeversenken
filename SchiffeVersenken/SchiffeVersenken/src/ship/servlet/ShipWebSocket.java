@@ -85,7 +85,6 @@ public class ShipWebSocket implements OnTextMessage {
      */
     @Override
     public void onClose( int closeCode, String message ) {
-    	
         this.user.remove( this );
         System.out.println();
         
@@ -133,6 +132,7 @@ public class ShipWebSocket implements OnTextMessage {
           case HANDSHAKE:  	 
         	  String userID = message[1];
         	  player = ShipWebSocketServlet.getPlayer(userID);
+        	  this.player.setConnection(this.connection);
         	  break;
           
           case CREATEGAME:
@@ -156,7 +156,8 @@ public class ShipWebSocket implements OnTextMessage {
         	  
         	  try {
     				this.connection.sendMessage(JOINGAME + SPLITDELIMITER + game.getName());
-    				this.connection.sendMessage(String.valueOf(game.getNumPlayers()) );
+    				// TODO: kicken
+    				//this.connection.sendMessage(String.valueOf(game.getNumPlayers()) );
     				
     			} catch (IOException e) {
     				// TODO Auto-generated catch block
@@ -169,7 +170,7 @@ public class ShipWebSocket implements OnTextMessage {
         	  playerID = message[2]; 
         	  
         	  player = ShipWebSocketServlet.getPlayer(playerID);
-        	  player.setConneion(connection);
+        	  player.setConnection(this.connection);
         	  String strBoard = message[3];
         	  Board board = new Board(strBoard);
         	  player.setBoard(board);     
@@ -189,15 +190,30 @@ public class ShipWebSocket implements OnTextMessage {
         	  int x = Integer.parseInt(message[3]);
         	  int result = game.update(game.getActPlayer(), y, x).get(0);
         	  
+        	  // Wenn das Spiel gewonnen ist, wird das Spiel entfernt und die Player zur Lobby weitergeleitet.
         	  if(game.isGameOver()) {
         		  // TODO: Datenbank
+        		  
+        		  // Entfernt das Spiel aus der Game arraylist
         		  ShipWebSocketServlet.removeGame(gameID);
+        	
         		  break;
         	  }
         	  
+        	  // Jedem Spieler (BIS JETZT NUR ZWEI) wird der Schuss übermittelt.
         	  GameProcess.sendOwnResult(game.getActPlayer().getWebSocketConnection(), y, x, result);
         	  GameProcess.sendEnemyResult(game.getNextPlayer().getWebSocketConnection(), y, x, result);
-        	  GameProcess.callNextPlayer(game.getActPlayer().getWebSocketConnection());
+        	  
+        	  // Wenn es ein Treffer ist, darf der Spieler noch einmal schießen. Wenn nicht ist der andere dran
+        	  if (result == 1) {
+        		  // Es wurde ins Wasser geschossen. Es wird die Connection vom Gegner aufgerufen und ihm gesagt, dass er an der Reihe ist.
+        		  GameProcess.callNextPlayer(game.getActPlayer().getWebSocketConnection());
+        	  } else {
+        		  // Es wurde ein Schiff versenkt oder getroffen. Der Aktuelle Spieler darf noch einmal schießen. 
+        		  GameProcess.callNextPlayer(game.getNextPlayer().getWebSocketConnection());
+        	  }
+        		  
+        	  
         	  break;
         	
         	  

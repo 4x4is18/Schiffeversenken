@@ -58,11 +58,19 @@ public class ShipWebSocketServlet extends WebSocketServlet {
     	}
     	return null;
     }
-    
+    /**
+     * Es werden die Boards der Player und das Spiel gelöscht.
+     * @param gameID Ist die ID des zulöschenden Spiels
+     */
     public static void removeGame(String gameID) {
-    		
-    	games.remove(getGame(gameID));
     	
+    	// Es werden die zwei Spieler aus dem zu löschenden Game geholt, und deren Ready resettet.
+    	// TODO: (NUR FÜR ZWEI SPIELER)
+    	getGame(gameID).getActPlayer().resetReady();
+    	getGame(gameID).getNextPlayer().resetReady();   	
+    	// Das Spiel wird aus der Liste entfernt.
+    	games.remove(getGame(gameID));
+    	System.gc();
     }
     
     
