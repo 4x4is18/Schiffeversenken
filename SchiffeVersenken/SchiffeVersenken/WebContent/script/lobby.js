@@ -81,13 +81,19 @@ function websocket() {
 					// Wird beim Öffnen aufgerufen. Überprüft ob überprüft ob die UserID oder der UserName im LocalSotrage ist.
 					webSocket.onopen = function( event ) {
 						
+						// True wenn es schon eine UserID im LocalStorage gibt
 						if (UserIDExists()) {
+							
 							// Dem Server wird die PlayerID gesendet und dem Websocket wird anhand der PlayerID der Player zugeördnet
 							webSocket.send("3" + DELIMITER + getUserID()); 
+							
 						} else {
+							
 							// Dem Server wird der Username übermittelt und ein neues Playerobjekt wird erstellt
 							webSocket.send("1" + DELIMITER + getUserName()); 
-						}						
+							
+						}
+						
 		    		};
 		    		
 		    		// Wenn eine Nachricht ankommt wird diese Funktion aufgerufen. (Siehe oben)

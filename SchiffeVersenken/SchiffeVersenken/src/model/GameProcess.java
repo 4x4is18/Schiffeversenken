@@ -23,25 +23,28 @@ public class GameProcess {
      */
     static final int GAMEOVER = 15;
 	
+    /**
+     * Konstante für den Delimiter
+     */
 	static final String SPLITDELIMITER = "%"; 
 	
-	public static void SendData(String data) {
-		
-	}
 	
 	/**
 	 * Dem Spieler mitteilen, dass er an der Reihe ist.
 	 */
 	public static void callNextPlayer(Connection connection) {
+		
 		try {
-			connection.sendMessage(String.valueOf(SELECTPLAYER) + SPLITDELIMITER );
 			
-			
+			connection.sendMessage(String.valueOf(SELECTPLAYER) + SPLITDELIMITER );	
 			
 		} catch (IOException e) {
+			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
+		
 	}
 	
 	/**
@@ -58,6 +61,7 @@ public class GameProcess {
 			e.printStackTrace();
 			
 		}
+		
 	}
 	
 	/**
@@ -82,10 +86,14 @@ public class GameProcess {
 	public static void sendGameOver(Connection connection, String result) {
 		
 		try {
+			
 			connection.sendMessage(String.valueOf(GAMEOVER) + SPLITDELIMITER + result);
+			
 		} catch (IOException e) {
+			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 		
 	}
