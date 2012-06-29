@@ -60,8 +60,15 @@ public class ShipWebSocket implements OnTextMessage {
      */
     static final int GETSHOOT = 11;
     
-    
+    /**
+     * Wenn ein Spieler an der Reihe ist.
+     */
     static final int YOURTURN = 12;
+    
+    /**
+     * Konstante für Spiel vorbei.
+     */
+    static final int GAMEOVER = 15;
     
     /**
      * TODO
@@ -92,8 +99,9 @@ public class ShipWebSocket implements OnTextMessage {
     public void onClose( int closeCode, String message ) {
     	
     	
+    	ShipWebSocketServlet.removePlayer(this.player);
         this.user.remove( this );
-        System.out.println();
+        System.out.println("Websocket closed");
         
     }
 
@@ -126,6 +134,17 @@ public class ShipWebSocket implements OnTextMessage {
 				// TODO Auto-generated catch block
 			
 			}
+          	
+      	  // Sendet beim Eintritt in die Lobby dem User die Liste mit offenen Spielen
+      	  try {
+      		  
+				this.connection.sendMessage(NEWOPENGAME + SPLITDELIMITER + ShipWebSocketServlet.getAllGames());
+				
+			} catch (IOException e1) {
+
+				e1.printStackTrace();
+			}
+      	  
           	break;
           	
           case CHATMESSAGE:
@@ -140,14 +159,24 @@ public class ShipWebSocket implements OnTextMessage {
         	  break;
         	  
           case HANDSHAKE:  	 
-        	  String userID = message[1];
-        	  player = ShipWebSocketServlet.getPlayer(userID);
-        	  this.player.setConnection(this.connection);
+        	  player = new Player(message[2], connection, Long.valueOf(message[1]).longValue());
+          	  ShipWebSocketServlet.addPlayer(player);
+      	  
+        	  // Sendet beim Eintritt in die Lobby dem User die Liste mit offenen Spielen
+        	  try {
+        		  
+				this.connection.sendMessage(NEWOPENGAME + SPLITDELIMITER + ShipWebSocketServlet.getAllGames());
+				
+			} catch (IOException e1) {
+
+				e1.printStackTrace();
+			}
         	  break;
+        	  
           
           case CREATEGAME:
         	  
-        	  game = new Game(this.player, "bla", "bla");
+        	  game = new Game("bla", "bla");
         	  ShipWebSocketServlet.addGame(game);
         	  
         	  try {
@@ -158,26 +187,14 @@ public class ShipWebSocket implements OnTextMessage {
   				// TODO Auto-generated catch block
   			  }
         	  
-        	  for (ShipWebSocket users : user) {
-        		  
-        		  try {
-        			          			  
-      				users.connection.sendMessage(NEWOPENGAME + SPLITDELIMITER + ShipWebSocketServlet.getAllGames());
-      				
-      			  } catch (Exception e) {
-      				
-      		      }
-      		   }
-        	 
-        	 
-  			break;
+        	  refreshLobbyGames();
+  			  break;
   			
           case JOINGAME:
         	  String gameName = message[2];
         	  game = ShipWebSocketServlet.getGame(gameName);
         	  String playerID = message[1]; 
-        	  Player player = ShipWebSocketServlet.getPlayer(playerID);
-        	  game.addPlayer(player);
+        	  game.addPlayer(this.player);
         	  
         	  try {
     				this.connection.sendMessage(JOINGAME + SPLITDELIMITER + game.getName());
@@ -187,6 +204,10 @@ public class ShipWebSocket implements OnTextMessage {
     			} catch (IOException e) {
     				// TODO Auto-generated catch block
     			}
+        	  
+        	  // Nach dem Joinen eines Spiels wird die Liste der offenen Spiele in der Lobby aktualisiert
+        	  refreshLobbyGames();
+        
         	  break;
         	  
           case GETBOARD:
@@ -194,11 +215,10 @@ public class ShipWebSocket implements OnTextMessage {
         	  game = ShipWebSocketServlet.getGame(gameID); // TODO
         	  playerID = message[2]; 
         	  
-        	  player = ShipWebSocketServlet.getPlayer(playerID);
-        	  player.setConnection(this.connection);
+        	  this.player.setConnection(this.connection);
         	  String strBoard = message[3];
         	  Board board = new Board(strBoard);
-        	  player.setBoard(board);     
+        	  this.player.setBoard(board);     
         	  if (game.allPlayersReady()) {
         		  game.startGame();
         		
@@ -208,45 +228,85 @@ public class ShipWebSocket implements OnTextMessage {
           case GETSHOOT: //TODO umbedingt optimieren!!!!!
         	  gameID = message[1];
         	  game = ShipWebSocketServlet.getGame(gameID);
-        	  /*
-        	   * TODO: nur für 2 Spieler implementiert:
-        	   */
-        	  int y = Integer.parseInt(message[2]);
-        	  int x = Integer.parseInt(message[3]);
-        	  int result = game.update(game.getActPlayer(), y, x).get(0);
         	  
-        	  // Wenn das Spiel gewonnen ist, wird das Spiel entfernt und die Player zur Lobby weitergeleitet.
-        	  if(game.isGameOver()) {
-        		  // TODO: Datenbank
+        	  if(game.allPlayersReady() == true) {
         		  
-        		  // Entfernt das Spiel aus der Game arraylist
-        		  ShipWebSocketServlet.removeGame(gameID);
-        	
-        		  break;
-        	  }
-        	  
-        	  // Jedem Spieler (BIS JETZT NUR ZWEI) wird der Schuss übermittelt.
-        	  GameProcess.sendOwnResult(game.getActPlayer().getWebSocketConnection(), y, x, result);
-        	  GameProcess.sendEnemyResult(game.getNextPlayer().getWebSocketConnection(), y, x, result);
-        	  
-        	  // Wenn es ein Treffer ist, darf der Spieler noch einmal schießen. Wenn nicht ist der andere dran
-        	  if (result == 1) {
-        		  // Es wurde ins Wasser geschossen. Es wird die Connection vom Gegner aufgerufen und ihm gesagt, dass er an der Reihe ist.
-        		  GameProcess.callNextPlayer(game.getActPlayer().getWebSocketConnection());
+            	  /*
+            	   * TODO: nur für 2 Spieler implementiert:
+            	   */
+            	  int y = Integer.parseInt(message[2]);
+            	  int x = Integer.parseInt(message[3]);
+            	  int result = game.update(game.getActPlayer(), y, x).get(0);
+            	  
+
+            	  // Wenn das Spiel gewonnen ist, wird das Spiel entfernt und die Player zur Lobby weitergeleitet.
+            	  if(game.isGameOver()) {
+            		  // TODO: Datenbank
+            		  
+            		  // Entfernt das Spiel aus der Game arraylist
+            		  ShipWebSocketServlet.removeGame(gameID);
+            	
+            		  break;
+            	  }
+            	  
+            	  // Jedem Spieler (BIS JETZT NUR ZWEI) wird der Schuss übermittelt.
+            	  GameProcess.sendOwnResult(game.getActPlayer().getWebSocketConnection(), y, x, result);
+            	  GameProcess.sendEnemyResult(game.getNextPlayer().getWebSocketConnection(), y, x, result);
+            	  
+            	  // Wenn es ein Treffer ist, darf der Spieler noch einmal schießen. Wenn nicht ist der andere dran
+            	  if (result == 1) {
+            		  // Es wurde ins Wasser geschossen. Es wird die Connection vom Gegner aufgerufen und ihm gesagt, dass er an der Reihe ist.
+            		  GameProcess.callNextPlayer(game.getActPlayer().getWebSocketConnection());
+            	  } else {
+            		  // Es wurde ein Schiff versenkt oder getroffen. Der Aktuelle Spieler darf noch einmal schießen. 
+            		  GameProcess.callNextPlayer(game.getNextPlayer().getWebSocketConnection());
+            	  } 
+            	  
+            	  break;
+        		  
         	  } else {
-        		  // Es wurde ein Schiff versenkt oder getroffen. Der Aktuelle Spieler darf noch einmal schießen. 
-        		  GameProcess.callNextPlayer(game.getNextPlayer().getWebSocketConnection());
-        	  }
         		  
-        	  
+        		  try {
+        			  
+        			  this.connection.sendMessage(String.valueOf(GAMEOVER) + SPLITDELIMITER + 
+        					  "Dein Gegner hat leider das Spiel verlassen! Du hast gewonnen.");
+					
+				} catch (IOException e) {
+					
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					
+				}
+        		  
+        		  ShipWebSocketServlet.removeGame(gameID);
+        	  }
+
         	  break;
-        	
-        	  
           default:
 
         }
-    	// TODO: System.out.println entfernen
-    	//System.out.println(data);
+    	
+    	
+
    	}
+    
+    /**
+     * Sendet jedem Client eine Liste mit offenen Spielen
+     */
+    public void refreshLobbyGames() {
+		
+		 for (ShipWebSocket users : user) {
+  		  
+  		  try {
+  			          			  
+				users.connection.sendMessage(NEWOPENGAME + SPLITDELIMITER + ShipWebSocketServlet.getAllGames());
+				
+			  } catch (Exception e) {
+				
+		      }
+  		  
+		   }
+		 
+	}
 		
 }

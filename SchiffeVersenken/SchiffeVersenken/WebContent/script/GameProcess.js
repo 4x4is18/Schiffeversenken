@@ -61,10 +61,18 @@ function gameWS() {
 	    		        // Der benutzername wird aus dem Localstorage gelesen
 	    		        var key = "benutzername";
 	    		        user = localStorage.getItem(key);
+	    		        
+	    		        // Der benutzername wird aus dem Localstorage gelesen
+	    		        var key = "playerID";
+	    		        playerID = localStorage.getItem(key);
 						
 	    		        // Zeichnen der Boards
 						ownBoard.load();
 						enemyBoard.load();
+						
+						// Erstellt einen neuen Spieler für das Spiel
+						webSocket.send("1" + DELIMITER + user);
+						webSocket.send("5" + DELIMITER + playerID + DELIMITER + gameID);
 						
 						
 		    		};
@@ -79,7 +87,7 @@ function gameWS() {
 		    		
 		    		webSocket.onmessage = function( event ) {
 		    			
-		    			// alert(event.data);
+		    			//alert(event.data);
 		    			if(event.data != null) {
 		    				var result = event.data.split(DELIMITER);
 		    				

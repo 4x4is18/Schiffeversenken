@@ -36,7 +36,7 @@ public class Player {
 	
 	/**
 	 * Konstruktor zum Erstellen eines Spielers ohne Board.
-	 * @param id Die ID des Spielers.
+	 * @param connection Die Websocket Connection des Spielers.
 	 * @param name Der Name des Spielers.
 	 */
 	
@@ -50,6 +50,21 @@ public class Player {
 		
 	}
 	
+	/**
+	 * Konstruktor zum Erstellen eines Spielers ohne Board aber mit bestehender UserID
+	 * @param connection Die Websocket Connection des Spielers.
+	 * @param name Der Name des Spielers.
+	 * @param id die erstellte ID
+	 */
+	public Player(String name, Connection connection,long id ) {
+		
+		this.connection = connection;
+		this.id = id;
+		this.name = name;
+		this.board = null;
+		this.ready = false;
+		
+	}
 	
 	/**
 	 * Konstruktor zum Erstellen eines Spielers mit Board.

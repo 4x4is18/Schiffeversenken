@@ -85,7 +85,7 @@ function websocket() {
 						if (UserIDExists()) {
 							
 							// Dem Server wird die PlayerID gesendet und dem Websocket wird anhand der PlayerID der Player zugeördnet
-							webSocket.send("3" + DELIMITER + getUserID()); 
+							webSocket.send("3" + DELIMITER + getUserID() + DELIMITER + getUserName()); 
 							
 						} else {
 							
@@ -113,23 +113,18 @@ function websocket() {
 		    				break;
 		    			case "3":
 		    				
-		    			
+		    				break;
 		    			case "4":
-		    				var key = "gameID";
-		    		        var data = result[1];
-		    		        localStorage.setItem(key, data);
-		    		        window.location="main.html";
-		    		        break;
 		    		        
+		    				break;
 		    			case "5":
-		    				var key = "gameID";
-		    		        var data = result[1];
-		    		        localStorage.setItem(key, data);
-		    		        window.location="main.html";
+
 		    		        break;
 		    			
 		    			case "6":
-		    				for (var i = 1; i < result.length; i++) {
+		    				document.getElementById('spiele').innerHTML = "";
+		    				
+		    				for (var i = 1; i < result.length-1; i++) {
 		    					
 		    					document.getElementById('spiele').innerHTML += "<option value=\"" + result[i] + "\">" + result[i] +"</option>";
 		    					
@@ -238,6 +233,7 @@ function UserIDExists() {
 function createGame() {
 	
 	webSocket.send("4" + DELIMITER + getUserID());
+
 	window.location.replace('main.html');
 	
 	// TODO: Entweder ein neues Window zum Spielerstellen (komplizierter) oder direkt in der Lobby
@@ -254,9 +250,17 @@ function createGame() {
  * Leitet den Spieler auf die main.html weiter
  */
 function joinGame() {
-	
-	webSocket.send("5" + DELIMITER + getUserID() + DELIMITER + document.getElementById('spiele').value);
-	window.location.replace('main.html');
+
+	if (document.getElementById('spiele').value == "") {
+		
+		alert("Bitte wähle zuerst ein Spiel aus!");
+		
+	} else {
+		var key = "gameID";
+        gameID = localStorage.setItem(key, document.getElementById('spiele').value);
+		window.location.replace('main.html');
+		
+	}
 	
 };
 	 		

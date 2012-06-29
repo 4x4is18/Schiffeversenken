@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import ship.servlet.ShipWebSocketServlet;
+
 /**
  * Die Modellklasse zur Beschreibung von Spielern 
  * fuer das Spiel Schiffe Versenken.
@@ -45,6 +47,9 @@ public class Game {
 	 */
 	private String id;
 	
+	/**
+	 * Zeigt an, ob das Spiel vorbei ist und eine Person gewonnen hat.
+	 */
 	private boolean gameOver;
 	
 	/**
@@ -61,6 +66,24 @@ public class Game {
 		this.numPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.players.add(creator);
+		this.actPlayer = 0;
+		this.password = null;
+		this.gameOver = false;
+		
+	}
+	
+	/**
+	 *  Konstruktor fuer ein offenes Spiel fuer zwei Spieler.
+	 * @param name Der Name des Spiels.
+	 * @param id Die eindeutige ID des Spiels.
+	 * @see model.Player
+	 */
+	public Game(String name, String id) {
+		
+		this.name = name;  //bisher immer nur "bla"
+		this.id = id;
+		this.numPlayers = 2;
+		this.players = new ArrayList<Player>(2);
 		this.actPlayer = 0;
 		this.password = null;
 		this.gameOver = false;
@@ -99,7 +122,7 @@ public class Game {
 		this.players.add(creator);
 		this.actPlayer = 0;
 		this.password = null;
-		this.gameOver = false;
+		this.gameOver = false;	
 		
 	}
 	
@@ -134,16 +157,22 @@ public class Game {
 		return this.name;
 		
 	}
+	
 	/**
 	 * Prüft, ob alle Spieler auf Go geklickt haben und das Spiel gestartet
 	 * werden kann
 	 * @return
 	 */
 	public boolean allPlayersReady() {
+		
 		for (int i = 0; i < players.size(); i++) {
+			
 			if (!players.get(i).isReady()) return false;
+			
 		}
+		
 		return true;
+		
 	}
 	
 	/**
@@ -238,8 +267,7 @@ public class Game {
 	public void startGame() {
 
 		this.actPlayer = (int)(Math.random() * this.players.size());
-		Player nextPlayer = this.getNextPlayer();
-		GameProcess.callNextPlayer(nextPlayer.getWebSocketConnection());
+		GameProcess.callNextPlayer(this.getNextPlayer().getWebSocketConnection());
 		
 	}
 	
@@ -257,6 +285,7 @@ public class Game {
 	 */
 	public ArrayList<Integer> update(Player updater, int y, int x) {
 		
+		// TODO: Aus der Game schmeißen. Hat nichts hier zusuchen :D
 		ArrayList<Integer> targets = new ArrayList<Integer>(this.numPlayers);
 		
 		for(Player victim : this.players) {
@@ -267,7 +296,7 @@ public class Game {
 			targets.add(victim.updateBoard(y, x));
 			
 			if(victim.hasLost()) {
-				this.gameOver = true;
+				this.setGameover();
 				GameProcess.sendGameOver(victim.getWebSocketConnection(), "Du hast leider verloren");
 				GameProcess.sendGameOver(updater.getWebSocketConnection(), "Gratulation! Du hast gewonnen!");
 			}
@@ -278,9 +307,14 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Gibt den aktuellen Spieler zurück
+	 * @return den Spieler der an der Reihe ist
+	 */
 	public Player getActPlayer() {
 		
 		return players.get(actPlayer);
+		
 	}
 	
 	/**
@@ -296,6 +330,51 @@ public class Game {
 		}
 		
 		return false;
+		
+	}
+	
+	/**
+	 * Gibt das Playerarray zurück
+	 * @return eine Arraylist mit allen Spielern in einem Spiel
+	 */
+	public ArrayList<Player> getAllPlayer() {
+			
+		return this.players;
+	}
+	
+	/**
+	 * Setzt das Spiel auf GameOver
+	 */
+	public void setGameover() {
+		this.gameOver = true;
+	}
+	
+	/**
+	 * Löscht einen Spieler aus der Liste des Spiels
+	 * Wenn er der aktuelle Spieler ist, wird der nächste Spieler zurück gegeben. Wenn nicht dann wird null zurück gegeben.
+	 * @param player der zulöschende Spieler
+	 */
+	public Player deletePlayer(Player player) {
+		if(player == players.get(actPlayer)) {
+			players.remove(player);
+			
+			if (!players.isEmpty()) {
+				
+				return getNextPlayer();
+				
+			} else {
+				ShipWebSocketServlet.removeGame(this.id);
+				return null;
+			}
+			
+			
+		} else {
+			players.remove(player);
+			return null;
+		}
+		
+		
+
 		
 	}
 	
