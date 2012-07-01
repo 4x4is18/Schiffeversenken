@@ -11,7 +11,6 @@
                
                function updateButton(response) {
                     button       =   document.getElementById('fb-auth');
-                    userInfo     =   document.getElementById('user-info');
                     
                     if (response.authResponse) {
                         //user is already logged in and connected
@@ -26,7 +25,6 @@
                         };
                     } else {
                         //user is not connected to your app or logged out
-                        button.innerHTML = 'Login per Facebook';
                         button.onclick = function() {
                             showLoader(true);
                             FB.login(function(response) {
@@ -58,10 +56,14 @@
             
             
             function login(response, info){
-                if (response.authResponse) {
-                    var accessToken =   response.authResponse.accessToken;
-                    
-                    document.getElementById('username').value = info.name;
+                if (response.authResponse) {   
+                	var fbuser =  info.name.split(" ");
+ 
+                	var withoutspace = "";
+                	for(var i = 0; i < fbuser.length; i++) {
+                    	withoutspace += fbuser[i];     		
+                	}
+                    document.getElementById('username').value = withoutspace;
                     document.getElementById('fb-root').innerHTML = "";
                     showLoader(false);                   
                 }

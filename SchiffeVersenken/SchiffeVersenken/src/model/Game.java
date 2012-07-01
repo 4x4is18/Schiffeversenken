@@ -355,7 +355,7 @@ public class Game {
 	 * @param player der zulöschende Spieler
 	 */
 	public Player deletePlayer(Player player) {
-		if(player == players.get(actPlayer)) {
+					
 			players.remove(player);
 			
 			if (!players.isEmpty()) {
@@ -363,18 +363,12 @@ public class Game {
 				return getNextPlayer();
 				
 			} else {
+			
 				ShipWebSocketServlet.removeGame(this.id);
 				return null;
+				
 			}
 			
-			
-		} else {
-			players.remove(player);
-			return null;
-		}
-		
-		
-
 		
 	}
 	

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     
     <script src="script/login.js" type="text/javascript"></script>
-   <script src="script/facebook.js" type="text/javascript"></script>
+   
    <script src="script/link.js" type="text/javascript"></script>
   </head>
   <body>
@@ -17,6 +17,10 @@
    	
  
 		<nav id="navigation">
+				<iframe src="https://www.facebook.com/plugins/like.php?href=http://134.106.56.164:8080/SchiffeVersenken/" scrolling="no" frameborder="0" style="border:none; width:200px; height:40px"></iframe>
+		<div id="fb-root">
+			<button id="fb-auth" type="image" src="images/facebook-login-button.png"></button>
+		</div>		
  			<h2>Navigator</h2>
 	       <ul id="navigator">
                 <li><a href="spieleanleitung.html" target="_blank" onclick="return popup(this.href,800,800);">Spielanleitung</a></li>
@@ -30,12 +34,7 @@
     			
       			<h2>Herzlich Willkommen zu Schiffe
       				versenken</h2>
-      			
-				<div id="fblike">
-						<iframe src="https://www.facebook.com/plugins/like.php?href=http://134.106.56.164:8080/SchiffeVersenken/" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
-				</div>
-					
-					
+									
 				<div id="loader" style="display:none">
 					
 				</div>
@@ -45,13 +44,10 @@
      			</div>
      			
 				<div id = "login">
-					<p>Bitte wähle einen Spielernamen aus oder melden sich per Facebook an,<br /> um Schiffeversenken zu spielen:</p>
-						<div id="fb-root"><button id="fb-auth">Login per Facebook</button></div>
-                			<label>
-                				Spielername: <input type="color" id="username" name="user" size="40" maxlength="20" placeholder="Benutzername eingeben" required />
-						 	</label>
-                    		<input type="submit" value="Starten" onclick="store()">
-                			<p>(Wenn kein Name angegeben wird, erstellt das Spiel für dich einen Spielernamen)</p>
+					<p>Bitte wähle einen Spielernamen aus oder melden sich per Facebook an,<br /> um Schiffeversenken zu spielen:</p>	
+                		Spielername: <input type="color" id="username" name="user" size="40" maxlength="20" placeholder="Benutzername eingeben" required />
+                    <input type="submit" value="Starten" onclick="store()">
+                	<p>(Wenn kein Name angegeben wird, erstellt das Spiel für dich einen Spielernamen)</p>
                 </div>	
 
 			</article>	
@@ -63,4 +59,5 @@
   		</footer>
 	</div>
   </body>
+  <script src="script/facebook.js" type="text/javascript"></script>
 </html>
