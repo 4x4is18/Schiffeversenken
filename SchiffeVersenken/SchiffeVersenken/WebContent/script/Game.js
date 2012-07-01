@@ -28,7 +28,7 @@ var FIELD_SIZE = 30;
  * Die Farbe des Wassers. (Dunkel Blau)
  * READ ONLY
  */
-var WATER_COLOR = "rgba(0, 0, 200, 1)";
+var WATER_COLOR = "rgba(0, 0, 200, 0.3)";
 
 /**
  * Die Farbe, in der intakte Schiffsteile gezeichnet werden. (Hell Blau)

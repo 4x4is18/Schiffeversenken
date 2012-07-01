@@ -27,8 +27,15 @@ Board.prototype.shots;
  * Konstruktor zum Erstellen eines Brettes.
  * @param id Die HTML-Div-ID des Brettes.
  */
+
+/**
+ * Wenn ein Schiff getroffen wurde
+ */
+Board.prototype.hitImg;
+
+
 function Board(id) {
-	
+	this.hitImg = new Image();
 	this.canvas = document.getElementById(id);	
 	this.ships = new Array(NUM_SHIPS);
 	for(var s = 0; s < NUM_SHIPS; s++) {
@@ -38,6 +45,7 @@ function Board(id) {
 	}	
 	this.ships_set = 0;
 	this.overlayShip = null;
+	
 	this.shots = new Array(BOARD_HEIGHT);
 	for(var y = 0; y < BOARD_HEIGHT; y++) {
 		
@@ -140,10 +148,12 @@ Board.prototype.load = function() {
  * Das Spielfeld zeichnen, inkl fertig erstellen und temporären Schiffen
  */
 Board.prototype.draw = function() {
-	
+	var hitImg = new Image();
 	if(this.canvas.getContext) {
 		
 		var canvContext = this.canvas.getContext('2d');
+		// TODO: dynamisch machen
+		canvContext.clearRect(0, 0, 300, 300);
 		
 		// Nur wenn man auf dem eigenen Board ist kann man die Schiffe zeichnen
 		if(this == ownBoard){
@@ -188,18 +198,23 @@ Board.prototype.draw = function() {
 	    			if(this.shots[y][x] == NO_HIT) {
 	    				
 	    				canvContext.fillStyle = WATER_COLOR;
+
+	    				
 	    				
 	    			} else if(this.shots[y][x] == HIT) {
 	    				
 	    				canvContext.fillStyle = WATER_SHOT_COLOR;
 	   	
 	    			} else {
+	    				
 	    				// gegnerisches Board
 	    				canvContext.fillStyle = SHIP_HIT_COLOR;
 	    				
-	    			} 
-	    			canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
-	    						FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    			}
+	    			
+    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+    	    	    		FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    			
 	    		}
 	    		
         		

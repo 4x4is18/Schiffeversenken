@@ -13,17 +13,16 @@
   <body onload="onload()">
   	<div id="doc">
   		<header id="header">
-    		<h1>Schiffeversenken</h1>
+  			<img src="images/ship1.png" height="100%" width="100%">
+    		
  		</header>
    	
  
-   <audio controls autoplay onended=""> 
-  <source src="http://192.168.178.25:8080/SchiffeVersenken/drunkensailor.mp3" >
-</audio>
+
    
 
 		<nav id="navigation">
- 			<h2>Navigator</h2>
+ 			<h2>   Navigator</h2>
                 <ul id="navigator">
                 <li><a href="spieleanleitung.html" target="_blank" onclick="return popup(this.href,800,800);">Spielanleitung</a></li>
                 <li><a href="team.html" target="_blank" onclick="return popup(this.href,300,500);">Team</a></li>
@@ -32,22 +31,15 @@
             </ul>
     	</nav>
     	<section>
-    		<article>
+    		<article id="lobby">
     			<h2>Schiffeversenken - Lobby</h2>
-                <div id="chat">
-               		<textarea id="messages" rows="25" cols="120" readonly="readonly"></textarea>
-					<br /><br />
-					<input id="usermsg" type="text" size="150" value="" />
-					
-					<input type="button" id="submitmsg" value="Send..." onclick="sendMessage();" />
-               	</div>
-               	
-               	<div id="offenespiele">
+                
+               		<textarea id="messages" rows="25" cols="50" readonly="readonly"></textarea>
+               		<select id="spiele" readonly="readonly" size = "25">
+					 <input type="button" id="submitmsg" value="Send..." onclick="sendMessage();" />
+					</select>
+					<input id="usermsg" type="text" size="50" value="" />
 
-									<select id="spiele" readonly="readonly" size = "25" style="width: 200px">
-
-
-									</select><br />
 									<br />
 									<input type="button" name="spielbeitreten" value="Joint" onclick="joinGame();" />
 									
@@ -55,7 +47,7 @@
 									<input type="button" name="spielerstellen" value="Create" onclick="createGame();"/>
 									
 					
-               	</div>
+
 									
 				
 
@@ -65,11 +57,12 @@
 			
 
 			</article>
-			<P> </P>
+			<p></p>
     	</section>
     		
   		
 		<footer id="footer">
+			
     		<p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
   		</footer>
 	</div>

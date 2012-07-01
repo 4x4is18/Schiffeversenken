@@ -51,11 +51,12 @@ function Ship(id, length, top, left, vertical) {
  * Zeichnen eines Schiffes.
  */
 Ship.prototype.draw = function(canvContext) {
-	
+
 	if(this.vertical) {
 
 		for(var y = this.top; y < (this.top + this.length); y++) {
 			
+
 			canvContext.fillStyle = SHIP_COLOR;		
 			canvContext.fillRect(this.left * FIELD_SIZE, y * FIELD_SIZE, 
 					FIELD_SIZE - 1, FIELD_SIZE - 1);
