@@ -176,7 +176,7 @@ public class ShipWebSocket implements OnTextMessage {
           
           case CREATEGAME:
         	  
-        	  game = new Game("bla", "bla");
+        	  game = new Game(message[2], message[2]);
         	  ShipWebSocketServlet.addGame(game);
         	  
         	  try {

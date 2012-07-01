@@ -20,7 +20,7 @@ var DELIMITER = "%";
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164";
-var SERVERIP = "192.168.178.28";
+var SERVERIP = "192.168.178.25";
 
 
 /**
@@ -232,16 +232,18 @@ function UserIDExists() {
  */
 function createGame() {
 	
-	webSocket.send("4" + DELIMITER + getUserID());
+	// Zunächst soll der Spieler einen Namen für das Spiel vergeben
+	var gameID = prompt("Spielname eingeben:");
+	
+	// Eintragen des Namens in den LocalStorage
+	var key = "gameID";
+	localStorage.setItem(key, gameID);
+	// Senden der Informationen an den Server
+	webSocket.send("4" + DELIMITER + getUserID() + DELIMITER + gameID);
 
+	// Aufrufen des Spiels
 	window.location.replace('main.html');
-	
-	// TODO: Entweder ein neues Window zum Spielerstellen (komplizierter) oder direkt in der Lobby
-	//("createGame.html", "", "width=300,height=300,status=yes,scrollbars=no,resizable=no");
-	//createGameWindow = window.open("createGame.html", "", "width=300,height=300,status=yes,scrollbars=no,resizable=no");
-	//createGameWindow.focus();
-	
-		
+			
 };
 
 /**
