@@ -13,6 +13,8 @@
   </head>
 
   <body>
+
+
   	<div id="doc">
   		<header id="header">
     		<h1>Schiffeversenken</h1>
@@ -30,15 +32,21 @@
     	</nav>
     	<section>
     		<article>
-    			<h1>Schiffeversenken</h1>
+    			
     				<div id="Inhalt" style="align:center;">
 								<table border="0" align="center">
+								
 					<tr>
+					<td id="Spielername" colspan="5"> Eigenes Feld</td>
+					<td id="Gegnername" colspan="5"> Gegner Feld</td>
+					</tr>
+					<tr> 
 		        		<td  colspan="5">
 		                	<canvas id="ownBoard" width="300" height="300" style="border: 1px solid black">
 		                    	Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
 		                   	</canvas>
 		                </td>
+		               
 		                <td colspan="5">
 							<canvas id="enemyBoard" width="300" height="300" style="border: 1px solid black">
 			                    Ihr Browser unterst&uuml;tzt kein HTML5 - Canvas
@@ -68,7 +76,10 @@
 		          			<input type="button" id="go" onmousedown = "play();" value="Go">
 		                </td> 
 					</tr>
+
 				</table>
+				<div id="statusMessage">Warte auf Spieler...</div>
+				
 				</div>
     		</article>
     	</section>

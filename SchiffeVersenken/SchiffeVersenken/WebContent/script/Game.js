@@ -190,6 +190,15 @@ function doKeyDown(evt){
 }
 
 /**
+ * Dem Spieler Statusmeldungen anzeigen.
+ * zB, dass dieser an der Reihe ist.
+ * @param message
+ */
+function showStatusMessage(message) {
+	document.getElementById('statusMessage').innerHTML = message;	
+}
+
+/**
  * Auswaehlen eines Schiffes zum Setzen im Vorbereitungsmodus.
  * @param id Die ID des Schiffes.
  * @param length Die Laenge des Schiffes.

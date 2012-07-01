@@ -45,6 +45,7 @@ function gameWS() {
 						ownBoard = new Board('ownBoard');
 						enemyBoard = new Board('enemyBoard');
 						
+						
 						mode = PREPARE;
 						
 						selectedShip = null;
@@ -65,6 +66,8 @@ function gameWS() {
 	    		        // Der benutzername wird aus dem Localstorage gelesen
 	    		        var key = "playerID";
 	    		        playerID = localStorage.getItem(key);
+	    		        
+						document.getElementById('Spielername').innerHTML = user;
 						
 	    		        // Zeichnen der Boards
 						ownBoard.load();
@@ -91,11 +94,21 @@ function gameWS() {
 		    			if(event.data != null) {
 		    				var result = event.data.split(DELIMITER);
 		    				
+		    				if(result[0] == "5") {
+		    					showStatusMessage("Setze die Schiffe, und klicke anschliessend auf OK");
+		    					document.getElementById('Gegnername').innerHTML = result[2];
+		    					alert(event.data);		    					
+		    				}
+		    				
 		    				if(result[0] == "12") {
 		    					// 12 := Spieler aktivieren / er ist am Zug
 		    					
+		    					// Zu beginn wird einer der beiden Spieler darüber informiert, dass er an der Reihe ist.
+		    					if (numShots == 0) {
+		    						showStatusMessage("Du bist an der Reihe.");
+		    					}
+		    					
 		    					mode = ACTION;
-			    				//alert("DUUUUU bist dran du Ratte!");
 			    				
 		    				} else if(result[0] == "13") {
 		    					// 13 := Ergebnis vom eigenen Schuss bekommen
@@ -112,7 +125,13 @@ function gameWS() {
 		    					
 		    					alert(result[1]);
 		    					window.location.replace('lobby.html');
+		    					
+		    				} else if(result[0] == "16") {
+		    					// 16 := Wenn ein Client dem Spiel beitritt
+		    					document.getElementById('Gegnername').innerHTML = result[1];
+		    					showStatusMessage(result[1] + " ist dem Spiel beigetreten.");
 		    				}
+		    				
 		    				
 		    			}
 

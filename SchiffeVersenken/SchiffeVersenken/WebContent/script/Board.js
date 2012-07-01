@@ -319,7 +319,7 @@ Board.prototype.isShipOnField = function(y, x) {
 	for(var s = 0; s < this.ships_set; s++) {
 		
 		if(this.ships[s].isOnField(y, x)) {
-			
+
 			return this.ships[s];
 			
 		}
@@ -330,7 +330,7 @@ Board.prototype.isShipOnField = function(y, x) {
 		return this.overlayShip;
 		
 	}
-	
+
 	return null;
 	
 };
@@ -365,12 +365,37 @@ Board.prototype.update = function(y, x, result) {
 	
 	this.shots[y][x] = result;
 	
+	numShots += 1;
+	
+	if (result < 10) {
+		if(this == ownBoard) {
+			showStatusMessage("Der Gegner hat nicht getroffen. Du bist an der Reihe");
+			
+		} else {
+			showStatusMessage("Du hast nicht getroffen. Dein Gegner ist an der Reihe");
+		}
+	} else {
+		if(this == ownBoard) {
+			showStatusMessage("Der Gegner hat ein Schiff getroffen. Er ist nochmal an der Reihe.");
+			
+		} else {
+			showStatusMessage("Du hast ein Schiff getroffn. Du bist nochmal an der Reihe.");
+		}
+	}
+	
 	if(result == SHIP_ID_BATTLESHIP + SUNK || result == SHIP_ID_CRUISER + SUNK || 
 			result == SHIP_ID_FRIGATE_1 + SUNK || result == SHIP_ID_FRIGATE_2 + SUNK || result == SHIP_ID_MINESLOCATOR + SUNK) {
 		
-		if(this == ownBoard)
+		if(this == ownBoard) {
+			showStatusMessage("Dein Gegner hat ein Schiff von dir versenkt!");
 			alert("Ein Schiff von dir wurde versenkt!");
-		else alert("Du hast ein Schiff versenkt!");
+		}
+			
+		else {
+			showStatusMessage("Du hast ein Schiff vom Gegner versenkt!");
+			alert("Du hast ein Schiff versenkt!");
+		}
+			
 		
 	}
 	
