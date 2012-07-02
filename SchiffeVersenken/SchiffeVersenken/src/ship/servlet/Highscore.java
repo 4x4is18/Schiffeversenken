@@ -53,12 +53,12 @@ public class Highscore extends HttpServlet {
 			
 			out.println("<table align=\"center\">");
 			out.println("<tr> <td colspan=3> <h1> Highscores </h1> </td> </tr>");
-			out.println("<tr> <td width=\"90px\"> <b> Name: </b> </td> <td> <b> Uhrzeit: </b> </td width=\"150px\"> <td> <b> Hits: </b> </td> </tr>");
+			out.println("<tr> <td width=\"90px\"> <b> Gewinner: </b> </td>  <td width=\"30px\"> &nbsp </td> <td width=\"90px\"> <b> Verlierer: </b> </td> <td width=\"30px\"> &nbsp  </td> <td colspan=3> <b> Anzahl Spielzüge: </b> </td> <td width=\"150px\"> &nbsp </td> </tr>");
 			out.println("<tr> <td colspan=3> &nbsp </td> </tr>");
 			
 			while(dbconnection.getResultSet().next()) {
 				 
-				out.println(" <tr> <td> " + dbconnection.getResultSet().getString(1) + " </td> <td> " + dbconnection.getResultSet().getString(2) + " </td> <td  align=\"center\"> " + dbconnection.getResultSet().getInt(3) + " </td> </tr> ");
+				out.println(" <tr> <td> " + dbconnection.getResultSet().getString(1) + " </td> <td> hat </td> <td> " + dbconnection.getResultSet().getString(2) + " </td> <td> mit </td> <td> " + dbconnection.getResultSet().getInt(3) + " </td> <td width=\"250px\"> Spielzzügen fertig gemacht </td> </tr> ");
 				
 			}
 			out.println("</table>");

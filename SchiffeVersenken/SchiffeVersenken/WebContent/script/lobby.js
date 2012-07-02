@@ -20,7 +20,7 @@ var DELIMITER = "%";
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164";
-var SERVERIP = "134.106.56.164";
+var SERVERIP = "192.168.2.240";
 
 
 /**

@@ -1,6 +1,11 @@
 /**
  * Diese Funktion überprüft den Benutzernamen auf Richtigkeit. Es dürfen keine Leerzeichen im Namen vorkommen. 
  */
+function onload() {
+	window.addEventListener('keydown',doKeyDown,true);
+};
+
+
 function store() {
 
 		 
@@ -31,6 +36,18 @@ function store() {
 	}
 		
 };
+
+function doKeyDown(evt){
+	
+	if(evt.keyCode == 13) {
+		
+		store();
+
+	}
+	
+};
+
+
 
 /* Über diese Funktion kann auf JEDER Seite die Variable abgerufen werden.
  * function read() {

@@ -2,6 +2,7 @@ package ship.servlet;
 
 import java.io.IOException;
 
+import java.sql.SQLException;
 import java.util.Set;
 
 import model.Board;
@@ -15,6 +16,7 @@ public class ShipWebSocket implements OnTextMessage {
     private Connection connection;
     private Set<ShipWebSocket> user;
     Player player;
+    DBConnection dbconnection;
     
     static final String SPLITDELIMITER = "%"; 
     
@@ -242,16 +244,28 @@ public class ShipWebSocket implements OnTextMessage {
             	  // Wenn das Spiel gewonnen ist, wird das Spiel entfernt und die Player zur Lobby weitergeleitet.
             	  if(game.isGameOver()) {
             		  // TODO: Datenbank
+            		//  dbconnection = new DBConnection();
+            		//  try {
+						//Eintrag des Gewinners in die Datenbank
+            		//	  dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore` (`winner`, `loser`, `hits`)" + " VALUES (`" + game.getActPlayer().getName() + "`, `" + game.getNextPlayer().getName() + "`, `" + game.getActPlayer().getHits() + "`);");
+						
+						 //Entfernt das Spiel aus der Game arraylist
+						ShipWebSocketServlet.removeGame(gameID);
+						 break;
+						 
+				//	} catch (SQLException e) {
+						// TODO Automatisch erstellter Catch-Block
+				//		e.printStackTrace();
+				//	}           		 
             		  
-            		  // Entfernt das Spiel aus der Game arraylist
-            		  ShipWebSocketServlet.removeGame(gameID);
-            	
-            		  break;
             	  }
             	  
             	  // Jedem Spieler (BIS JETZT NUR ZWEI) wird der Schuss übermittelt.
             	  GameProcess.sendOwnResult(game.getActPlayer().getWebSocketConnection(), y, x, result);
             	  GameProcess.sendEnemyResult(game.getNextPlayer().getWebSocketConnection(), y, x, result);
+            	  
+            	  //Bei jedem Spielzug des aktuellen Spielers wird dessen Hitliste um +1 erhöht
+            	  game.getActPlayer().setHit();
             	  
             	  // Wenn es ein Treffer ist, darf der Spieler noch einmal schießen. Wenn nicht ist der andere dran
             	  if (result == 1) {

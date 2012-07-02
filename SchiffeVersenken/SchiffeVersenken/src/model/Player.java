@@ -34,6 +34,8 @@ public class Player {
 	
 	private Connection connection;
 	
+	private int hits;
+	
 	/**
 	 * Konstruktor zum Erstellen eines Spielers ohne Board.
 	 * @param connection Die Websocket Connection des Spielers.
@@ -47,6 +49,7 @@ public class Player {
 		this.name = name;
 		this.board = null;
 		this.ready = false;
+		this.hits = 0;
 		
 	}
 	
@@ -63,6 +66,7 @@ public class Player {
 		this.name = name;
 		this.board = null;
 		this.ready = false;
+		this.hits = 0;
 		
 	}
 	
@@ -78,6 +82,7 @@ public class Player {
 		this(name, connection);
 		this.board = new Board(board);
 		this.ready = true;
+		this.hits = 0;
 	}
 	
 	/**
@@ -203,6 +208,18 @@ public class Player {
 	 */
 	public void resetReady(){
 		this.ready = false;
+	}
+	
+	public void setHit() {
+		
+		this.hits += 1;
+		
+	}
+	
+	public int getHits() {
+		
+		return this.hits;
+		
 	}
 	
 }
