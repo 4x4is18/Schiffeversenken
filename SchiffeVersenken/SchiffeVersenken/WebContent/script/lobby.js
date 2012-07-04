@@ -10,21 +10,22 @@ var webSocket;
 var userName;
 
 /**
- * Der Splitter für die Methode onmessage in der Funktion websocket
+ * Der Splitter fï¿½r die Methode onmessage in der Funktion websocket
  */
 var DELIMITER = "%";
 
 /**
- * Dieser Parameter gibt an, auf welchem Server der Websocket läuft
+ * Dieser Parameter gibt an, auf welchem Server der Websocket lï¿½uft
  * 134.106.56.164 oder localhost
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164";
-var SERVERIP = "192.168.2.240";
+//var SERVERIP = "192.168.2.139";
+var SERVERIP = "localhost";
 
 
 /**
- * Dieser Parameter gibt an, auf welchem Port der Websocket läuft
+ * Dieser Parameter gibt an, auf welchem Port der Websocket lï¿½uft
  * READ ONLY
  */
 var PORT = "8080";
@@ -32,7 +33,7 @@ var PORT = "8080";
 
 /**
  * Wird beim Seitenaufruf aufgerufen.
- * Startet den Websocket und den Eventlistener für die Returntaste
+ * Startet den Websocket und den Eventlistener fï¿½r die Returntaste
  * @see read()
  * @see websocket()
  */
@@ -40,12 +41,12 @@ function onload() {
 	window.addEventListener('keydown',doKeyDown,true);
 	websocket();
 	
-	// TODO: Testen ob diese Funktion überhaupt gebraucht wird. 
+	// TODO: Testen ob diese Funktion ï¿½berhaupt gebraucht wird. 
 	read();
 };
 
 /**
- * Überwacht, ob die Returntaste gedrückt wurde. Returntastekeycode: 13
+ * ï¿½berwacht, ob die Returntaste gedrï¿½ckt wurde. Returntastekeycode: 13
  * @see sendMessage()
  */
 function doKeyDown(evt){
@@ -61,9 +62,9 @@ function doKeyDown(evt){
 
 /**
  * Initialisiert den Websocket. Mit der ServerIP und dem Port. <br />
- * Wenn der Websocket geöffnet wird (onopen), wird überprüft ob die UserID oder der UserName im LocalSotrage ist. <br />
+ * Wenn der Websocket geï¿½ffnet wird (onopen), wird ï¿½berprï¿½ft ob die UserID oder der UserName im LocalSotrage ist. <br />
  * --- <br />
- * Wenn Nachrichten vom Websocket gesendet werden, wird der String gesplittet und überprüft, zu welchem Case er gehört. <br />
+ * Wenn Nachrichten vom Websocket gesendet werden, wird der String gesplittet und ï¿½berprï¿½ft, zu welchem Case er gehï¿½rt. <br />
  * CASE 1:		Speichert die UserID in den LocalStorage <br />
  * CASE 2:		Chatnachrichten <br />
  * CASE 3:		Nichts (Da auf Serverseite die drei mit einer anderen Aufgabe belegt ist und auf Clientseite nicht genutzt wird.)
@@ -78,18 +79,18 @@ function websocket() {
 		// Die Websocket Verbindung des Clients, wo befindet sich der Websocket
 		webSocket = new WebSocket( 'ws://' + SERVERIP + ":" + PORT + '/SchiffeVersenken/WebSocket/anything' ); 
 					
-					// Wird beim Öffnen aufgerufen. Überprüft ob überprüft ob die UserID oder der UserName im LocalSotrage ist.
+					// Wird beim ï¿½ffnen aufgerufen. ï¿½berprï¿½ft ob ï¿½berprï¿½ft ob die UserID oder der UserName im LocalSotrage ist.
 					webSocket.onopen = function( event ) {
 						
 						// True wenn es schon eine UserID im LocalStorage gibt
 						if (UserIDExists()) {
 							
-							// Dem Server wird die PlayerID gesendet und dem Websocket wird anhand der PlayerID der Player zugeördnet
+							// Dem Server wird die PlayerID gesendet und dem Websocket wird anhand der PlayerID der Player zugeï¿½rdnet
 							webSocket.send("3" + DELIMITER + getUserID() + DELIMITER + getUserName()); 
 							
 						} else {
 							
-							// Dem Server wird der Username übermittelt und ein neues Playerobjekt wird erstellt
+							// Dem Server wird der Username ï¿½bermittelt und ein neues Playerobjekt wird erstellt
 							webSocket.send("1" + DELIMITER + getUserName()); 
 							
 						}
@@ -124,7 +125,7 @@ function websocket() {
 		    			case "6":
 		    				document.getElementById('spiele').innerHTML = "";
 		    				
-		    				for (var i = 1; i < result.length-1; i++) {
+		    				for (var i = 1; i < result.length; i++) {
 		    					
 		    					document.getElementById('spiele').innerHTML += "<option value=\"" + result[i] + "\">" + result[i] +"</option>";
 		    					
@@ -142,11 +143,11 @@ function websocket() {
 };
 
 /**
- * Überprüft eine Nachricht auf ihren Inhalt (darf nicht leer sein oder nur aus leerzeichen bestehen) und sendet sie dem Websocket
+ * ï¿½berprï¿½ft eine Nachricht auf ihren Inhalt (darf nicht leer sein oder nur aus leerzeichen bestehen) und sendet sie dem Websocket
  */
 function sendMessage() {
 
-		// TODO: Es können noch leere Nachrichten abgeschickt werden. Sofern +1 Leerzeichen geschrieben wird.
+		// TODO: Es kï¿½nnen noch leere Nachrichten abgeschickt werden. Sofern +1 Leerzeichen geschrieben wird.
 		if(document.getElementById('usermsg').value == "") {
 			
 		} else {
@@ -167,7 +168,7 @@ function sendGames() {
 }
 
 /**
- * Überprüft ob der Benutzername im LocalSotrage eingetragen ist <br />
+ * ï¿½berprï¿½ft ob der Benutzername im LocalSotrage eingetragen ist <br />
  * @returns {Boolean} Ture wenn sie existiert/eingetragen ist.
  */
 function UserNameExists() {
@@ -185,7 +186,7 @@ function UserNameExists() {
 };
 
 /**
- * Läd den Benutzernamen aus dem LocalStorage <br />
+ * Lï¿½d den Benutzernamen aus dem LocalStorage <br />
  * @returns Benutzername des Spielers
  */
 function getUserName() {
@@ -196,7 +197,7 @@ function getUserName() {
 };
 
 /**
- * Läd die PlayerID aus dem Localstorage
+ * Lï¿½d die PlayerID aus dem Localstorage
  * @returns PlayerID des Spielers
  */
 function getUserID() {
@@ -207,7 +208,7 @@ function getUserID() {
 };
 
 /**
- * Überprüft den LocalStorage, ob die PlayerID leer ist. LS == "" <br />
+ * ï¿½berprï¿½ft den LocalStorage, ob die PlayerID leer ist. LS == "" <br />
  * @returns {Boolean} True wenn sie existiert/eingetragen ist
  */
 function UserIDExists() {
@@ -226,20 +227,20 @@ function UserIDExists() {
 
 /**
  * Erstellt ein Spiel. <br />
- * Überträgt an den Websocket die UserID. <br />
+ * ï¿½bertrï¿½gt an den Websocket die UserID. <br />
  * Leitet den Spieler auf die main.html weiter <br />
  * TODO: Fenster zum erstellen des Spiels entwerfen und dieses anzeigen lassen.
  */
 function createGame() {
 	
-	// Zunächst soll der Spieler einen Namen für das Spiel vergeben
-	var gameID = prompt("Spielname eingeben:");
+	// Zunï¿½chst soll der Spieler einen Namen fï¿½r das Spiel vergeben
+	var gameName = prompt("Spielname eingeben:");
 	
 	// Eintragen des Namens in den LocalStorage
-	var key = "gameID";
-	localStorage.setItem(key, gameID);
+	var key = "gameName";
+	localStorage.setItem(key, gameName);
 	// Senden der Informationen an den Server
-	webSocket.send("4" + DELIMITER + getUserID() + DELIMITER + gameID);
+	webSocket.send("4" + DELIMITER + gameName);
 
 	// Aufrufen des Spiels
 	window.location.replace('main.html');
@@ -248,18 +249,18 @@ function createGame() {
 
 /**
  * Startet ein Spiel. <br />
- * Überträgt an den Websocket die UserID und der Spielname <br />
+ * ï¿½bertrï¿½gt an den Websocket die UserID und der Spielname <br />
  * Leitet den Spieler auf die main.html weiter
  */
 function joinGame() {
 
 	if (document.getElementById('spiele').value == "") {
 		
-		alert("Bitte wähle zuerst ein Spiel aus!");
+		alert("Bitte wï¿½hle zuerst ein Spiel aus!");
 		
 	} else {
-		var key = "gameID";
-        gameID = localStorage.setItem(key, document.getElementById('spiele').value);
+		var key = "gameName";
+        localStorage.setItem(key, document.getElementById('spiele').value);
 		window.location.replace('main.html');
 		
 	}

@@ -1,22 +1,23 @@
 /**
- * Dieser Parameter gibt an, auf welchem Server der Websocket läuft <br />
+ * Dieser Parameter gibt an, auf welchem Server der Websocket lï¿½uft <br />
  * 134.106.56.164 oder localhost <br />
  * READ ONLY
  */
 //var SERVERIP = "134.106.56.164";
-var SERVERIP = "192.168.2.240";
+//var SERVERIP = "192.168.2.139";
+var SERVERIP = "localhost";
 
 /**
- * Dieser Parameter gibt an, auf welchem Port der Websocket läuft
+ * Dieser Parameter gibt an, auf welchem Port der Websocket lï¿½uft
  * READ ONLY
  */
 var PORT = 8080;
 
 /**
- * Initialisiert den Websocket für das Spiel mit der ServerIP und dem Port. <br />
- * Wenn der Websocket geöffnet wird (onopen), wird überprüft ob die UserID oder der UserName im LocalSotrage ist. <br />
+ * Initialisiert den Websocket fï¿½r das Spiel mit der ServerIP und dem Port. <br />
+ * Wenn der Websocket geï¿½ffnet wird (onopen), wird ï¿½berprï¿½ft ob die UserID oder der UserName im LocalSotrage ist. <br />
  * --- <br />
- * Wenn Nachrichten vom Websocket gesendet werden, wird der String gesplittet und überprüft, zu welchem Case er gehört. <br />
+ * Wenn Nachrichten vom Websocket gesendet werden, wird der String gesplittet und ï¿½berprï¿½ft, zu welchem Case er gehï¿½rt. <br />
  * CASE 1:		Speichert die UserID in den LocalStorage <br />
  * CASE 2:		Chatnachrichten <br />
  * CASE 3:		Nichts (Da auf Serverseite die drei mit einer anderen Aufgabe belegt ist und auf Clientseite nicht genutzt wird.) <br />
@@ -52,12 +53,12 @@ function gameWS() {
 						selectedShipLength = null;
 						vertical = true;
 						
-						// Anzahl der Schüsse
+						// Anzahl der Schï¿½sse
 						numShots = 0;
 	    		        
 						// Die GameID wird aus dem Localstorage gelesen
-						var key = "gameID";
-	    		        gameID = localStorage.getItem(key);
+						var key = "gameName";
+	    		        gameName = localStorage.getItem(key);
 	    		        
 	    		        // Der benutzername wird aus dem Localstorage gelesen
 	    		        var key = "benutzername";
@@ -73,9 +74,9 @@ function gameWS() {
 						ownBoard.load();
 						enemyBoard.load();
 						
-						// Erstellt einen neuen Spieler für das Spiel
+						// Erstellt einen neuen Spieler fï¿½r das Spiel
 						webSocket.send("1" + DELIMITER + user);
-						webSocket.send("5" + DELIMITER + playerID + DELIMITER + gameID);
+						webSocket.send("5" + DELIMITER + gameName);
 						
 						
 		    		};
@@ -83,9 +84,9 @@ function gameWS() {
 		    		 * Der DELIMITER ist in der Game.js zu finden
 		    		 * CASE 12: Der Spieler bekommt gesagt, dass er am Zug ist
 		    		 * CASE 13: Der eigene Schuss wird vom Websocket empfangen
-		    		 * CASE 14: Der gegnerische Schuss wird übermittelt
-		    		 * CASE 15: Der Websocket übermittelt, dass das spiel zuende ist, und der Spieler wird in die Lobby weitergeleitet.
-		    		 * TODO: Konstanten für die Cases in der Game.js definieren und übertragen
+		    		 * CASE 14: Der gegnerische Schuss wird ï¿½bermittelt
+		    		 * CASE 15: Der Websocket ï¿½bermittelt, dass das spiel zuende ist, und der Spieler wird in die Lobby weitergeleitet.
+		    		 * TODO: Konstanten fï¿½r die Cases in der Game.js definieren und ï¿½bertragen
 		    		 */
 		    		
 		    		webSocket.onmessage = function( event ) {
@@ -96,14 +97,13 @@ function gameWS() {
 		    				
 		    				if(result[0] == "5") {
 		    					showStatusMessage("Setze die Schiffe, und klicke anschliessend auf OK");
-		    					document.getElementById('Gegnername').innerHTML = result[2];
-		    					alert(event.data);		    					
+		    					document.getElementById('Gegnername').innerHTML = result[2];	    					
 		    				}
 		    				
 		    				if(result[0] == "12") {
 		    					// 12 := Spieler aktivieren / er ist am Zug
 		    					
-		    					// Zu beginn wird einer der beiden Spieler darüber informiert, dass er an der Reihe ist.
+		    					// Zu beginn wird einer der beiden Spieler darï¿½ber informiert, dass er an der Reihe ist.
 		    					if (numShots == 0) {
 		    						showStatusMessage("Du bist an der Reihe.");
 		    					}

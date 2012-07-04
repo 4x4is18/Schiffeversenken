@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import ship.servlet.ShipWebSocketServlet;
+import servlet.ShipWebSocketServlet;
 
 /**
  * Die Modellklasse zur Beschreibung von Spielern 
@@ -43,11 +43,6 @@ public class Game {
 	private String password;
 	
 	/**
-	 * Die eindeutige ID des Spiels.
-	 */
-	private String id;
-	
-	/**
 	 * Zeigt an, ob das Spiel vorbei ist und eine Person gewonnen hat.
 	 */
 	private boolean gameOver;
@@ -56,13 +51,11 @@ public class Game {
 	 * Konstruktor fuer ein offenes Spiel fuer zwei Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
-	 * @param id Die eindeutige ID des Spiels.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, String id) {
+	public Game(Player creator, String name) {
 		
-		this.name = name;  //bisher immer nur "bla"
-		this.id = id;
+		this.name = name;
 		this.numPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.players.add(creator);
@@ -75,13 +68,11 @@ public class Game {
 	/**
 	 *  Konstruktor fuer ein offenes Spiel fuer zwei Spieler.
 	 * @param name Der Name des Spiels.
-	 * @param id Die eindeutige ID des Spiels.
 	 * @see model.Player
 	 */
 	public Game(String name, String id) {
 		
-		this.name = name;  //bisher immer nur "bla"
-		this.id = id;
+		this.name = name;
 		this.numPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.actPlayer = 0;
@@ -91,16 +82,15 @@ public class Game {
 	}
 	
 	/**
-	 * Konstruktor fuer ein passwort-geschütztes Spiel fuer zwei Spieler.
+	 * Konstruktor fuer ein passwort-geschï¿½tztes Spiel fuer zwei Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
-	 * @param id Die eindeutige ID des Spiels.
 	 * @param password Das Passwort fuer das Spiel.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, String id, String password) {
+	public Game(Player creator, String name, String password) {
 		
-		this(creator, name, id);
+		this(creator, name);
 		this.password = password;
 		
 	}
@@ -109,14 +99,12 @@ public class Game {
 	 * Konstruktor fuer ein offenes Spiel fuer beliebig viele Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
-	 * @param id Die eindeutige ID des Spiels.
 	 * @param numPlayers Die Anzahl der Spieler.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, String id, int numPlayers) {
+	public Game(Player creator, String name, int numPlayers) {
 		
 		this.name = name;
-		this.id = id;
 		this.numPlayers = numPlayers;
 		this.players = new ArrayList<Player>(numPlayers);
 		this.players.add(creator);
@@ -127,18 +115,17 @@ public class Game {
 	}
 	
 	/**
-	 * Konstruktor fuer ein passwort-geschütztes Spiel fuer beliebig viele 
+	 * Konstruktor fuer ein passwort-geschï¿½tztes Spiel fuer beliebig viele 
 	 * Spieler.
 	 * @param creator Der Ersteller des Spiels.
 	 * @param name Der Name des Spiels.
-	 * @param id Die eindeutige ID des Spiels.
 	 * @param numPlayers Die Anzahl der Spieler.
 	 * @param password Das Passwort fuer das Spiel.
 	 * @see model.Player
 	 */
-	public Game(Player creator, String name, String id, int numPlayers, String password) {
+	public Game(Player creator, String name, int numPlayers, String password) {
 		
-		this(creator, name, id, numPlayers);
+		this(creator, name, numPlayers);
 		this.password = password;
 		
 	}
@@ -159,7 +146,7 @@ public class Game {
 	}
 	
 	/**
-	 * Prüft, ob alle Spieler auf Go geklickt haben und das Spiel gestartet
+	 * Prï¿½ft, ob alle Spieler auf Go geklickt haben und das Spiel gestartet
 	 * werden kann
 	 * @return
 	 */
@@ -172,15 +159,6 @@ public class Game {
 		}
 		
 		return true;
-		
-	}
-	
-	/**
-	 * Die eindeutige ID des Spiels
-	 */
-	public String getID() {
-		
-		return this.id;
 		
 	}
 	
@@ -285,7 +263,7 @@ public class Game {
 	 */
 	public ArrayList<Integer> update(Player updater, int y, int x) {
 		
-		// TODO: Aus der Game schmeißen. Hat nichts hier zusuchen :D
+		// TODO: Aus der Game schmeiï¿½en. Hat nichts hier zusuchen :D
 		ArrayList<Integer> targets = new ArrayList<Integer>(this.numPlayers);
 		
 		for(Player victim : this.players) {
@@ -296,7 +274,7 @@ public class Game {
 			targets.add(victim.updateBoard(y, x));
 			
 			if(victim.hasLost()) {
-				this.setGameover();
+				this.setGameOver();
 				GameProcess.sendGameOver(victim.getWebSocketConnection(), "Du hast leider verloren");
 				GameProcess.sendGameOver(updater.getWebSocketConnection(), "Gratulation! Du hast gewonnen!");
 			}
@@ -308,7 +286,7 @@ public class Game {
 	}
 	
 	/**
-	 * Gibt den aktuellen Spieler zurück
+	 * Gibt den aktuellen Spieler zurï¿½ck
 	 * @return den Spieler der an der Reihe ist
 	 */
 	public Player getActPlayer() {
@@ -318,7 +296,7 @@ public class Game {
 	}
 	
 	/**
-	 * Gibt zurück ob die maximale Anzahl an Spielern erreicht ist.
+	 * Gibt zurï¿½ck ob die maximale Anzahl an Spielern erreicht ist.
 	 * @return true wenn KEIN Platz mehr im Spiel ist. False wenn noch Platz im Spiel ist.
 	 */
 	public boolean isFull() {
@@ -334,7 +312,7 @@ public class Game {
 	}
 	
 	/**
-	 * Gibt das Playerarray zurück
+	 * Gibt das Playerarray zurï¿½ck
 	 * @return eine Arraylist mit allen Spielern in einem Spiel
 	 */
 	public ArrayList<Player> getAllPlayer() {
@@ -345,14 +323,14 @@ public class Game {
 	/**
 	 * Setzt das Spiel auf GameOver
 	 */
-	public void setGameover() {
+	public void setGameOver() {
 		this.gameOver = true;
 	}
 	
 	/**
-	 * Löscht einen Spieler aus der Liste des Spiels
-	 * Wenn er der aktuelle Spieler ist, wird der nächste Spieler zurück gegeben. Wenn nicht dann wird null zurück gegeben.
-	 * @param player der zulöschende Spieler
+	 * Lï¿½scht einen Spieler aus der Liste des Spiels
+	 * Wenn er der aktuelle Spieler ist, wird der nï¿½chste Spieler zurï¿½ck gegeben. Wenn nicht dann wird null zurï¿½ck gegeben.
+	 * @param player der zulï¿½schende Spieler
 	 */
 	public Player deletePlayer(Player player) {
 					
@@ -364,7 +342,7 @@ public class Game {
 				
 			} else {
 			
-				ShipWebSocketServlet.removeGame(this.id);
+				ShipWebSocketServlet.removeGame(this.name);
 				return null;
 				
 			}

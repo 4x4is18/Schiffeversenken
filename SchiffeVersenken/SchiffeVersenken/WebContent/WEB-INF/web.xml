@@ -11,7 +11,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>WebSocket</servlet-name>
-    <servlet-class>ship.servlet.ShipWebSocketServlet</servlet-class>
+    <servlet-class>servlet.ShipWebSocketServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WebSocket</servlet-name>
@@ -19,7 +19,7 @@
   </servlet-mapping>
   <servlet>
   	<servlet-name>Highscore</servlet-name>
-  	<servlet-class>ship.servlet.Highscore</servlet-class>
+  	<servlet-class>servlet.Highscore</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Highscore</servlet-name>
