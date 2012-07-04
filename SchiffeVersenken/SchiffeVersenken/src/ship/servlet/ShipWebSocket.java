@@ -244,19 +244,19 @@ public class ShipWebSocket implements OnTextMessage {
             	  // Wenn das Spiel gewonnen ist, wird das Spiel entfernt und die Player zur Lobby weitergeleitet.
             	  if(game.isGameOver()) {
             		  // TODO: Datenbank
-            		//  dbconnection = new DBConnection();
-            		//  try {
+            		  dbconnection = new DBConnection();
+            		  try {
 						//Eintrag des Gewinners in die Datenbank
-            		//	  dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore` (`winner`, `loser`, `hits`)" + " VALUES (`" + game.getActPlayer().getName() + "`, `" + game.getNextPlayer().getName() + "`, `" + game.getActPlayer().getHits() + "`);");
+            			  dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore`" + " VALUES ('" + game.getActPlayer().getName() + "', '" + game.getNextPlayer().getName() + "' , '" + game.getActPlayer().getHits() + "');");
 						
 						 //Entfernt das Spiel aus der Game arraylist
 						ShipWebSocketServlet.removeGame(gameID);
 						 break;
 						 
-				//	} catch (SQLException e) {
+					} catch (SQLException e) {
 						// TODO Automatisch erstellter Catch-Block
-				//		e.printStackTrace();
-				//	}           		 
+						e.printStackTrace();
+					}           		 
             		  
             	  }
             	  
