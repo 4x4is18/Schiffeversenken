@@ -136,7 +136,7 @@ var HIT = 1;
 var SUNK = 2;
 
 /**
- * Konstante für den Trenner von Strings, die an den Server gehen
+ * Konstante fï¿½r den Trenner von Strings, die an den Server gehen
  */
 var DELIMITER = "%";
 
@@ -177,7 +177,7 @@ if(window.addEventListener){
 }
 
 /**
- * Drehen des angewaehlten Schiffes, wenn die Strg-Taste gedrückt wird.
+ * Drehen des angewaehlten Schiffes, wenn die Strg-Taste gedrï¿½ckt wird.
  */
 function doKeyDown(evt){
 	
@@ -245,7 +245,7 @@ function readyToPlay() {
  */
 function play() {
 	
-	// Schaltflächen disablen:
+	// Schaltflï¿½chen disablen:
 	document.getElementById('clear').disabled = true;
 	document.getElementById('go').disabled = true;
 	
@@ -257,7 +257,7 @@ function play() {
 	 * Dem Server muss folgendes uebergeben werden: gameID und strBoard.
 	 * Vom Server muss ein Befehl kommen, der mode = ACTION setzt.
 	 */
-	webSocket.send(10 + DELIMITER + localStorage.getItem("gameID") + DELIMITER + localStorage.getItem("playerID") + DELIMITER + strBoard);
+	webSocket.send(10 + DELIMITER + localStorage.getItem("gameName") + DELIMITER + strBoard);
 	
 	// Warten, bis man dran ist:
 	mode = WAIT;
