@@ -35,7 +35,6 @@ Board.prototype.hitImg;
 
 
 function Board(id) {
-	this.hitImg = new Image();
 	this.canvas = document.getElementById(id);	
 	this.ships = new Array(NUM_SHIPS);
 	for(var s = 0; s < NUM_SHIPS; s++) {
@@ -198,22 +197,28 @@ Board.prototype.draw = function() {
 	    			if(this.shots[y][x] == NO_HIT) {
 	    				
 	    				canvContext.fillStyle = WATER_COLOR;
-
+	    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+	    	    	    		FIELD_SIZE - 1, FIELD_SIZE - 1);
 	    				
 	    				
 	    			} else if(this.shots[y][x] == HIT) {
-	    				
-	    				canvContext.fillStyle = WATER_SHOT_COLOR;
+	    				hitImg.src = "images/o.png";
+	    				//canvContext.fillStyle = WATER_SHOT_COLOR;
+	    				canvContext.drawImage(hitImg, x * FIELD_SIZE, y * FIELD_SIZE, 
+	    											FIELD_SIZE - 1, FIELD_SIZE - 1);
 	   	
 	    			} else {
 	    				
 	    				// gegnerisches Board
-	    				canvContext.fillStyle = SHIP_HIT_COLOR;
+	    				hitImg.src = "images/x.png";
+	    				//canvContext.fillStyle = SHIP_HIT_COLOR;
+	    				canvContext.drawImage(hitImg, x * FIELD_SIZE, y * FIELD_SIZE, 
+    	    	    	FIELD_SIZE - 1, FIELD_SIZE - 1);
 	    				
 	    			}
 	    			
-    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
-    	    	    		FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    		
+  
 	    			
 	    		}
 	    		

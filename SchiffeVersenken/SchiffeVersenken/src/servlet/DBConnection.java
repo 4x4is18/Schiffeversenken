@@ -2,7 +2,7 @@
 /**
  * 
  */
-package ship.servlet;
+package servlet;
 
 import java.sql.*;
 
@@ -30,7 +30,7 @@ public class DBConnection {
 	 * @param host URL der Datenbank
 	 * @param port Port der Datenbank
 	 * @param database Name der Datenbank
-	 * @param user Benutzername für den Zugriff auf die Datenbank
+	 * @param user Benutzername fï¿½r den Zugriff auf die Datenbank
 	 * @param PW Passwort des Benutzers
 	 */
 	public DBConnection(String host, int port, String database, String user,
@@ -40,7 +40,7 @@ public class DBConnection {
 	}
 
 	/**
-	 * Verbindung zu unserer Datenbank, Benutzername und Passwort müssen noch eingegeben werden
+	 * Verbindung zu unserer Datenbank, Benutzername und Passwort mï¿½ssen noch eingegeben werden
 	 * @param user Benutzername
 	 * @param PW Passwort
 	 */
@@ -69,7 +69,7 @@ public class DBConnection {
 	/**
 	 * SQL-Anfrage an die Datenbank
 	 * @param SQLQuery SQL-Anfrage
-	 * @return Gibt die Anzahl der gefundenen Tupel zurück
+	 * @return Gibt die Anzahl der gefundenen Tupel zurï¿½ck
 	 * @throws SQLException
 	 */
 	public int query(String SQLQuery) throws SQLException {
@@ -94,7 +94,7 @@ public class DBConnection {
 	}
 
 	/**
-	 * Gibt das ResultSet zurück
+	 * Gibt das ResultSet zurï¿½ck
 	 * @return Tabelle der gefundenen Tupel
 	 */
 	public ResultSet getResultSet() {
@@ -102,7 +102,7 @@ public class DBConnection {
 	}
 
 	/**
-	 * Schließt die Verbindung zur Datenbank
+	 * Schlieï¿½t die Verbindung zur Datenbank
 	 * @throws SQLException
 	 */
 	public void close() throws SQLException {

@@ -1,4 +1,4 @@
-package ship.servlet;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -51,17 +51,19 @@ public class Highscore extends HttpServlet {
 			out.println("<html>");
 			out.println("<body bgcolor=\"#fed\">");
 			
+			out.println("<datagrid>");
 			out.println("<table align=\"center\">");
 			out.println("<tr> <td colspan=3> <h1> Highscores </h1> </td> </tr>");
-			out.println("<tr> <td width=\"90px\"> <b> Gewinner: </b> </td>  <td width=\"30px\"> &nbsp </td> <td width=\"90px\"> <b> Verlierer: </b> </td> <td width=\"30px\"> &nbsp  </td> <td colspan=3> <b> Anzahl Spielzüge: </b> </td> <td width=\"150px\"> &nbsp </td> </tr>");
+			out.println("<tr> <td width=\"90px\"> <b> Gewinner: </b> </td>  <td width=\"30px\"> &nbsp </td> <td width=\"90px\"> <b> Verlierer: </b> </td> <td width=\"30px\"> &nbsp  </td> <td colspan=3> <b> Anzahl Spielzï¿½ge: </b> </td> <td width=\"150px\"> &nbsp </td> </tr>");
 			out.println("<tr> <td colspan=3> &nbsp </td> </tr>");
 			
 			while(dbconnection.getResultSet().next()) {
 				 
-				out.println(" <tr> <td> " + dbconnection.getResultSet().getString(1) + " </td> <td> hat </td> <td> " + dbconnection.getResultSet().getString(2) + " </td> <td> mit </td> <td> " + dbconnection.getResultSet().getInt(3) + " </td> <td width=\"250px\"> Spielzzügen fertig gemacht </td> </tr> ");
+				out.println(" <tr> <td> " + dbconnection.getResultSet().getString(1) + " </td> <td> hat </td> <td> " + dbconnection.getResultSet().getString(2) + " </td> <td> mit </td> <td> " + dbconnection.getResultSet().getInt(3) + " </td> <td width=\"250px\"> Spielzzï¿½gen fertig gemacht </td> </tr> ");
 				
 			}
 			out.println("</table>");
+			out.println("</datagrid>");
 			out.println("</body>");
 			out.println("</head>");
 			

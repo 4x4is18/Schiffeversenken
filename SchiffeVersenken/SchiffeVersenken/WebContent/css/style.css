@@ -8,36 +8,38 @@ body {
 
     margin: 0; padding: 1em 0;
     text-align: center;  /* Zentrierung im Internet Explorer */
+    width: 100%;
+
   }
 
 #doc  {
-  width: 73%;
+  width: 60%;
   background-image:url(../images/background-nav-acticle.jpg);	
   background-color: white;
   margin: 0 auto;
   border: 1px solid;
-  min-width: 800px;
+  min-width: 900px;
   
 }
 
 header {
 	margin: 0; 
-	height:150px;
+	height:140px;
 	width:auto;
     border-bottom: 1px solid;
     background-repeat:no-repeat;
     text-align: left;
-    min-width: 800px;
+    min-width: inherit;
 }
 
 section {
-	background-image:url(../images/background-nav-acticle.jpg);	
+	background-image:url(../images/background-nav-acticle.jpg);
 	float: right;
-	background-color: white;
-	height:inherit;
-	width: inherit;
-	text-align:left;
-	min-width: 680px;
+	width: 77%;
+	height: inherit;	
+	margin: 0 auto;
+	min-width: 600px;
+
 }
 
 footer {
@@ -47,7 +49,13 @@ footer {
     text-align: center;
     background-color: #E1E1E1;
     border-top: 1px solid ;
-    min-width: 800px;
+    min-width: 900px;
+}
+
+aside {
+	display: inline;
+	float:right;
+	width: 19%;
 }
 
 nav {
@@ -58,10 +66,10 @@ nav {
 	display:inline;
 	text-align: left;
 	float:left;
-	width: 25%;
-	height:inherit;
+	width: 15%;
+	height: inherit;
 	min-height:300px;
-	min-width: 120px;
+	min-width: 200px;
 	
 	
 	
@@ -69,8 +77,15 @@ nav {
 }
 
 article {
+	
 	background-image:url(../images/background-nav-acticle.jpg);	
+	float: center;
+	background-color: white;
+	text-align: center;
+	margin: 0 auto;
+
 }
+
 
 
 h1#header {
@@ -135,23 +150,53 @@ ul#navigator {
   }
    
   textarea#messages {
-  	float: inherit;
+  	float: left;
+  	width: 100%;
+  	height: 400px;
+  	
   	
   } 
 
+article#menue {
+
+	float:right;
+	width: 27%;
+	height: auto;
+	min-width: 210px;
+	text-align: right;
+
+}
+
+
+article#chat {
+
+	float:left;
+	width: 65%;
+	height:auto;
+	min-width:  435px;
+	text-align: left;
+}
 
 select#spiele {
-	display:inline; 
-	float:right;
-  	width: 20%;
-  	height: 80%;
+	
+	width: 100%;
+	height: 406px;
+	
 }
 
-h2#lobby {
-	text-align: center;
+.spielbeitreten {
+	
+	float: left;
 }
 
-select#lobby {
-	display:inline; 
+.submit {
+	
 	float: right;
 }
+
+input#usermsg {
+	
+	width: 85%;
+	max-width: 750px; 
+}
+

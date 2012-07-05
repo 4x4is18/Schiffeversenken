@@ -22,7 +22,7 @@ public class Game {
 	/**
 	 * Die Anzahl der Spieler.
 	 */
-	private int numPlayers;
+	private int maxPlayers;
 	
 	/**
 	 * Die Liste mit den Spielern. <br />
@@ -56,7 +56,7 @@ public class Game {
 	public Game(Player creator, String name) {
 		
 		this.name = name;
-		this.numPlayers = 2;
+		this.maxPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.players.add(creator);
 		this.actPlayer = 0;
@@ -70,10 +70,10 @@ public class Game {
 	 * @param name Der Name des Spiels.
 	 * @see model.Player
 	 */
-	public Game(String name, String id) {
+	public Game(String name) {
 		
 		this.name = name;
-		this.numPlayers = 2;
+		this.maxPlayers = 2;
 		this.players = new ArrayList<Player>(2);
 		this.actPlayer = 0;
 		this.password = null;
@@ -105,7 +105,7 @@ public class Game {
 	public Game(Player creator, String name, int numPlayers) {
 		
 		this.name = name;
-		this.numPlayers = numPlayers;
+		this.maxPlayers = numPlayers;
 		this.players = new ArrayList<Player>(numPlayers);
 		this.players.add(creator);
 		this.actPlayer = 0;
@@ -152,6 +152,12 @@ public class Game {
 	 */
 	public boolean allPlayersReady() {
 		
+		if (this.maxPlayers > this.players.size()) {
+			
+			return false;
+			
+		}
+		
 		for (int i = 0; i < players.size(); i++) {
 			
 			if (!players.get(i).isReady()) return false;
@@ -165,9 +171,9 @@ public class Game {
 	/**
 	 * Die Anzahl der Spieler.
 	 */
-	public int getNumPlayers() {
+	public int getMaxPlayers() {
 		
-		return this.numPlayers;
+		return this.maxPlayers;
 		
 	}
 	
@@ -190,12 +196,12 @@ public class Game {
 	 */
 	public boolean addPlayer(Player player) {
 		
-		if(this.players.size() == this.numPlayers)
+		if(this.players.size() == this.maxPlayers)
 			return true;	// Es passt kein Spieler mehr rein, aber bereit ist das Spiel natuerlich dennoch
 		else {
 			
 			this.players.add(player);
-			return this.players.size() == this.numPlayers;
+			return this.players.size() == this.maxPlayers;
 			
 		}
 		
@@ -264,7 +270,7 @@ public class Game {
 	public ArrayList<Integer> update(Player updater, int y, int x) {
 		
 		// TODO: Aus der Game schmei�en. Hat nichts hier zusuchen :D
-		ArrayList<Integer> targets = new ArrayList<Integer>(this.numPlayers);
+		ArrayList<Integer> targets = new ArrayList<Integer>(this.maxPlayers);
 		
 		for(Player victim : this.players) {
 			
@@ -301,7 +307,7 @@ public class Game {
 	 */
 	public boolean isFull() {
 		
-		if(players.size() == this.numPlayers) {
+		if(players.size() == this.maxPlayers) {
 			
 			return true;
 			

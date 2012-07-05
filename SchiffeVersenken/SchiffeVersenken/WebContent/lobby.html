@@ -31,38 +31,36 @@
             </ul>
     	</nav>
     	<section>
-    		<article id="lobby">
+    		<article id="header">
     			<h2>Schiffeversenken - Lobby</h2>
+    		</article>
+    		
+    		<article id="chat">
+    			
                 
-               		<textarea id="messages" rows="25" cols="50" readonly="readonly"></textarea>
-               		<select id="spiele" readonly="readonly" size = "25">
-					 <input type="button" id="submitmsg" value="Senden" onclick="sendMessage();" />
-					</select>
-					<input id="usermsg" type="text" size="50" value="" />
-
-									<br />
-									<input type="button" name="spielbeitreten" value="Spiel beitreten" onclick="joinGame();" />
-									
-								
-									<input type="button" name="spielerstellen" value="Spiel erstellen" onclick="createGame();"/>
-									
-					
-
-									
-				
-
-								
-
-								
+               		<textarea id="messages" readonly="readonly"></textarea>
+               		<input id="usermsg" type="text" value="" />
+               		<input type="button" class="submit" id="submitmsg" value="Senden" onclick="sendMessage();" />
 			
-
+					
+			
 			</article>
-			<p></p>
+			
+			<article id="menue">
+					
+					<select id="spiele" readonly size="2">
+					 
+					 </select>
+               		<input type="button" class="spielbeitreten" name="spielbeitreten" value="Spiel beitreten" onclick="joinGame();" />
+					<input type="button" class="spielbeitreten" name="spielerstellen" value="Spiel erstellen" onclick="createGame();"/>
+			</article>
+			
     	</section>
+    	
+    	
     		
   		
 		<footer id="footer">
-			
     		<p id="Fusszeile">Copyright by Team Easyyyyy  :)</p>
   		</footer>
 	</div>
