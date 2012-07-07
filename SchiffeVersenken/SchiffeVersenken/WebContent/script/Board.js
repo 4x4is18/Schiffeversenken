@@ -120,8 +120,8 @@ Board.prototype.load = function() {
 				selectedShip = null;
 				
 				// Wurde das letzte Schiff gesetzt, und sind zwei Spieler vorhanden, ist der Spieler bereit f�r das Spiel
-				if(board.ships_set == NUM_SHIPS && document.getElementById('Gegnername').innerHTML.equals("Gegner Feld"))
-					readyToPlay();
+				if(board.ships_set == NUM_SHIPS && document.getElementById('Gegnername').innerHTML != ("Gegner Feld"))
+					readyToPlay();   
 				
 				// Nach dem Erstellen des Schiffs das Spielfeld neu gezeichnet
 				board.draw();

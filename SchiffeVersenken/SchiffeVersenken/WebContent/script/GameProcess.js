@@ -5,7 +5,7 @@
  */
 //var SERVERIP = "134.106.56.164";
 //var SERVERIP = "192.168.2.139";
-var SERVERIP = "192.168.178.41";
+var SERVERIP = "localhost";
 
 /**
  * Dieser Parameter gibt an, auf welchem Port der Websocket l�uft
