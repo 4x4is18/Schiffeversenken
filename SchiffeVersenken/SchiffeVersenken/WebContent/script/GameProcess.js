@@ -5,7 +5,7 @@
  */
 //var SERVERIP = "134.106.56.164";
 //var SERVERIP = "192.168.2.139";
-var SERVERIP = "localhost";
+var SERVERIP = "192.168.178.41";
 
 /**
  * Dieser Parameter gibt an, auf welchem Port der Websocket l�uft
@@ -97,7 +97,7 @@ function gameWS() {
 		    				
 		    				if(result[0] == "5") {
 		    					showStatusMessage("Setze die Schiffe, und klicke anschliessend auf OK");
-		    					document.getElementById('Gegnername').innerHTML = result[2];	    					
+		    					document.getElementById('Gegnername').innerHTML = result[2];	
 		    				}
 		    				
 		    				if(result[0] == "12") {
@@ -130,6 +130,9 @@ function gameWS() {
 		    					// 16 := Wenn ein Client dem Spiel beitritt
 		    					document.getElementById('Gegnername').innerHTML = result[1];
 		    					showStatusMessage(result[1] + " ist dem Spiel beigetreten.");
+		    					// Aktivieren des Go- Buttons des Spielerstellers, sobald ein zweiter Spieler dem Spiel beitritt
+		    					document.getElementById('go').disabled = false;
+		    					
 		    				}
 		    				
 		    				

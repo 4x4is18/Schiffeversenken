@@ -9,12 +9,12 @@ Board.prototype.canvas;
 Board.prototype.ships_set;
 
 /**
- * Das Array, welches die Schiffe enthält.
+ * Das Array, welches die Schiffe enthï¿½lt.
  */
 Board.prototype.ships;
 
 /**
- * Das temporäre Schiff (durch Mauszeigerbewegung).
+ * Das temporï¿½re Schiff (durch Mauszeigerbewegung).
  */
 Board.prototype.overlayShip;
 
@@ -65,7 +65,7 @@ Board.prototype.load = function() {
 	var board = this;
 	board.draw();
 	
-	// Zeichnen des temporären Schiffes bei Mausbewegung
+	// Zeichnen des temporï¿½ren Schiffes bei Mausbewegung
 	this.canvas.onmousemove = function(event) {
 		
 		// Tritt auf, falls das Spiel noch nicht gestartet ist, und auf das eigene Feld geklickt wird
@@ -76,7 +76,7 @@ Board.prototype.load = function() {
 			var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);
 			
 			// Sofern ein Schiff an diese Stelle gesetzt werden kann,
-			// wird ein neues temporäres Schiff erzeugt.
+			// wird ein neues temporï¿½res Schiff erzeugt.
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
 				
 				board.overlayShip = new Ship(selectedShip, selectedShipLength, y, x, vertical);
@@ -84,12 +84,12 @@ Board.prototype.load = function() {
 			} else {
 				
 				// Kann das Schiff an der Stelle nicht gezeichnet werden,
-				// Wird das temporäre Schiff wieder entfernt.
+				// Wird das temporï¿½re Schiff wieder entfernt.
 				board.overlayShip = null;
 				
 			}
 			
-			// Abschließend wird das Spielfeld gezeichnet.
+			// Abschlieï¿½end wird das Spielfeld gezeichnet.
 			board.draw();
 			
 		}
@@ -99,7 +99,7 @@ Board.prototype.load = function() {
 	// Zeichnen eines Schiffes auf dem eigenen Feld
 	this.canvas.onmousedown = function(event) {
 		
-		// Vor Spielbeginn können Schiffe (nur auf dem eigenen Feld) gesetzt werden
+		// Vor Spielbeginn kï¿½nnen Schiffe (nur auf dem eigenen Feld) gesetzt werden
 		if(mode == PREPARE && board == ownBoard && selectedShip != null) {
 			
 			board.overlayShip = null;
@@ -107,9 +107,9 @@ Board.prototype.load = function() {
 			var y = parseInt(board.getMousePosY(event) / FIELD_SIZE);
 			var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);
 			
-			/*  Wenn das Setzen eines Schiff an dieser Stelle möglich ist,
-			 *  wird es zunächst erstellt. Zusätzlich wird das
-			 *  temporäre Schiff (für Mauszeigerbewegungen) entfernt
+			/*  Wenn das Setzen eines Schiff an dieser Stelle mï¿½glich ist,
+			 *  wird es zunï¿½chst erstellt. Zusï¿½tzlich wird das
+			 *  temporï¿½re Schiff (fï¿½r Mauszeigerbewegungen) entfernt
 			 */
 			if(board.canSetShip(selectedShipLength, y, x, vertical)) {
 				
@@ -119,8 +119,8 @@ Board.prototype.load = function() {
 
 				selectedShip = null;
 				
-				// Wurde das letzte Schiff gesetzt, ist der Spieler bereit für das Spiel
-				if(board.ships_set == NUM_SHIPS)
+				// Wurde das letzte Schiff gesetzt, und sind zwei Spieler vorhanden, ist der Spieler bereit fï¿½r das Spiel
+				if(board.ships_set == NUM_SHIPS && document.getElementById('Gegnername').innerHTML.equals("Gegner Feld"))
 					readyToPlay();
 				
 				// Nach dem Erstellen des Schiffs das Spielfeld neu gezeichnet
@@ -130,7 +130,7 @@ Board.prototype.load = function() {
 			
 		} else if(mode == ACTION && board == enemyBoard) {
 			
-			// Während des Spiels kann nur (auf gegnerischem Feld) geschossen werden
+			// Wï¿½hrend des Spiels kann nur (auf gegnerischem Feld) geschossen werden
 			var y = parseInt(board.getMousePosY(event) / FIELD_SIZE);
 			var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);		
 			
@@ -144,7 +144,7 @@ Board.prototype.load = function() {
 };
 
 /**
- * Das Spielfeld zeichnen, inkl fertig erstellen und temporären Schiffen
+ * Das Spielfeld zeichnen, inkl fertig erstellen und temporï¿½ren Schiffen
  */
 Board.prototype.draw = function() {
 	var hitImg = new Image();
@@ -164,7 +164,7 @@ Board.prototype.draw = function() {
 						
 			}
 		
-			// Das temporäre Schiff zeichnen, falls der Mauszeiger über einem gültigen Feld ist
+			// Das temporï¿½re Schiff zeichnen, falls der Mauszeiger ï¿½ber einem gï¿½ltigen Feld ist
 			if(this.overlayShip != null) {
 				
 				this.overlayShip.draw(canvContext);
@@ -173,7 +173,7 @@ Board.prototype.draw = function() {
 			
 		}
 		
-		// Die Schiffe dürfen NICHT zuerst gezeichnet werden, da sonst gegnerische Treffer überzeichnet werden
+		// Die Schiffe dï¿½rfen NICHT zuerst gezeichnet werden, da sonst gegnerische Treffer ï¿½berzeichnet werden
 		for(var y = 0; y < BOARD_HEIGHT; y++) {
 	        
 	    	for(var x = 0; x < BOARD_WIDTH; x++) {
@@ -185,7 +185,7 @@ Board.prototype.draw = function() {
 	    			if(this.shots[y][x] > SUNK) {
 	    				
 	    				// TODO: eigentlich muss das in der Klasse Ship geschehen
-	    				// im Moment werden die Treffer überzeichnet
+	    				// im Moment werden die Treffer ï¿½berzeichnet
 	    				canvContext.fillStyle = SHIP_HIT_COLOR;
 	    				
 	    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
@@ -275,7 +275,7 @@ Board.prototype.getMousePosX = function(event) {
 };
 
 /**
- * Liefert zurück, ob ein Schiff der angegebenen Länge auf der angegebenen
+ * Liefert zurï¿½ck, ob ein Schiff der angegebenen Lï¿½nge auf der angegebenen
  * Koordinate gezeichnet werden kann.
  * @param selectedShipLength Die Laenge des Schiffes.
  * @param topY Die oberste y-Koordinate des Schiffes.
@@ -329,7 +329,7 @@ Board.prototype.canSetShip = function(selectedShipLength, topY, leftX, vertical)
 };
 
 /**
- * Liefert das Schiff auf der angegeben Koordinate zurück
+ * Liefert das Schiff auf der angegeben Koordinate zurï¿½ck
  * @param y Die y-Koordinate, nach der gesucht wird.
  * @param x Die x-Koordinate, nach der gesucht wird.
  * @returns Das Schiff auf den Koordinaten oder null, wenn kein Schiff auf dem Feld ist.
