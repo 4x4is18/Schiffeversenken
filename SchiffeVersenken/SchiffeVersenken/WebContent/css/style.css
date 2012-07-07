@@ -199,4 +199,32 @@ input#usermsg {
 	width: 85%;
 	max-width: 750px; 
 }
+.Legende {
+	
+	vertical-align:middle;
+	height:44px;
+	font-weight: bold;
+	text-align: left;
+}
 
+.LegendeUeberschrift {
+	
+	vertical-align:middle;
+	height:44px;
+	font-weight: bold;
+	text-align: right;
+	
+}
+
+Table#Legende {
+	
+	width:150px;
+}
+
+.BilderLegende {
+	
+	height:40px;
+	width:50px;
+	float:right;
+	
+}
