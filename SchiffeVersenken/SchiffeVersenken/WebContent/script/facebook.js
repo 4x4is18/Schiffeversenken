@@ -37,7 +37,7 @@
                                     showLoader(false);
                                 }
                             }, {scope:'user_about_me'});  	
-                        }
+                        };
                     };
                 }
                 
