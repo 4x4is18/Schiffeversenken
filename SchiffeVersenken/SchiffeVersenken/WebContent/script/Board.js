@@ -99,6 +99,8 @@ Board.prototype.load = function() {
 	// Zeichnen eines Schiffes auf dem eigenen Feld
 	this.canvas.onmousedown = function(event) {
 		
+		
+		
 		// Vor Spielbeginn k�nnen Schiffe (nur auf dem eigenen Feld) gesetzt werden
 		if(mode == PREPARE && board == ownBoard && selectedShip != null) {
 			
@@ -127,18 +129,18 @@ Board.prototype.load = function() {
 				board.draw();
 				
 			}
-			
+		
 		} else if(mode == ACTION && board == enemyBoard) {
-			
+
 			// W�hrend des Spiels kann nur (auf gegnerischem Feld) geschossen werden
 			var y = parseInt(board.getMousePosY(event) / FIELD_SIZE);
 			var x = parseInt(board.getMousePosX(event) / FIELD_SIZE);		
+
 			
 			numShots++;
 			update(y, x);
 			
 		}
-		
 	};
 
 };

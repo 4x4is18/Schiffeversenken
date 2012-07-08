@@ -201,6 +201,9 @@ public class Game {
 		else {
 			
 			this.players.add(player);
+			
+			
+			
 			return this.players.size() == this.maxPlayers;
 			
 		}

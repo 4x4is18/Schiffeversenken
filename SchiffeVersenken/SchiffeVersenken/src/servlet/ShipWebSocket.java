@@ -71,6 +71,7 @@ public class ShipWebSocket implements OnTextMessage {
      */
     static final int GAMEOVER = 15;
     
+    
     /**
      * Die Websocket-Verbindung.
      * @see Connection servlet.ShipWebSocket.connection
@@ -182,7 +183,8 @@ public class ShipWebSocket implements OnTextMessage {
 	          
 	          case CREATEGAME:
 	        	  // Erstellen eines neuen Spiels:
-	        	  createGame(message[1]);
+	        	  //Ja.. obwol es sich um ein StringArray handelt, ist das toString erforderlich... frag nicht warum........ ??
+	        	  createGame(message[1].toString());
 	        	  
 	        	  // Senden aller offenen Spiele an alle Spieler:
 	        	  refreshLobbyGames();
@@ -274,9 +276,24 @@ public class ShipWebSocket implements OnTextMessage {
      */
     private void joinGame(String gameName) throws IOException {
     	
+    	String enemyNames = "";
   	  	Game game = ShipWebSocketServlet.getGame(gameName);
   	  	game.addPlayer(this.player);
-		this.connection.sendMessage(JOINGAME + SPLITDELIMITER + game.getName());
+  	  	
+  	  	
+  	  	// Nach dem Hinzufuegen werden alle anderen Spieler dieses Spiels informiert.
+  	  	for (Player player : game.getAllPlayer()) {
+  	  		if (player != this.player) {
+  	  			player.getWebSocketConnection().sendMessage(JOINGAME + SPLITDELIMITER + this.player.getName());
+  	  			enemyNames += player.getName() + SPLITDELIMITER;
+  	  		}
+  	  	}
+  	  	
+  	  	// Anschliessend bekommt der Spieler, der gejoint hat, die Namen aller anderen Spieler, sofern er nicht alleine ist
+  	  	// Alleine ist der Spieler, wenn er der Creator des Spiels ist.
+  	  	if (!enemyNames.isEmpty()) {
+  	  		this.connection.sendMessage(JOINGAME + SPLITDELIMITER + enemyNames);
+  	  	}
     	
     }
     

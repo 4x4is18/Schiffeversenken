@@ -34,7 +34,6 @@ function gameWS() {
 		//webSocket = new WebSocket( 'ws://' + location.host + '/SchiffeVersenken/WebSocket/anything' ); // wo befindet sich der WebSocket
 
 					webSocket.onopen = function( event ) {
-						
 						/*
 						 * Initialisieren des Spiels:
 						 * Es werden die Buttons gesetzt sowie die zwei Boards erstellt.
@@ -56,9 +55,7 @@ function gameWS() {
 						// Anzahl der Sch�sse
 						numShots = 0;
 	    		        
-						// Die GameID wird aus dem Localstorage gelesen
-						var key = "gameName";
-	    		        gameName = localStorage.getItem(key);
+						
 	    		        
 	    		        // Der benutzername wird aus dem Localstorage gelesen
 	    		        var key = "benutzername";
@@ -75,8 +72,12 @@ function gameWS() {
 						enemyBoard.load();
 						
 						// Erstellt einen neuen Spieler f�r das Spiel
+						
 						webSocket.send("1" + DELIMITER + user);
-						webSocket.send("5" + DELIMITER + gameName);
+						
+						// Die GameID wird aus dem Localstorage gelesen
+						var key = "gameName";
+						webSocket.send("5" + DELIMITER + localStorage.getItem(key));
 						
 						
 		    		};
@@ -91,13 +92,16 @@ function gameWS() {
 		    		
 		    		webSocket.onmessage = function( event ) {
 		    			
-		    			//alert(event.data);
+		    			
 		    			if(event.data != null) {
 		    				var result = event.data.split(DELIMITER);
 		    				
 		    				if(result[0] == "5") {
+		    					// 5 := Der Spieler wurder erfolgreich dem Spiel hinzugefuegt
+		    					// Er erhaelt daraufhin die Namen der Gegner uebermittelt.
+		    					
 		    					showStatusMessage("Setze die Schiffe, und klicke anschliessend auf OK");
-		    					document.getElementById('Gegnername').innerHTML = result[2];	
+		    					document.getElementById('Gegnername').innerHTML = result[1];
 		    				}
 		    				
 		    				if(result[0] == "12") {
@@ -127,7 +131,8 @@ function gameWS() {
 		    					window.location.replace('lobby.html');
 		    					
 		    				} else if(result[0] == "16") {
-		    					// 16 := Wenn ein Client dem Spiel beitritt
+		    					//TODO: 16 tritt nie auf?
+		    					// 16 := Wenn ein Client dem Spiel beitritt, erhaelt er den Namen des neuen Gegners uebermittelt.
 		    					document.getElementById('Gegnername').innerHTML = result[1];
 		    					showStatusMessage(result[1] + " ist dem Spiel beigetreten.");
 		    					// Aktivieren des Go- Buttons des Spielerstellers, sobald ein zweiter Spieler dem Spiel beitritt

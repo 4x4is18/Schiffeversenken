@@ -270,7 +270,7 @@ function play() {
  * @param x Die x-Koordinate.
  */
 function update(y, x) {
-	
+
 	/*
 	 * TODO: Serverkommunikation
 	 * Senden der beiden Koordinaten an den Server.
@@ -282,8 +282,7 @@ function update(y, x) {
 	 * 			shipID + SUNK := Das Schiff wurde versenkt
 	 * Dieser Wert muss in result abgespeichert werden.
 	 */
-	// TODO: Ergebnis vom Server
-	webSocket.send(11 + DELIMITER + gameID + DELIMITER + y + DELIMITER + x);
+	webSocket.send(11 + DELIMITER + localStorage.getItem("gameName") + DELIMITER + y + DELIMITER + x);
 	
 	// Warten, bis man dran ist:
 	mode = WAIT;
