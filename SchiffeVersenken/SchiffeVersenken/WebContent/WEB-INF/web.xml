@@ -18,12 +18,19 @@
     <url-pattern>/WebSocket/*</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>Highscore</servlet-name>
-  	<servlet-class>servlet.Highscore</servlet-class>
+    <servlet-name>Highscore</servlet-name>
+    <servlet-class>servlet.Highscore</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Highscore</servlet-name>
-  	<url-pattern>/Highscore/*</url-pattern>
+    <servlet-name>Highscore</servlet-name>
+    <url-pattern>/Highscore/*</url-pattern>
   </servlet-mapping>
-  	
+  <servlet>
+    <servlet-name>SendData</servlet-name>
+    <servlet-class>servlet.SendData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendData</servlet-name>
+    <url-pattern>/SendData/*</url-pattern>
+  </servlet-mapping>
 </web-app>
