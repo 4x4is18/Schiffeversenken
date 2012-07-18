@@ -343,6 +343,7 @@ public class ShipWebSocket implements OnTextMessage {
   	  				dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore`" + " VALUES ('" + 
   						game.getActPlayer().getName() + "', '" + game.getNextPlayer().getName() + 
   						"' , '" + game.getActPlayer().getHits() + "');");
+  	  				dbconnection.close();
   	  			}
   	  			
 					
