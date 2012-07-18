@@ -58,7 +58,23 @@ Ship.prototype.draw = function(canvContext) {
 			canvContext.fillStyle = WATER_COLOR;
 			canvContext.fillRect(this.left * FIELD_SIZE, y * FIELD_SIZE, 
 				FIELD_SIZE - 1, FIELD_SIZE - 1);
-			hitImg.src = "images/x.png";
+			
+			if(y == this.top) {
+				
+				hitImg.src = "images/vertikal-oben.png";
+				
+				
+			// Links	
+			} else if(y == this.top + this.length - 1) {
+			
+				hitImg.src = "images/vertikal-unten.png";
+				
+			// Rechts	
+			} else  {
+				// TODO: Bild Pfad ändern
+				hitImg.src = "images/mitte-v.png";
+				
+			}
 			//canvContext.fillStyle = WATER_SHOT_COLOR;
 			canvContext.drawImage(hitImg, this.left * FIELD_SIZE, y * FIELD_SIZE, 
 						FIELD_SIZE - 1, FIELD_SIZE - 1);
@@ -70,9 +86,32 @@ Ship.prototype.draw = function(canvContext) {
 	} else {
 
 		for(var x = this.left; x < (this.left + this.length); x++) {			
-
-			canvContext.fillStyle = SHIP_COLOR;
+			// Den Hintergrund zeichnen
+			canvContext.fillStyle = WATER_COLOR;
 			canvContext.fillRect(x * FIELD_SIZE, this.top * FIELD_SIZE, 
+					FIELD_SIZE - 1, FIELD_SIZE - 1);
+			
+			// Das Schiff zeichnen. Das Schiff besteht aus drei Teilen. Links Mitte Rechts
+			
+
+			if(x == this.left) {
+				
+				hitImg.src = "images/horizontal-links.png";
+				
+				
+			// Links	
+			} else if(x == this.left + this.length - 1) {
+			
+				hitImg.src = "images/horizontal-rechts.png";
+				
+			// Rechts	
+			} else  {
+				// TODO: Bild Pfad ändern
+				hitImg.src = "images/mitte-h.png";
+				
+			}
+
+			canvContext.drawImage(hitImg, x * FIELD_SIZE, this.top * FIELD_SIZE, 
 					FIELD_SIZE - 1, FIELD_SIZE - 1);
 	        	
 		}

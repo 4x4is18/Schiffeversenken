@@ -188,10 +188,14 @@ Board.prototype.draw = function() {
 	    				
 	    				// TODO: eigentlich muss das in der Klasse Ship geschehen
 	    				// im Moment werden die Treffer �berzeichnet
-	    				canvContext.fillStyle = SHIP_HIT_COLOR;
+	    				//canvContext.fillStyle = SHIP_HIT_COLOR;
 	    				
-	    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
-	    				FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    				//canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+	    				//FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    				hitImg.src = "images/x.png";
+	    				//canvContext.fillStyle = SHIP_HIT_COLOR;
+	    				canvContext.drawImage(hitImg, x * FIELD_SIZE, y * FIELD_SIZE, 
+    	    	    	FIELD_SIZE - 1, FIELD_SIZE - 1);
 	    			}
 	    			
 	    		} else {
@@ -204,12 +208,21 @@ Board.prototype.draw = function() {
 	    				
 	    				
 	    			} else if(this.shots[y][x] == HIT) {
+	    				
+	    				canvContext.fillStyle = WATER_COLOR;
+	    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+	    	    	    		FIELD_SIZE - 1, FIELD_SIZE - 1);
+	    				
 	    				hitImg.src = "images/o.png";
 	    				//canvContext.fillStyle = WATER_SHOT_COLOR;
 	    				canvContext.drawImage(hitImg, x * FIELD_SIZE, y * FIELD_SIZE, 
 	    											FIELD_SIZE - 1, FIELD_SIZE - 1);
 	   	
 	    			} else {
+	    				
+	    				canvContext.fillStyle = WATER_COLOR;
+	    				canvContext.fillRect(x * FIELD_SIZE, y * FIELD_SIZE, 
+	    	    	    		FIELD_SIZE - 1, FIELD_SIZE - 1);
 	    				
 	    				// gegnerisches Board
 	    				hitImg.src = "images/x.png";
@@ -219,7 +232,7 @@ Board.prototype.draw = function() {
 	    				
 	    			}
 	    			
-	    		
+	    			
   
 	    			
 	    		}

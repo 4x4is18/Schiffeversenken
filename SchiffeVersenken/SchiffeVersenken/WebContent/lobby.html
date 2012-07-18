@@ -2,7 +2,7 @@
 <html lang="de">
   <head>
     <meta charset="utf-8" />
-    <title>HTML5 Layout</title>
+    <title>Schiffeversenken - Lobby</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <script type="text/javascript" src="script/lobby.js"></script>
     <script type="text/javascript" src="script/link.js"></script>
@@ -28,6 +28,17 @@
                 <li><a href="team.html" target="_blank" onclick="return popup(this.href,300,500);">Team</a></li>
                 <li><a href="Highscore" target="_blank" onclick="return popup(this.href,300,300);">Highscore</a></li>
                 <li><a href="news.html" target="_blank" onclick="return popup(this.href,300,300);">News</a></li>
+                <li>
+
+                		<img src="images/effect-off.png" id="effectimage" width="30" height="30" alt="Effects on" onClick="effect();">
+                		<img src="images/music-off.png" id="musicimage" width="30" height="30" alt="Sounds on" onClick="music();">
+
+                </li>
+            </ul>
+            <audio id="audiomusic" loop="loop">
+  				<source src="sounds/monkey-island.mp3" type="audio/ogg" />
+  					Your browser does not support the audio element.
+				</audio>
             </ul>
     	</nav>
     	<section>

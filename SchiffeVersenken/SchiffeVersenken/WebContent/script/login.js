@@ -1,3 +1,4 @@
+
 /**
  * Diese Funktion überprüft den Benutzernamen auf Richtigkeit. Es dürfen keine Leerzeichen im Namen vorkommen. 
  */
@@ -49,10 +50,8 @@ function doKeyDown(evt){
 
 
 
-/* Über diese Funktion kann auf JEDER Seite die Variable abgerufen werden.
- * function read() {
- *		var key = "benutzername";
- *		document.getElementById('data').value = localStorage.getItem(key);
- *		}
-*/
+	
+
+
+
 

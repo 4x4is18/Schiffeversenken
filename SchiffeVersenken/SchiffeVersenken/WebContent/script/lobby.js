@@ -21,7 +21,7 @@ var DELIMITER = "%";
  */
 //var SERVERIP = "134.106.56.164";
 //var SERVERIP = "192.168.2.139";
-var SERVERIP = "localhost";
+var SERVERIP = "192.168.178.28";
 
 
 /**

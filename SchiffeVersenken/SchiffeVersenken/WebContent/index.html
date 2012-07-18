@@ -2,7 +2,7 @@
 <html lang="de">
   <head>
     <meta charset="utf-8" />
-    <title>Schiffe Versenken</title>
+    <title>Schiffeversenken - Startseite</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     
     <script src="script/login.js" type="text/javascript"></script>
@@ -35,7 +35,17 @@
                 <li><a href="team.html" target="_blank" onclick="return popup(this.href,300,500);">Team</a></li>
                 <li><a href="Highscore" target="_blank" onclick="return popup(this.href,550,800);">Highscore</a></li>
                 <li><a href="news.html" target="_blank" onclick="return popup(this.href,300,300);">News</a></li>
+                <li>
+
+                		<img src="images/effect-off.png" id="effectimage" width="30" height="30" alt="Effects on" onClick="effect();">
+                		<img src="images/music-off.png" id="musicimage" width="30" height="30" alt="Sounds on" onClick="music();">
+
+                </li>
             </ul>
+            <audio id="audiomusic" loop="loop">
+  				<source src="sounds/aerzte-kaperfahrt.mp3" type="audio/ogg" />
+  					Your browser does not support the audio element.
+				</audio>
     	</nav>
     	<section>
     		<article>
