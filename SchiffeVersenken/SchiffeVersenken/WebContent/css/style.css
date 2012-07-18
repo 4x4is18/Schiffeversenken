@@ -136,7 +136,7 @@ ul#navigator {
   }
   
   ul#navigator a:link {
-    color: black; background-color: white;
+    color: white; background-color: white;
   }
  
   ul#navigator a:hover {

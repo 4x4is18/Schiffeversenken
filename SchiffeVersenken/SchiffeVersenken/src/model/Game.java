@@ -63,9 +63,7 @@ public class Game {
 		this.password = null;
 		this.gameOver = false;
 		
-	}
-	
-	/**
+	}/**
 	 *  Konstruktor fuer ein offenes Spiel fuer zwei Spieler.
 	 * @param name Der Name des Spiels.
 	 * @see model.Player

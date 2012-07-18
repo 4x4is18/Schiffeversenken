@@ -260,7 +260,6 @@ function joinGame() {
 		
 	} else {
 		var key = "gameName";
-		alert(document.getElementById('spiele').value);
         localStorage.setItem(key, document.getElementById('spiele').value);
         
 		window.location.replace('main.html');

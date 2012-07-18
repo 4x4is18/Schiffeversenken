@@ -50,7 +50,7 @@ public class Highscore extends HttpServlet {
 		try {
 			dbconnection.query("SELECT * FROM Schiffeversenken.highscore order by Schiffeversenken.highscore.hits asc");
 			out.println("<html>");
-			out.println("<body bgcolor=\"#fed\">");
+			out.println("<body background=\"images/background-nav-acticle.jpg\">");
 			
 			out.println("<datagrid>");
 			out.println("<table align=\"center\">");
