@@ -25,7 +25,7 @@ public class Highscore extends HttpServlet {
     public Highscore() {
     	
     	super();
-    	this.dbconnection = new DBConnection();
+    	
         
        
     }
@@ -42,6 +42,7 @@ public class Highscore extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		this.dbconnection = new DBConnection();
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
@@ -70,6 +71,17 @@ public class Highscore extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		
+		} finally {
+			
+			try {
+				
+				this.dbconnection.close();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
