@@ -337,9 +337,14 @@ public class ShipWebSocket implements OnTextMessage {
   	  			DBConnection dbconnection = new DBConnection();
   	  			
 				//Eintrag des Gewinners in die Datenbank:
-      			dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore`" + " VALUES ('" + 
-      						game.getActPlayer().getName() + "', '" + game.getNextPlayer().getName() + 
-      						"' , '" + game.getActPlayer().getHits() + "');");
+      			
+  	  			if (game.getActPlayer().getHits() > 16 || game.getNextPlayer().getHits() > 16) {
+  	  			
+  	  				dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore`" + " VALUES ('" + 
+  						game.getActPlayer().getName() + "', '" + game.getNextPlayer().getName() + 
+  						"' , '" + game.getActPlayer().getHits() + "');");
+  	  			}
+  	  			
 					
       			//Entfernt das Spiel vom Serlvet:
 				ShipWebSocketServlet.removeGame(gameName);
@@ -352,7 +357,8 @@ public class ShipWebSocket implements OnTextMessage {
   	  		GameProcess.sendEnemyResult(game.getNextPlayer().getWebSocketConnection(), y, x, result);
       	  
   	  		//Bei jedem Spielzug des aktuellen Spielers wird dessen Hitliste um +1 erhoeht
-  	  		this.player.setHit();
+  	  		game.getActPlayer().setHit();
+  	  		//this.player.setHit();
       	  
   	  		// Wenn es ein Treffer ist, darf der Spieler noch einmal schiessen.
   	  		if (result == 1) {
