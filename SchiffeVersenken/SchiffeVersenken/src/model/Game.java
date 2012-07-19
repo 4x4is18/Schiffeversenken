@@ -1,7 +1,9 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import servlet.DBConnection;
 import servlet.ShipWebSocketServlet;
 
 /**
@@ -270,20 +272,45 @@ public class Game {
 	 */
 	public ArrayList<Integer> update(Player updater, int y, int x) {
 		
+		
 		// TODO: Aus der Game schmei�en. Hat nichts hier zusuchen :D
 		ArrayList<Integer> targets = new ArrayList<Integer>(this.maxPlayers);
 		
 		for(Player victim : this.players) {
 			
+			
+			
 			if(updater.equals(victim))
+		
 				continue;
 			
 			targets.add(victim.updateBoard(y, x));
 			
 			if(victim.hasLost()) {
 				this.setGameOver();
+				
+				DBConnection dbconnection = new DBConnection();
+  	  			
+				//Eintrag des Gewinners in die Datenbank:
+      			
+  	  			if (getActPlayer().getHits() > 16 || getNextPlayer().getHits() > 16) {
+  	  			
+  	  				try {
+  	  					
+						dbconnection.query("INSERT INTO `Schiffeversenken`.`highscore`" + " VALUES ('" + 
+							updater.getName() + "', '" + getNextPlayer().getName() + 
+							"' , '" + getNextPlayer().getHits() + "');");
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+  	  				
+  	  			}	
+  	  			
+  	  			GameProcess.sendGameOver(updater.getWebSocketConnection(), "Gratulation! Du hast gewonnen!");
 				GameProcess.sendGameOver(victim.getWebSocketConnection(), "Du hast leider verloren");
-				GameProcess.sendGameOver(updater.getWebSocketConnection(), "Gratulation! Du hast gewonnen!");
+				
 			}
 			
 		}

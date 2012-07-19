@@ -5,7 +5,7 @@
  */
 //var SERVERIP = "134.106.56.164";
 //var SERVERIP = "192.168.2.139";
-var SERVERIP = "192.168.178.28";
+var SERVERIP = "192.168.2.240";
 
 /**
  * Dieser Parameter gibt an, auf welchem Port der Websocket l�uft
@@ -129,6 +129,7 @@ function gameWS() {
 		    					
 		    					alert(result[1]);
 		    					window.location.replace('lobby.html');
+		    					
 		    					
 		    				} else if(result[0] == "16") {
 		    					//TODO: 16 tritt nie auf?
